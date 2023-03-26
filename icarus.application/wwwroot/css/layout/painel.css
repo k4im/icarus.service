@@ -1,0 +1,111 @@
+.container__header {
+    width: 100%;
+    height: 5rem;
+    min-height: 5rem;
+    background-color: var(--color-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__icon {
+    margin-left: 2rem;
+    display: flex;
+
+}
+.header__profile {  
+    display: flex;
+    margin-left: -30rem;
+}
+.icons {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--color-white);
+    fill: var(--color-white);
+    transition: all .2s ease-in-out;
+}
+.icon__header {
+    width: 8rem;
+    height: 8rem;
+    fill: var(--color-main);
+}
+.container__sidenav {
+    display: flex;
+    align-items: center;
+}
+.container__icons {
+    width: 5.5rem;
+    height: 100vh;
+    min-height: 750px;
+    background-color: var(--color-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: fle;
+    align-items: center;
+    gap: 3rem;
+}
+
+.container__text {
+    width: 20rem;
+    height: 100vh;
+    min-height: 750px;
+    background-color: var(--color-black);
+    transition: all .2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.6rem;
+}
+
+.container__toggle {
+    width: 2rem;
+    height: 15rem;
+    min-height: 150px;
+    background-color: var(--color-main);
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon__toggle {
+    color: var(--color-white);
+    fill: var(--color-white);
+    transition: all .2s ease-in-out;
+}
+
+.container__hidden {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.icon__toggle--rotate {
+    transform: rotate(180deg);
+}
+.link__text {
+    text-decoration: none;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+.link__text:hover {
+    width: 100%;
+    height: 3rem;
+    background-color: var(--color-main);
+
+}
+
+.link__text:active {
+    width: 100%;
+    height: 3rem;
+    background-color: var(--color-main);
+
+}
+
+.icon__menu:hover {
+    color: var(--color-black);
+    fill: var(--color-black);
+}

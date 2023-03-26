@@ -1,0 +1,16 @@
+.heading__primary {
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.heading__secondary {
+    font-size: normal;
+    margin-left: 1rem;
+    color: var(--color-white);
+}
+.heading__secondary--box {
+    font-size: 2rem;
+}
+.heading__box {
+    color: var(--color-black);
+}

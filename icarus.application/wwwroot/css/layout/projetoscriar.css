@@ -1,0 +1,34 @@
+.container__form {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+.form__projeto {
+    padding: 5rem;
+}
+.form-control {
+    height: 3.2rem;
+    font-size: 1.2rem !important;
+}
+
+.form__input--file {
+    height: inherit;
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    height: 3.2rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    border-bottom: 2px solid var(--color-black);
+    background-color: var(--color-white);
+    border-radius: 5px 5px 0px 0;
+    transition: all .2s ease-in-out;
+}
+
+.form__input:focus {
+    outline: var(--color-main);
+    border-bottom: 2px solid var(--color-main);
+    
+}

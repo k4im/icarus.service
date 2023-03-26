@@ -1,0 +1,47 @@
+:root {
+    --color-main: #FF4757;
+    --color-black: #2F3542;
+    --color-blacker: #1f1f1f;
+    --color-white: #F1F2F6;
+    --color-whiter: #fff;
+    --color-blue: #70A1FF;
+    --color-green: #7BED9F;
+    --color-yellow: #eccc68;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: sans-serif;
+    overflow: hidden;
+    min-height: 550px;
+}
+
+main {
+    display: flex;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 750px;
+    overflow: auto;
+    /* overflow-y: scroll; */
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
