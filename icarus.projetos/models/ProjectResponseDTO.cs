@@ -12,5 +12,6 @@ namespace icarus.projetos.models
         public int Pages { get; set; }
         public int CurrentPage { get; set; }
         public int PageCount { get; set; }
+        public string LastSearch { get; set; }
     }
 }

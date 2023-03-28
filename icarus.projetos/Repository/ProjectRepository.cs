@@ -15,6 +15,8 @@ namespace icarus.projetos.Repository
         private readonly DataContext _db;
         private readonly IMapper _mapper;
 
+        public string LastSearchTxt { get; set; }
+
         public ProjectRepository(DataContext db, IMapper mapper) 
         {
             _db = db;
@@ -44,9 +46,8 @@ namespace icarus.projetos.Repository
             var projetos = await _db.Projetos.Where( projeto => 
             projeto.Name.ToLower() == SearchFilter.ToLower() || 
             projeto.Status.ToLower() == SearchFilter.ToLower()).ToListAsync();
-
-            var projetosDto = projetos.Select(projeto => _mapper.Map<ProjectDTO>(projeto)).ToList();
-            return (projetosDto);
+            List<ProjectDTO> project = _mapper.Map<List<ProjectDTO>>(projetos);
+            return project;
         }
 
         public async Task<ProjectDTO> CreateProject(Project model)
@@ -105,22 +106,41 @@ namespace icarus.projetos.Repository
         
         public async Task<ProjectResponseDTO> GetProjectsFilterPagination(string SearchFilter, int page = 1)
         {
+            if(SearchFilter != null) LastSearchTxt = SearchFilter;
             var pageResults = 10f;
-            var projetos = await GetProjectsFilter(SearchFilter);
+            var search = (SearchFilter == null) ? "": LastSearchTxt; 
+            var projetos = await GetProjectsFilter(search);
             var pageCount = Math.Ceiling( projetos.Count / pageResults);
+            if(search == "") 
+            {   var projects = await _db.Projetos.Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
 
-            var projects = await _db.Projetos.Where( projeto => 
-            projeto.Name.ToLower() == SearchFilter.ToLower() || 
-            projeto.Status.ToLower() == SearchFilter.ToLower()).Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
-
-            var response = new ProjectResponseDTO {
+                var response = new ProjectResponseDTO {
                 Projects = projects,
                 Pages = (int)pageCount,
                 CurrentPage = page,
-                PageCount = (int)pageCount
-            };
+                PageCount = (int)pageCount,
+                LastSearch = LastSearchTxt
+                };
+                return response;
 
-            return response;
+            }
+            else 
+            {
+                var projects = await _db.Projetos.Where( projeto => 
+                projeto.Name.Contains(search.ToLower()) || 
+                projeto.Status.Contains(search.ToLower())).Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
+
+                var response = new ProjectResponseDTO {
+                    Projects = projects,
+                    Pages = (int)pageCount,
+                    CurrentPage = page,
+                    PageCount = (int)pageCount,
+                    LastSearch = LastSearchTxt
+                };
+                return response;
+
+            }
+
         }
     }
 }
