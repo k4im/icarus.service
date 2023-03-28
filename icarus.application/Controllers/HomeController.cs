@@ -8,10 +8,12 @@ using Newtonsoft.Json;
 
 namespace icarus.application.Controllers;
 
+  
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly HttpClient _http;
+    public string LastSearchText { get; private set; }
     public HomeController(ILogger<HomeController> logger, HttpClient http)
     {
         _logger = logger;
@@ -19,7 +21,7 @@ public class HomeController : Controller
     }
 
 
-    [HttpGet("{page = 1}")]
+    [HttpGet("Index/{page = 1}")]
     public async Task<IActionResult> Index(int page = 1)
     {
        try
@@ -37,4 +39,32 @@ public class HomeController : Controller
        }
         return BadRequest();
     }
+
+    [HttpGet("Search/{pg = 1 }")]
+    public async Task<IActionResult> Search(string search, int pg) 
+    {   
+        if(!String.IsNullOrEmpty(search))  
+        {
+            LastSearchText = search;
+        }
+        if(pg == 0) pg = 1;
+        try 
+        {
+            HttpResponseMessage  reponse = await _http.GetAsync($"http://localhost:5222/api/v1/Project/{LastSearchText}/{pg}");
+            reponse.EnsureSuccessStatusCode();
+            var responseBody = await reponse.Content.ReadAsStringAsync();
+            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
+            ViewBag.data = responseJson;
+            ViewBag.LastSearchText = LastSearchText;
+            return View();
+            
+        }
+        catch(Exception e) 
+        {
+            Console.WriteLine(e);
+            // _logger.LogError();
+        }
+        return BadRequest();
+    }
+
 }

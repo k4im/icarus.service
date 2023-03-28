@@ -13,5 +13,6 @@ namespace icarus.application.Models
         public int CurrentPage { get; set; }
         
         public int PageCount {get; set;}
+        public string LastSearchText {get; set;}
     }
 }

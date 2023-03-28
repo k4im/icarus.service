@@ -1,5 +1,6 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
     
 }
 
@@ -9,8 +10,8 @@
               </div>
             <div class="container__options">
                 <div class="container__search">
-                    <form asp-action="Search" class="form" method="get">
-                        <input type="search" class="search__input" name="search">
+                    <form asp-controller="Home" asp-action="Search" class="form" method="get">
+                        <input type="search" class="search__input" name="search"> 
                         <div class="date__filter">
                             @* <label for="date">Data de início</label>
                             <input name="date" type="date" class="search__filter"> *@
@@ -27,7 +28,7 @@
                             <input name="Pfinalizados"type="checkbox" class="check__input">
                             <label for="Pfinalizados">Projetos em produção</label>
                         </div>
-                        <button type="submit"class="button btn--main">Pesquisar</button>
+                        <button type="submit" class="button btn--main">Pesquisar</button>
                     </form>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
-                            @foreach (var item in ViewBag.totalProjetos.Projects)
+                            @foreach (var item in ViewBag.data.Projects)
                             {
                               <tr>
                                 <td>@item.Name</td>
@@ -86,9 +87,9 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                       <li class="page-item">
-                      @for (int i = 1; i <= ViewBag.totalProjetos.PageCount; i++)
+                      @for (int i = 1; i <= ViewBag.data.PageCount; i++)
                       {
-                          <li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@i">@i</a></li>
+                          <li class="page-item"><a class="page-link" asp-route="Search?search=@ViewBag.LastSearchText/@i">@i</a></li>
                       }
                     </ul>
                   </nav>
