@@ -5,6 +5,7 @@ using icarus.application.models;
 using System.Text.Json;
 using System.Net.Http.Json;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace icarus.application.Controllers;
 
@@ -75,4 +76,35 @@ public class HomeController : Controller
         return BadRequest();
     }
 
+    [HttpGet("Create")]
+    public IActionResult CreateView() {
+        return View();
+    }
+    [HttpPost("Create")]
+    public async Task<IActionResult> Create() 
+    {
+        ProjectDTO model = new ProjectDTO{
+            Name = "Teste",
+            Status = "Teste",
+            Descricao = "",
+            DataEntrega = DateTime.Now,
+            DataIncio = DateTime.Now,
+            CurrentPage = 0,
+            Pages = 0,
+            Valor = 150
+        };
+
+        HttpContent responseBody = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+        var response =  _http.PostAsync("http://localhost:5222/api/v1/Project/Create", responseBody).Result;
+        if(response.IsSuccessStatusCode) {
+            var content = await response.Content.ReadAsStringAsync();
+            var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
+            Console.WriteLine("Data Saved Successfully.");
+            RedirectToAction("Index");
+        }
+        else {
+            return BadRequest();
+        }
+        return BadRequest();
+    }
 }
