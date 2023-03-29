@@ -1,5 +1,9 @@
-﻿@{
+﻿@using icarus.application.models;
+@model ProjectResponseDTO;
+
+@{
     ViewData["Title"] = "Home Page";
+    
     
 }
 
@@ -9,7 +13,7 @@
               </div>
             <div class="container__options">
                 <div class="container__search">
-                    <form asp-action="Search" class="form" method="get">
+                    <form asp-controller="Home" asp-action="Index" class="form" method="post">
                         <input type="search" class="search__input" name="search">
                         <div class="date__filter">
                             @* <label for="date">Data de início</label>
@@ -46,7 +50,7 @@
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
-                            @foreach (var item in ViewBag.totalProjetos.Projects)
+                            @foreach (var item in Model.Projects)
                             {
                               <tr>
                                 <td>@item.Name</td>
@@ -86,7 +90,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                       <li class="page-item">
-                      @for (int i = 1; i <= ViewBag.totalProjetos.PageCount; i++)
+                      @for (int i = 1; i <= Model.PageCount; i++)
                       {
                           <li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@i">@i</a></li>
                       }

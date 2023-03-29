@@ -12,7 +12,7 @@ namespace icarus.projetos.Repository
 
         public Task<ProjectResponseDTO> GetProjects(int page = 1);
 
-        public Task<List<ProjectDTO>>  GetProjectsFilter(string SearchFilter);
+        public Task<ProjectResponseDTO>  GetProjectsFilter(string SearchFilter);
         public Task<ProjectResponseDTO> GetProjectsFilterPagination(string SearchFilter,  int page = 1);
         
         public Task<ProjectDTO> CreateProject(Project model);

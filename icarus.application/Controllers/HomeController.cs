@@ -21,7 +21,10 @@ public class HomeController : Controller
     }
 
 
-    [HttpGet("Index/{page = 1}")]
+    [HttpGet]
+    [Route("{page = 1}")]
+    [Route("/")]
+    [Route("Index/{page = 1}")]
     public async Task<IActionResult> Index(int page = 1)
     {
        try
@@ -30,9 +33,8 @@ public class HomeController : Controller
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
             
-            ProjectResponseDTO projetos = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-            ViewBag.totalProjetos = projetos;
-            return View();
+            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
+            return View(responseJson);
        }
        catch(Exception e ){
             Console.WriteLine(e.Message);
@@ -40,23 +42,29 @@ public class HomeController : Controller
         return BadRequest();
     }
 
-    [HttpGet("Search/{pg = 1 }")]
-    public async Task<IActionResult> Search(string search, int pg) 
+    [HttpPost("Index")]
+    public async Task<IActionResult> Index(string search, int page = 1) 
     {   
         if(!String.IsNullOrEmpty(search))  
         {
+            // var searchString = Request.["search"];
             LastSearchText = search;
         }
-        if(pg == 0) pg = 1;
+        else {
+            HttpResponseMessage response =  await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos/1");
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            
+            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
+            return View(responseJson);
+        }
         try 
         {
-            HttpResponseMessage  reponse = await _http.GetAsync($"http://localhost:5222/api/v1/Project/{LastSearchText}/{pg}");
+            HttpResponseMessage  reponse = await _http.GetAsync($"http://localhost:5222/api/v1/Project/{LastSearchText}");
             reponse.EnsureSuccessStatusCode();
             var responseBody = await reponse.Content.ReadAsStringAsync();
             ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-            ViewBag.data = responseJson;
-            ViewBag.LastSearchText = LastSearchText;
-            return View();
+            return View(responseJson);
             
         }
         catch(Exception e) 

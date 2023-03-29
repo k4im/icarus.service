@@ -41,15 +41,42 @@ namespace icarus.projetos.Repository
             return response;
         }
         
-        public  async Task<List<ProjectDTO>> GetProjectsFilter(string SearchFilter)
+        public  async Task<ProjectResponseDTO> GetProjectsFilter(string SearchFilter)
         {
+            if(!String.IsNullOrEmpty(SearchFilter))
+            {
             var projetos = await _db.Projetos.Where( projeto => 
             projeto.Name.ToLower() == SearchFilter.ToLower() || 
             projeto.Status.ToLower() == SearchFilter.ToLower()).ToListAsync();
-            List<ProjectDTO> project = _mapper.Map<List<ProjectDTO>>(projetos);
-            return project;
+            // List<ProjectDTO> projects = _mapper.Map<List<ProjectDTO>>(projetos);
+            var response = new ProjectResponseDTO {
+                Projects = projetos,
+                Pages = 0,
+                CurrentPage = 0,
+                PageCount = 0,
+                LastSearch = LastSearchTxt
+            };
+            return response;
+            }
+            else {
+                var projetos = await _db.Projetos.ToListAsync();
+                // List<ProjectDTO> projects = _mapper.Map<List<ProjectDTO>>(projetos);
+                var response = new ProjectResponseDTO {
+                    Projects = projetos,
+                    Pages = 0,
+                    CurrentPage = 0,
+                    PageCount = 0,
+                    LastSearch = LastSearchTxt
+                };
+                return response;
+            }
         }
-
+        private async Task<List<ProjectDTO>> GetProjectsFilterPrivate(string SearchFilter)
+        {
+            var projetos = await _db.Projetos.ToListAsync();
+            List<ProjectDTO> projetosMapper = _mapper.Map<List<ProjectDTO>>(projetos);
+            return projetosMapper;
+        }
         public async Task<ProjectDTO> CreateProject(Project model)
         {
             if(model != null) 
@@ -106,40 +133,22 @@ namespace icarus.projetos.Repository
         
         public async Task<ProjectResponseDTO> GetProjectsFilterPagination(string SearchFilter, int page = 1)
         {
-            if(SearchFilter != null) LastSearchTxt = SearchFilter;
             var pageResults = 10f;
-            var search = (SearchFilter == null) ? "": LastSearchTxt; 
-            var projetos = await GetProjectsFilter(search);
+            var projetos = await GetProjectsFilterPrivate(SearchFilter);
             var pageCount = Math.Ceiling( projetos.Count / pageResults);
-            if(search == "") 
-            {   var projects = await _db.Projetos.Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
 
-                var response = new ProjectResponseDTO {
+            var projects = await _db.Projetos.Where( projeto => 
+            projeto.Name.Contains(SearchFilter.ToLower()) || 
+            projeto.Status.Contains(SearchFilter.ToLower())).Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
+            var response = new ProjectResponseDTO {
                 Projects = projects,
                 Pages = (int)pageCount,
                 CurrentPage = page,
                 PageCount = (int)pageCount,
                 LastSearch = LastSearchTxt
-                };
-                return response;
+            };
+            return response;
 
-            }
-            else 
-            {
-                var projects = await _db.Projetos.Where( projeto => 
-                projeto.Name.Contains(search.ToLower()) || 
-                projeto.Status.Contains(search.ToLower())).Skip((page - 1) * (int)pageResults).Take((int)pageResults).ToListAsync();
-
-                var response = new ProjectResponseDTO {
-                    Projects = projects,
-                    Pages = (int)pageCount,
-                    CurrentPage = page,
-                    PageCount = (int)pageCount,
-                    LastSearch = LastSearchTxt
-                };
-                return response;
-
-            }
 
         }
     }
