@@ -37,7 +37,7 @@ app.UseSession();
 
  app.MapControllerRoute(
      name: "search",
-     pattern: "{search}/{pg?}");
+    pattern: "{controller=Home}/{action=Index}/{search}/{page}");
     
 app.MapControllerRoute(
     name: "default",

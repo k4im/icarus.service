@@ -30,7 +30,7 @@ public class HomeController : Controller
     {
        try
        {    
-            HttpResponseMessage response =  await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos/{page}");
+            HttpResponseMessage response =  await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos");
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
             
@@ -43,8 +43,12 @@ public class HomeController : Controller
         return BadRequest();
     }
 
-    [HttpPost("Index")]
-    public async Task<IActionResult> Index(string search, int page = 1) 
+    [HttpGet]
+    // [Route("Search")]
+    // [Route("Search/{search}/{page = 1}")]
+    [Route("{search}/{page = 1}")]
+    // [Route("Index/search={search}/{page}")]
+    public async Task<IActionResult> Search([FromQuery]string search, [FromRoute]int page = 1) 
     {   
         if(!String.IsNullOrEmpty(search))  
         {
@@ -81,29 +85,25 @@ public class HomeController : Controller
         return View();
     }
     [HttpPost("Create")]
-    public async Task<IActionResult> Create() 
+    public async Task<IActionResult> Create(ProjectDTO model) 
     {
-        ProjectDTO model = new ProjectDTO{
-            Name = "Teste",
-            Status = "Teste",
-            Descricao = "",
-            DataEntrega = DateTime.Now,
-            DataIncio = DateTime.Now,
-            CurrentPage = 0,
-            Pages = 0,
-            Valor = 150
-        };
-
-        HttpContent responseBody = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-        var response =  _http.PostAsync("http://localhost:5222/api/v1/Project/Create", responseBody).Result;
-        if(response.IsSuccessStatusCode) {
-            var content = await response.Content.ReadAsStringAsync();
-            var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
-            Console.WriteLine("Data Saved Successfully.");
-            RedirectToAction("Index");
-        }
-        else {
-            return BadRequest();
+        
+        if(ModelState.IsValid) 
+        {
+            HttpContent responseBody = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            var response =  _http.PostAsync("http://localhost:5222/api/v1/Project/Create", responseBody).Result;
+            if(response.IsSuccessStatusCode) 
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
+                Console.WriteLine("Data Saved Successfully.");
+                RedirectToAction("Index");
+            }
+            else 
+            {
+                return BadRequest();
+            }
+        
         }
         return BadRequest();
     }

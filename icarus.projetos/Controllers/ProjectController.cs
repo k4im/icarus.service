@@ -19,6 +19,12 @@ namespace icarus.projetos.Controllers
             _repo = repo;
         }
 
+        [HttpGet("projetos")]
+        public async Task<IActionResult> GetAllProjects(int page = 1) 
+        {
+            var projetos = await _repo.GetAllProjects();
+            return Ok(projetos);
+        }
         [HttpGet("projetos/{page}")]
         public async Task<IActionResult> GetProjects(int page = 1) 
         {

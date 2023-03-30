@@ -22,6 +22,19 @@ namespace icarus.projetos.Repository
             _db = db;
             _mapper = mapper;
         }
+
+
+        public async Task<ProjectResponseDTO> GetAllProjects() 
+        {
+            var projetos = await _db.Projetos.ToListAsync();
+            var response = new ProjectResponseDTO {
+                Projects = projetos,
+                Pages = 0,
+                CurrentPage = 0,
+                PageCount = 0 
+            };
+            return response;
+        }
         
         public async Task<ProjectResponseDTO> GetProjects(int page = 1)
         {
