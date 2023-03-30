@@ -59,15 +59,14 @@ namespace icarus.application.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
                     Console.WriteLine("Data Saved Successfully.");
-                    RedirectToAction("Project", "Index");
+                    RedirectToAction("Index");
                 }
                 else 
                 {
                     return BadRequest();
                 }
-            
             }
-            return BadRequest();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
