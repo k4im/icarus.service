@@ -18,39 +18,150 @@ namespace icarus.projetos.Controllers
         {
             _repo = repo;
         }
-
+        
         [HttpGet("projetos")]
-        public async Task<IActionResult> GetAllProjects(int page = 1) 
+        public async Task<IActionResult> GetAllProjects() 
         {
             var projetos = await _repo.GetAllProjects();
             return Ok(projetos);
         }
-        [HttpGet("projetos/{page}")]
-        public async Task<IActionResult> GetProjects(int page = 1) 
-        {
-            var projetos = await _repo.GetProjects(page);
-            return Ok(projetos);
-        }
-
-        [HttpGet("{SearchFilter}")]
-        public async Task<IActionResult> GetProjectsFilter(string SearchFilter) 
-        {
-            var projetos = await _repo.GetProjectsFilter(SearchFilter);
-            return Ok(projetos);
-        }
     
-    
-        [HttpGet("{SearchFilter}/{page}")]
-        public async Task<IActionResult> GetProjectsFilter(string SearchFilter, int page = 1) 
-        {
-            var projetos = await _repo.GetProjectsFilterPagination(SearchFilter, page);
-            return Ok(projetos);
-        }
 
         [HttpPost("Create")]
         public async Task<IActionResult> CreateProject(Project model)
         {
-            if(model != null) await _repo.CreateProject(model);
+            
+            if(ModelState.IsValid) await _repo.CreateProject(model);
+            return StatusCode(201);
+        }
+
+        [HttpPost("Sample")]
+        public async Task<IActionResult> SampleData()
+        {
+            List<Project> sampleData = new List<Project> ();
+            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });            
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Produção",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });
+            sampleData.Add(new Project {
+                Name = "Teste",
+                Status = "Finalizado",
+                DataIncio = DateTime.Now,
+                DataEntrega = DateTime.Now,
+                Descricao  = "String",
+                Valor = 150
+            });                                    
+            foreach (var item in sampleData)
+            {
+                await _repo.CreateProject(item);
+            }
+            // if(model != null) await _repo.CreateProject(model);
             return StatusCode(201);
         }
 
@@ -62,8 +173,8 @@ namespace icarus.projetos.Controllers
             return Ok();
         }
 
-        [HttpDelete("update/{id}")]
-        public IActionResult UpdateProject(int id)
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteProject(int id)
         {
             _repo.DeleteProject(id);
             return StatusCode(204);

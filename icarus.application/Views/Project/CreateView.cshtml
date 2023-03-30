@@ -1,3 +1,5 @@
+@using icarus.application.models;
+@model ProjectDTO;
 
 @{
     ViewData["Title"] = "CreateView";
@@ -6,47 +8,29 @@
 
        <h2 class="heading__secondary text-black">Criar novo projeto</h2>
             <div class="container__projetos">
-                <form class="form__projeto">
-                    <div class="input-group mb-3 container__form container__form__input--categorias">
-                        <label class="input-group-text">Cliente*</label>
-                        <select class="form-select form__input__projeto">
-                          <option selected>Clientes...</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
+              <form asp-controller="Project" asp-action="Create" class="form__projeto">
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label for="nomeProjeto" class="form-label">Nome de projeto*</label>
-                        <input type="text" class="form-control form__input__projeto" name="nomeProjeto"">
+                        <input asp-for="Name" type="text" class="form-control form__input__projeto" name="nomeProjeto">
                     </div>
                     <div class="input-group mb-3 container__form container__form__input--categorias">
-                        <select class="form-select form__input__projeto">
-                          <option selected>Status*...</option>
+                        <select aps-for="Status" class="form-select form__input__projeto">
+                          <option  selected>Status*...</option>
                           <option value="1">Em produção</option>
                           <option value="2">Finalizado</option>
                         </select>
                       </div>
                     <div class="mb-3 container__form container__form__input--projeto">
-                        <label for="nomeProjeto" class="form-label">Data de inicio*</label>
-                        <input type="date" class="form-control form__input__projeto" name="nomeProjeto"">
+                        <label  class="form-label">Data de inicio*</label>
+                        <input asp-for="DataIncio"type="date" class="form-control form__input__projeto" name="nomeProjeto">
                     </div>
                     <div class="mb-3 container__form container__form__input--projeto">
-                        <label for="nomeProjeto" class="form-label">Data de entrega*</label>
-                        <input type="date" class="form-control form__input__projeto" name="nomeProjeto"">
+                        <label  class="form-label">Data de entrega*</label>
+                        <input asp-for="DataEntrega" type="date" class="form-control form__input__projeto">
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px;"></textarea>
+                        <textarea asp-for="Descricao" class="form-control" id="floatingTextarea2" style="height: 100px;"></textarea>
                         <label for="floatingTextarea2">Descrição do projeto</label>
-                      </div>
-                    <div class="input-group mb-3 container__form container__form__input--categorias">
-                      <select class="form-select form__input__projeto">
-                        <option selected>Categorias...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                      <label class="input-group-text">Categoria de projeto*</label>
                     </div>
                       
                     <div class="input-group mb-3 container__form container__form__input--file">
@@ -55,12 +39,12 @@
                     </div>                  
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label for="nomeProjeto" class="form-label">Valor*</label>
-                        <input type="number" class="form-control form__input__projeto" name="nomeProjeto"">
+                        <input asp-for="Valor" type="number" class="form-control form__input__projeto">
                     </div>
                     <div class="btn--post">
                         <!-- Mudar button para submit -->
-                        <button type="button"class="button btn--main">Criar projeto</button>
-                        <button type="button"class="button btn--main-outline">Voltar</button>
+                        <button type="submit" class="button btn--main">Criar projeto</button>
+                        <a asp-controller="Project" asp-action="Index" class="button btn--main-outline">Voltar</a>
                     </div>
                 </form>
             </div>

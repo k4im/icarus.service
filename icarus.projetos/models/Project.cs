@@ -28,7 +28,7 @@ namespace icarus.projetos.models
         [DataType("DATE")]
         public DateTime DataEntrega { get; set; } 
 
-        [Required(ErrorMessage = "Campo obrigatório")]
+        // [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("NVARCHAR(350)")]
         public string Descricao { get; set; } 
         /*

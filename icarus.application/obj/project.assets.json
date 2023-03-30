@@ -253,19 +253,19 @@
     ]
   },
   "packageFolders": {
-    "/home/k4imdesktop/.nuget/packages/": {}
+    "/home/joaovictor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/k4imdesktop/Documents/icarus.services/icarus.application/icarus.application.csproj",
+      "projectUniqueName": "/home/joaovictor/icarus.service/icarus.application/icarus.application.csproj",
       "projectName": "icarus.application",
-      "projectPath": "/home/k4imdesktop/Documents/icarus.services/icarus.application/icarus.application.csproj",
-      "packagesPath": "/home/k4imdesktop/.nuget/packages/",
-      "outputPath": "/home/k4imdesktop/Documents/icarus.services/icarus.application/obj/",
+      "projectPath": "/home/joaovictor/icarus.service/icarus.application/icarus.application.csproj",
+      "packagesPath": "/home/joaovictor/.nuget/packages/",
+      "outputPath": "/home/joaovictor/icarus.service/icarus.application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
+        "/home/joaovictor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -309,12 +309,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.3, 7.0.3]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -323,7 +317,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

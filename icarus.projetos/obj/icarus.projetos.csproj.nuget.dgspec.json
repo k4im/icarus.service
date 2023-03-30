@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj": {}
+    "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj": {}
   },
   "projects": {
-    "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj": {
+    "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj",
+        "projectUniqueName": "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj",
         "projectName": "icarus.projetos",
-        "projectPath": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj",
-        "packagesPath": "/home/k4imdesktop/.nuget/packages/",
-        "outputPath": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/obj/",
+        "projectPath": "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj",
+        "packagesPath": "/home/joaovictor/.nuget/packages/",
+        "outputPath": "/home/joaovictor/icarus.service/icarus.projetos/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
+          "/home/joaovictor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -90,12 +94,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.3, 7.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -104,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }

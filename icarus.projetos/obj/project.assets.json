@@ -155,6 +155,22 @@
           "build/net6.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/7.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.4"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/7.0.4": {
         "type": "package",
         "dependencies": {
@@ -2187,6 +2203,20 @@
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.xml",
         "microsoft.entityframeworkcore.design.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/7.0.4": {
+      "sha512": "enWK5KFD21mq6z1qs5i2PsGQbfud5hLF9erQvPCSC0HCSTQUuOqIxccUEbxu4QRrdqpjwVofZs+yNSM5qoe6bg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/7.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.7.0.4.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/7.0.4": {
@@ -6555,6 +6585,7 @@
       "Microsoft.AspNetCore.OpenApi >= 7.0.3",
       "Microsoft.EntityFrameWorkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.4",
+      "Microsoft.EntityFrameworkCore.InMemory >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.4",
       "MySql.Data >= 7.0.4",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
@@ -6562,19 +6593,19 @@
     ]
   },
   "packageFolders": {
-    "/home/k4imdesktop/.nuget/packages/": {}
+    "/home/joaovictor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj",
+      "projectUniqueName": "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj",
       "projectName": "icarus.projetos",
-      "projectPath": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/icarus.projetos.csproj",
-      "packagesPath": "/home/k4imdesktop/.nuget/packages/",
-      "outputPath": "/home/k4imdesktop/Documents/icarus.services/icarus.projetos/obj/",
+      "projectPath": "/home/joaovictor/icarus.service/icarus.projetos/icarus.projetos.csproj",
+      "packagesPath": "/home/joaovictor/.nuget/packages/",
+      "outputPath": "/home/joaovictor/icarus.service/icarus.projetos/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
+        "/home/joaovictor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -6620,6 +6651,10 @@
             "target": "Package",
             "version": "[7.0.4, )"
           },
+          "Microsoft.EntityFrameworkCore.InMemory": {
+            "target": "Package",
+            "version": "[7.0.4, )"
+          },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -6650,12 +6685,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.3, 7.0.3]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6664,7 +6693,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
       }
     }
   },
