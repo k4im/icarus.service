@@ -5,6 +5,7 @@
     padding: 1rem 2rem;
     border-radius: 2px;
     display: inline-block;
+    text-decoration: none;
 }
 
 .btn--main {

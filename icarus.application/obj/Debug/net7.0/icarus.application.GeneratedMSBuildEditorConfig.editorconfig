@@ -16,20 +16,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/k4imdesktop/Documents/icarus.services/icarus.application
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Home/CreateView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DcmVhdGVWaWV3LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Project/CreateView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9DcmVhdGVWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Home/Search.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9TZWFyY2guY3NodG1s
+[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Project/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Project/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/k4imdesktop/Documents/icarus.services/icarus.application/Views/Shared/Error.cshtml]

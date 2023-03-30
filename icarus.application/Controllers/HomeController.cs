@@ -12,99 +12,28 @@ namespace icarus.application.Controllers;
   
 public class HomeController : Controller
 {
+
     private readonly ILogger<HomeController> _logger;
     private readonly HttpClient _http;
-    public string LastSearchText { get; private set; }
+
     public HomeController(ILogger<HomeController> logger, HttpClient http)
     {
         _logger = logger;
         _http = http;
     }
 
-
-    [HttpGet]
-    [Route("{page = 1}")]
-    [Route("/")]
-    [Route("Index/{page = 1}")]
-    public async Task<IActionResult> Index(int page = 1)
+    public async Task<IActionResult> Index() 
     {
-       try
-       {    
-            HttpResponseMessage response =  await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos");
-            response.EnsureSuccessStatusCode();
-            var responseBody = await response.Content.ReadAsStringAsync();
-            
-            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-            return View(responseJson);
-       }
-       catch(Exception e ){
-            Console.WriteLine(e.Message);
-       }
-        return BadRequest();
-    }
-
-    [HttpGet]
-    // [Route("Search")]
-    // [Route("Search/{search}/{page = 1}")]
-    [Route("{search}/{page = 1}")]
-    // [Route("Index/search={search}/{page}")]
-    public async Task<IActionResult> Search([FromQuery]string search, [FromRoute]int page = 1) 
-    {   
-        if(!String.IsNullOrEmpty(search))  
-        {
-            // var searchString = Request.["search"];
-            LastSearchText = search;
-        }
-        else {
-            HttpResponseMessage response =  await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos/1");
-            response.EnsureSuccessStatusCode();
-            var responseBody = await response.Content.ReadAsStringAsync();
-            
-            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-            return View(responseJson);
-        }
-        try 
-        {
-            HttpResponseMessage  reponse = await _http.GetAsync($"http://localhost:5222/api/v1/Project/{LastSearchText}");
-            reponse.EnsureSuccessStatusCode();
-            var responseBody = await reponse.Content.ReadAsStringAsync();
-            ProjectResponseDTO responseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-            return View(responseJson);
-            
-        }
-        catch(Exception e) 
-        {
-            Console.WriteLine(e);
-            // _logger.LogError();
-        }
-        return BadRequest();
-    }
-
-    [HttpGet("Create")]
-    public IActionResult CreateView() {
+        HttpResponseMessage request = await _http.GetAsync("http://localhost:5222/api/v1/Project/projetos");
+        request.EnsureSuccessStatusCode();
+        var responseBody = await request.Content.ReadAsStringAsync();
+        ProjectResponseDTO reponseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
+        ViewBag.projetosFinalizados = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("finalizado")).Count();
+        ViewBag.projetosPendentes = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("prod")).Count();
+        ViewBag.totalProjetos = reponseJson.Projects.Count();
         return View();
     }
-    [HttpPost("Create")]
-    public async Task<IActionResult> Create(ProjectDTO model) 
-    {
-        
-        if(ModelState.IsValid) 
-        {
-            HttpContent responseBody = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var response =  _http.PostAsync("http://localhost:5222/api/v1/Project/Create", responseBody).Result;
-            if(response.IsSuccessStatusCode) 
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
-                Console.WriteLine("Data Saved Successfully.");
-                RedirectToAction("Index");
-            }
-            else 
-            {
-                return BadRequest();
-            }
-        
-        }
-        return BadRequest();
-    }
+
+
+
 }
