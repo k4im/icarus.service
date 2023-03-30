@@ -1,11 +1,10 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace icarus.projetos.models
+namespace icarus.application.Models
 {
     public class Project
     {
@@ -34,6 +33,5 @@ namespace icarus.projetos.models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         public int Valor { get; set; }
-
     }
 }

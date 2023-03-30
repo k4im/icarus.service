@@ -18645,6 +18645,11 @@
   "RootNamespace": "icarus.application",
   "Documents": [
     {
+      "FilePath": "/home/joaovictor/icarus.service/icarus.application/Views/Project/Create.cshtml",
+      "TargetPath": "Views\\Project\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/joaovictor/icarus.service/icarus.application/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -18657,11 +18662,6 @@
     {
       "FilePath": "/home/joaovictor/icarus.service/icarus.application/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/joaovictor/icarus.service/icarus.application/Views/Project/CreateView.cshtml",
-      "TargetPath": "Views\\Project\\CreateView.cshtml",
       "FileKind": "mvc"
     },
     {

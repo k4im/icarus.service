@@ -1,5 +1,4 @@
-@using icarus.application.models;
-@model ProjectDTO;
+@model Project;
 
 @{
     ViewData["Title"] = "CreateView";
@@ -8,38 +7,35 @@
 
        <h2 class="heading__secondary text-black">Criar novo projeto</h2>
             <div class="container__projetos">
-              <form asp-controller="Project" asp-action="Create" class="form__projeto">
+              <form asp-controller="Project" asp-action="Create" class="form__projeto" method="post">
                     <div class="mb-3 container__form container__form__input--projeto">
-                        <label for="nomeProjeto" class="form-label">Nome de projeto*</label>
-                        <input asp-for="Name" type="text" class="form-control form__input__projeto" name="nomeProjeto">
+                        <label class="form-label">Nome de projeto*</label>
+                        <input asp-for="Name" type="text" class="form-control form__input__projeto" id="Name">
                     </div>
                     <div class="input-group mb-3 container__form container__form__input--categorias">
-                        <select aps-for="Status" class="form-select form__input__projeto">
-                          <option  selected>Status*...</option>
-                          <option value="1">Em produção</option>
-                          <option value="2">Finalizado</option>
-                        </select>
-                      </div>
+                        <label  class="form-label">Status*</label>
+                        <input asp-for="Status"type="text" class="form-control form__input__projeto" id="Status">
+                    </div>
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label  class="form-label">Data de inicio*</label>
-                        <input asp-for="DataIncio"type="date" class="form-control form__input__projeto" name="nomeProjeto">
+                        <input asp-for="DataIncio"type="date" class="form-control form__input__projeto" id="DataIncio">
                     </div>
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label  class="form-label">Data de entrega*</label>
-                        <input asp-for="DataEntrega" type="date" class="form-control form__input__projeto">
+                        <input asp-for="DataEntrega" type="date" class="form-control form__input__projeto" id="DataEntrega">
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea asp-for="Descricao" class="form-control" id="floatingTextarea2" style="height: 100px;"></textarea>
+                        <textarea asp-for="Descricao" class="form-control" name="Descricao" id="floatingTextarea2" style="height: 100px;"></textarea>
                         <label for="floatingTextarea2">Descrição do projeto</label>
                     </div>
                       
                     <div class="input-group mb-3 container__form container__form__input--file">
                         <label class="input-group-text form__label--file" for="file">Selecione um arquivo</label>
-                        <input type="file" class="form-control form__input--file" name="file">
+                        <input type="file" class="form-control form__input--file">
                     </div>                  
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label for="nomeProjeto" class="form-label">Valor*</label>
-                        <input asp-for="Valor" type="number" class="form-control form__input__projeto">
+                        <input asp-for="Valor" type="number" class="form-control form__input__projeto" id="Valor">
                     </div>
                     <div class="btn--post">
                         <!-- Mudar button para submit -->

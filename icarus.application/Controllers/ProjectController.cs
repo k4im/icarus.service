@@ -43,11 +43,11 @@ namespace icarus.application.Controllers
         }
 
         [HttpGet("Create")]
-        public IActionResult CreateView() {
+        public IActionResult Create() {
             return View();
         }
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(ProjectDTO model) 
+        public async Task<IActionResult> Create(Project model) 
         {
             
             if(ModelState.IsValid) 
@@ -59,7 +59,7 @@ namespace icarus.application.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
                     Console.WriteLine("Data Saved Successfully.");
-                    RedirectToAction("Index");
+                    RedirectToAction("Project", "Index");
                 }
                 else 
                 {
