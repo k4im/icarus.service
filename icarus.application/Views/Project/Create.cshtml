@@ -12,9 +12,10 @@
                         <label class="form-label">Nome de projeto*</label>
                         <input asp-for="Name" type="text" class="form-control form__input__projeto" id="Name">
                     </div>
-                    <div class="input-group mb-3 container__form container__form__input--categorias">
+                    <div class="mb-3 container__form">
                         <label  class="form-label">Status*</label>
-                        <input asp-for="Status"type="text" class="form-control form__input__projeto" id="Status">
+                        <select asp-items="@icarus.application.Models.HelperProject.GetStatus()" asp-for="Status"type="text" class="form-control form__input__projeto" id="Status">
+                        </select>
                     </div>
                     <div class="mb-3 container__form container__form__input--projeto">
                         <label  class="form-label">Data de inicio*</label>

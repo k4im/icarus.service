@@ -1,279 +1,279 @@
 {
   "Files": [
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/base/base.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/base/base.css",
       "PackagePath": "staticwebassets/css/base/base.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/base/tipografia.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/base/tipografia.css",
       "PackagePath": "staticwebassets/css/base/tipografia.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/componentes/buttons.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/componentes/buttons.css",
       "PackagePath": "staticwebassets/css/componentes/buttons.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/layout/content.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/layout/content.css",
       "PackagePath": "staticwebassets/css/layout/content.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/layout/painel.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/layout/painel.css",
       "PackagePath": "staticwebassets/css/layout/painel.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/layout/projetoscriar.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/layout/projetoscriar.css",
       "PackagePath": "staticwebassets/css/layout/projetoscriar.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/main.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/main.css",
       "PackagePath": "staticwebassets/css/main.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/responsividade/media.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/responsividade/media.css",
       "PackagePath": "staticwebassets/css/responsividade/media.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/css/site.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/favicon.ico",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/js/script.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/js/script.js",
       "PackagePath": "staticwebassets/js/script.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/js/site.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/LICENSE",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/LICENSE",
       "PackagePath": "staticwebassets/lib/bootstrap"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation/LICENSE.md",
       "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery/LICENSE.txt",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.min.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Id": "/home/joaovictor/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Id": "/home/k4imdesktop/icarus.service/icarus.application/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
