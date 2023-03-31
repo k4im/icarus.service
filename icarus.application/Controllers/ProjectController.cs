@@ -63,23 +63,36 @@ namespace icarus.application.Controllers
         }
 
         [HttpGet("Update")]
-        public async Task<IActionResult> Update([FromRoute]int? id)
+        public async Task<IActionResult> Update(int? id)
         {   
-            HttpResponseMessage response = await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos/{id}");
+            HttpResponseMessage response = await _http.GetAsync($"http://localhost:5222/api/v1/Project/projeto/{id}");
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            Project responseJson = JsonConvert.DeserializeObject<Project>(content);       
+            var content = response.Content.ReadAsStringAsync().Result;
+            ProjectUpdate responseJson = JsonConvert.DeserializeObject<ProjectUpdate>(content);       
             return View(responseJson);
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update([FromForm]Project model)
+        public async Task<IActionResult> Update([FromForm]ProjectUpdate model, int? id )
         {
             if(!ModelState.IsValid) return RedirectToAction("Index");
             
             try 
-            {
-                HttpResponseMessage response = await _http.PutAsJsonAsync($"http://localhost:5222/api/v1/Project/update/{model.Id}", model);
+            {   
+                var modelUpddated = new ProjectUpdate {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Status = model.Status,
+                    DataIncio = model.DataIncio,
+                    DataEntrega = model.DataEntrega,
+                    Descricao = model.Descricao,
+                    Valor = model.Valor
+                };
+                
+                
+                var json = JsonConvert.SerializeObject(modelUpddated);
+                var requestContent = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await _http.PutAsync($"http://localhost:5222/api/v1/Project/update/{id}", requestContent);
                 response.EnsureSuccessStatusCode();
                 var content = response.Content.ReadAsStringAsync();
                 

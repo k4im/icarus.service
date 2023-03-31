@@ -39,8 +39,17 @@ namespace icarus.projetos.Repository
         public async Task<Project> GetById(int? id) 
         {
             var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-            if(item == null) Results.NotFound();
-            return item;
+            // if(item == null) Results.NotFound();
+            var response = new Project {
+                Id = item.Id,
+                Name = item.Name,
+                Status = item.Status,
+                DataIncio = item.DataIncio,
+                DataEntrega = item.DataEntrega,
+                Descricao = item.Descricao,
+                Valor = item.Valor
+            };
+            return response;
         }
         
         public async Task CreateProject(Project model)
@@ -86,7 +95,7 @@ namespace icarus.projetos.Repository
             
         }
 
-        public async Task UpdateProject(Project model, int? id)
+        public async Task UpdateProject(ProjectUpdate model, int? id)
         {
                 if (id != null && model != null) 
                 {

@@ -27,9 +27,9 @@ namespace icarus.projetos.Controllers
         }
         
         [HttpGet("projeto/{id?}")]
-        public IActionResult GetById(int? id) 
+        public async Task<IActionResult> GetById(int? id) 
         {
-            var item = _repo.GetById(id);
+            var item = await _repo.GetById(id);
             if(item == null) return BadRequest();
             return Ok(item);
         }
@@ -174,9 +174,9 @@ namespace icarus.projetos.Controllers
 
 
         [HttpPut("update/{id}")]
-        public IActionResult UpdateProject([FromBody]Project model, [FromRoute]int id)
+        public IActionResult UpdateProject([FromBody]ProjectUpdate model, [FromRoute]int? id)
         {
-            if(!ModelState.IsValid) return BadRequest(); 
+            // if(!ModelState.IsValid) return BadRequest(); 
             
             try 
             {
