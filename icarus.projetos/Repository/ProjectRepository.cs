@@ -39,7 +39,7 @@ namespace icarus.projetos.Repository
         public async Task<Project> GetById(int? id) 
         {
             var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-            // if(item == null) Results.NotFound();
+            if(item == null) return null;
             var response = new Project {
                 Id = item.Id,
                 Name = item.Name,

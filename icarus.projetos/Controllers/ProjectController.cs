@@ -30,7 +30,7 @@ namespace icarus.projetos.Controllers
         public async Task<IActionResult> GetById(int? id) 
         {
             var item = await _repo.GetById(id);
-            if(item == null) return BadRequest();
+            if(item == null) return NotFound();
             return Ok(item);
         }
 
