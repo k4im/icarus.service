@@ -105,6 +105,23 @@ namespace icarus.application.Controllers
 
         }
         
+        
+        
+        //[HttpGet("Delete")]
+        //public IActionResult Delete(int? id) 
+        //{
+        //    return View("DeleteAction");
+        //}
+        [HttpPost("Delete")]
+        public async Task<IActionResult> Delete(int id) 
+        {
+            var responseDelete = await _http.DeleteAsync($"http://localhost:5222/api/v1/Project/delete/{id}");
+            responseDelete.EnsureSuccessStatusCode();
+            TempData["DeletedMessage"] = "Projeto deletado com sucesso";
+            return RedirectToAction("Index");
+
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
