@@ -28,7 +28,7 @@ public class HomeController : Controller
         request.EnsureSuccessStatusCode();
         var responseBody = await request.Content.ReadAsStringAsync();
         ProjectResponseDTO reponseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-        ViewBag.projetosFinalizados = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("finalizado")).Count();
+        ViewBag.projetosFinalizados = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("finalizado") || status.Status.ToLower().Contains("confirmado")).Count();
         ViewBag.projetosPendentes = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("prod")).Count();
         ViewBag.totalProjetos = reponseJson.Projects.Count();
         return View();

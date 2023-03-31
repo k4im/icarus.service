@@ -95,13 +95,12 @@ namespace icarus.application.Controllers
                 HttpResponseMessage response = await _http.PutAsync($"http://localhost:5222/api/v1/Project/update/{id}", requestContent);
                 response.EnsureSuccessStatusCode();
                 var content = response.Content.ReadAsStringAsync();
-                
+                TempData["Updated"] = "Projeto atualizado com sucesso";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-            TempData["Updated"] = "Projeto atualizado com sucesso";
             return RedirectToAction("Index");
 
         }
