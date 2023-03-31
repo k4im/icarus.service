@@ -17,6 +17,7 @@ namespace icarus.projetos.Repository
         public Task UpdateProject(Project model, int? id);
         
         public Task DeleteProject(int id);
+        public Task<Project> GetById(int? id);
 
     }
 }

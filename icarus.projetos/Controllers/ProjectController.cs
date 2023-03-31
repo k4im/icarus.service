@@ -25,7 +25,14 @@ namespace icarus.projetos.Controllers
             var projetos = await _repo.GetAllProjects();
             return Ok(projetos);
         }
-    
+        
+        [HttpGet("projeto/{id?}")]
+        public IActionResult GetById(int? id) 
+        {
+            var item = _repo.GetById(id);
+            if(item == null) return BadRequest();
+            return Ok(item);
+        }
 
         [HttpPost("Create")]
         public async Task<IActionResult> CreateProject(Project model)
@@ -166,11 +173,21 @@ namespace icarus.projetos.Controllers
         }
 
 
-        [HttpPatch("update/{id}")]
-        public IActionResult UpdateProject(Project model, int id)
+        [HttpPut("update/{id}")]
+        public IActionResult UpdateProject([FromBody]Project model, [FromRoute]int id)
         {
-            if(model != null) _repo.UpdateProject(model, id);
-            return Ok();
+            if(!ModelState.IsValid) return BadRequest(); 
+            
+            try 
+            {
+                _repo.UpdateProject(model, id);
+                return Ok();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return BadRequest(); 
         }
 
         [HttpDelete("delete/{id}")]
@@ -179,5 +196,7 @@ namespace icarus.projetos.Controllers
             _repo.DeleteProject(id);
             return StatusCode(204);
         }
+    
+
     }
 }

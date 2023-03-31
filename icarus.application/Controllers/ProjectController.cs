@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using icarus.application.models;
 using icarus.application.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace icarus.application.Controllers
@@ -58,8 +52,7 @@ namespace icarus.application.Controllers
                 {
                     var content = await response.Content.ReadAsStringAsync();
                     var responseJson = JsonConvert.DeserializeObject<ProjectDTO>(content);
-                    Console.WriteLine("Data Saved Successfully.");
-                    RedirectToAction("Index");
+                    TempData["CriadoProjeto"]= "Projeto criado com sucesso.";
                 }
                 else 
                 {
@@ -69,6 +62,37 @@ namespace icarus.application.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet("Update")]
+        public async Task<IActionResult> Update([FromRoute]int? id)
+        {   
+            HttpResponseMessage response = await _http.GetAsync($"http://localhost:5222/api/v1/Project/projetos/{id}");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            Project responseJson = JsonConvert.DeserializeObject<Project>(content);       
+            return View(responseJson);
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromForm]Project model)
+        {
+            if(!ModelState.IsValid) return RedirectToAction("Index");
+            
+            try 
+            {
+                HttpResponseMessage response = await _http.PutAsJsonAsync($"http://localhost:5222/api/v1/Project/update/{model.Id}", model);
+                response.EnsureSuccessStatusCode();
+                var content = response.Content.ReadAsStringAsync();
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            TempData["Updated"] = "Projeto atualizado com sucesso";
+            return RedirectToAction("Index");
+
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

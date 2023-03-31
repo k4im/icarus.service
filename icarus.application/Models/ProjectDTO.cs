@@ -9,6 +9,8 @@ namespace icarus.application.models
     public class ProjectDTO
     {
 
+        public int Id { get; set; }
+        
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Name { get; set; }
         
