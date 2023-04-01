@@ -13,7 +13,7 @@ namespace icarus.projetos.models
         
         public string Status { get; set; }        
 
-        public DateTime DataIncio { get; set; }  
+        public DateTime DataInicio { get; set; }  
 
         public DateTime DataEntrega { get; set; } 
 

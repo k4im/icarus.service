@@ -21,7 +21,7 @@ namespace icarus.application.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("DATE")]
-        public DateTime DataIncio { get; set; }  
+        public DateTime DataInicio { get; set; }  
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("DATE")]

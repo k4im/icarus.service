@@ -44,7 +44,7 @@ namespace icarus.projetos.Repository
                 Id = item.Id,
                 Name = item.Name,
                 Status = item.Status,
-                DataIncio = item.DataIncio,
+                DataInicio = item.DataInicio,
                 DataEntrega = item.DataEntrega,
                 Descricao = item.Descricao,
                 Valor = item.Valor
@@ -62,7 +62,7 @@ namespace icarus.projetos.Repository
                     Name = model.Name,
                     Status = model.Status,
                     Descricao = model.Descricao,
-                    DataIncio = model.DataIncio,
+                    DataInicio = model.DataInicio,
                     DataEntrega = model.DataEntrega,
                     Valor = model.Valor
                 };

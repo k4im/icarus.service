@@ -76,10 +76,9 @@ function criarProjeto(novoProjeto) {
         url: '/Project/Create',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(novoProjeto),
-        success: function(projetoCriado){
-            console.log(novoProjeto)
+        success: function(){
             $("#modalCriarProjeto").modal('hide');
-            console.log("deu certo")
+            window.location.reload();
         }
     }); 
 }

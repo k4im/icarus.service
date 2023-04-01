@@ -18,7 +18,7 @@ namespace icarus.application.models
         public string Status { get; set; }        
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        public DateTime DataIncio { get; set; }  
+        public DateTime DataInicio { get; set; }  
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public DateTime DataEntrega { get; set; } 
