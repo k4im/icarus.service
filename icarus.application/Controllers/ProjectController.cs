@@ -67,12 +67,13 @@ namespace icarus.application.Controllers
         {   
             HttpResponseMessage response = await _http.GetAsync($"http://localhost:5222/api/v1/Project/projeto/{id}");
             response.EnsureSuccessStatusCode();
-            var content = response.Content.ReadAsStringAsync().Result;       
-            return Json(content);
+            var content = response.Content.ReadAsStringAsync().Result;  
+            var responseJson = JsonConvert.DeserializeObject<Project>(content);     
+            return PartialView("_Update", responseJson);
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update([FromBody]ProjectUpdate model, [FromBody]int? id )
+        public async Task<IActionResult> Update([FromBody]ProjectUpdate model)
         {
             if(!ModelState.IsValid) return RedirectToAction("Index");
             
@@ -91,7 +92,7 @@ namespace icarus.application.Controllers
                 
                 var json = JsonConvert.SerializeObject(modelUpddated);
                 var requestContent = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _http.PutAsync($"http://localhost:5222/api/v1/Project/update/{id}", requestContent);
+                HttpResponseMessage response = await _http.PutAsync($"http://localhost:5222/api/v1/Project/update/{model.Id}", requestContent);
                 response.EnsureSuccessStatusCode();
                 var content = response.Content.ReadAsStringAsync();
                 TempData["Updated"] = "Projeto atualizado com sucesso";

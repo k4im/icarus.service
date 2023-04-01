@@ -144,42 +144,9 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Atualizar projeto</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <form>
-              <input type="hidden" class="form-control projetoId">
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
-              <input type="text" class="form-control form__input__projeto name" id="Name" disabled>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Status do projeto:</label>
-              <select asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto status" id="Status">
-              </select>
-            </div>
-            <div class="col-form-label">
-                <label  class="form-label">Data de inicio:</label>
-                <input type="date" class="form-control form__input__projeto data-inicio" id="DataIncio" disabled>
-            </div>
-            <div class="col-form-label">
-                <label class="form-label">Data de entrega:</label>
-                <input type="date" class="form-control form__input__projeto data-entrega" id="DataEntrega">
-            </div>
-            <div class="col-form-label">
-                <label for="floatingTextarea2">Descrição do projeto:</label>
-                <textarea class="form-control descricao" name="Descricao" id="floatingTextarea2" style="height: 100px;"></textarea>
-            </div>
+          <div class="modal-body" id="modal-body">
 
-            <div class="mb-3 container__form container__form__input--projeto">
-                <label for="nomeProjeto" class="form-label">Valor:</label>
-                <input type="number" class="form-control form__input__projeto valor" id="Valor" disabled>
-            </div>            
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="button btn--main btn--atualizar-projeto">Criar projeto</button>
-        </div>
-
+          </div>
       </div>
     </div>
   </div>

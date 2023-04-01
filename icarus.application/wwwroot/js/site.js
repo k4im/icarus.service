@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 
-
+// função para paginação da tabela, lib utilizada DataTables
 $(document).ready( function () {
     $('#table').DataTable({
         "ordering": true,
@@ -36,17 +36,7 @@ $(document).ready( function () {
     });
 } );
 
-
-$(document).ready(function () {
-    $("#btnCriarProjeto").click( () => {
-        $("#modalCriarProjeto").modal('show');
-        limparModal();
-        $(".projetoId").val(0);
-    });
-
-});
-
-
+// ============== Função de limpeza de modal
 function limparModal() {
     $('.name').val('');
     $('.data-incio').val('');
@@ -55,54 +45,103 @@ function limparModal() {
     $('.valor').val('');
 };
 
-$(".btn--novo-projeto").click((projeto) => {
-    var novoProjeto = {
-        Id: $(".projetoId").val(),
-        Name: $('.name').val(),
-        Status: $('.status').val(),
-        DataInicio: $('.data-inicio').val(),
-        DataEntrega: $('.data-entrega').val(),
-        Descricao: $('.descricao').val(),
-        Valor: $('.valor').val()
-
-    };
-    criarProjeto(novoProjeto);
-});
-
-
+// ================ Função de criar novo projeto
 function criarProjeto(novoProjeto) {
+   // Requisição ajax para criar um novo projeto
     $.ajax({
         type: 'POST', 
-        url: '/Project/Create',
+        url: '/Project/Create', // Rota do controlador
+        contentType: "application/json; charset=utf-8", // Definindo o tipo do conteudo
+        data: JSON.stringify(novoProjeto), // transformando o objecto recebido em json.
+        success: function(){
+            $("#modalCriarProjeto").modal('hide'); // fechando a modal
+            window.location.reload(); // atualizando a pagina
+        }
+    }); 
+}
+
+
+
+//======================= Função de atualzar projeto
+function atualizarProjeto(projetoAtualizado) {
+    // Requisição ajax para atualização da modal
+    $.ajax({
+        type: 'POST', 
+        url: '/Project/Update',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(novoProjeto),
+        data: JSON.stringify(projetoAtualizado),
         success: function(){
             $("#modalCriarProjeto").modal('hide');
             window.location.reload();
         }
     }); 
 }
-    
-$('.btn-atualizar').click(function(){
-    var projetoId = $(this).attr('projeto-id');
-    pegarPeloId(projetoId);
-})
 
+
+//===================== Requisição Ajax para o controlador recuperar o projeto pelo id
 function pegarPeloId(projetoId)
 {
-    console.log(pegarPeloId);
-     $.ajax ({
+    // Requisição ajax para recuperar os dados e apresentar na modal
+    $.ajax ({
          type: 'GET',
-         url: `/Project/Update?id=${projetoId}`,
-         success : function(projeto) {
-             $("#modalAtualizarProjeto").modal('show');
-             $('.projetoId').val(projetoId);
-             $('.name').val(projetoId.Name);
-             $('.status').val(projetoId.Status);
-             $('.data-incio').val(projetoId.DataInicio);
-             $('.data-entrega').val(projetoId.DataEntrega);
-             $('.descricao').val(projetoId.Descricao);
-             $('.valor').val(projetoId.Valor);
+         url: `/Project/Update?id=${projetoId}`, // rota do controlador
+         success : function(result) {
+            $("#modalAtualizarProjeto").modal('show'); // abrindo a modal
+            $("#modal-body").html(result); // repassando os dados populados na view parcial para a modal de fato
          }
      });
 }
+// ================== Abrindo a modal para criar um novo projeto e setando o valor do id para zero
+$(document).ready(function () {
+    $("#btnCriarProjeto").click( () => {
+        $("#modalCriarProjeto").modal('show'); // Abrindo a modal e adicionado a classe show
+        limparModal(); // limpando o campo da modal
+        $(".projetoId").val(0); // setando o valor do input ProjetoId para zero
+    });
+
+});
+
+
+// ======== Recuperando click na modal para criar o projeto 
+$(document).ready(function(){
+    $(".btn--novo-projeto").click((projeto) => {
+        // Criação de novo objecto em js para mapear com o objeto do controlador
+        var novoProjeto = {
+            Id: $(".projetoId").val(),
+            Name: $('.name').val(),
+            Status: $('.status').val(),
+            DataInicio: $('.data-inicio').val(),
+            DataEntrega: $('.data-entrega').val(),
+            Descricao: $('.descricao').val(),
+            Valor: $('.valor').val()
+    
+        };
+        criarProjeto(novoProjeto); // chamando função que cria o projeto
+    });
+})
+    
+// ====================== Recuperação de id do projeto
+$(document).ready(function(projeto){
+    $('.btn-atualizar').click(function(){
+        var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
+        pegarPeloId(projetoId); // Chamando a função para popular o modal
+    });    
+})
+
+$(document).ready(function(){
+    $("modal-backdrop").on("click", "#puta", function(projeto){
+        console.log(1);
+        var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
+        // criando um novo projeto com os campos que estão disponiveis
+        var projetoAtualizado = {
+            Id: $(".projetoId").val(projetoId),
+            Name: $('.name').val(),
+            Status: $('.status').val(),
+            DataInicio: $('.data-inicio').val(),
+            DataEntrega: $('.data-entrega').val(),
+            Descricao: $('.descricao').val(),
+            Valor: $('.valor').val()
+        }
+        atualizarProjeto(projetoAtualizado);
+    });
+})
