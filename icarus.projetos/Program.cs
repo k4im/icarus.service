@@ -14,6 +14,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddCors(options =>
+{
+    // this defines a CORS policy called "default"
+    options.AddPolicy("default", policy =>
+    {
+        policy.WithOrigins("http://localhost:5187")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});  
 
 
 var app = builder.Build();
@@ -27,6 +37,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

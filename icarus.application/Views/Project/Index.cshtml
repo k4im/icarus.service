@@ -4,80 +4,137 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-            @if(TempData["CriadoProjeto"] != null) 
-            {
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>@TempData["CriadoProjeto"]</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> 
-            }
 
-            @if(TempData["Updated"] != null) 
-            {
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>@TempData["Updated"]</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            }
+@* Verificação de existe dados temporarios passados ao controlador *@
+  @if(TempData["CriadoProjeto"] != null) 
+  {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@TempData["CriadoProjeto"]</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+  }
 
-            @if(TempData["DeletedMessage"] != null) 
-            {
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <strong>@TempData["DeletedMessage"]</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>              
-            }
-            <h2 class="heading__secondary text-black">Projetos</h2>
-            <div class="container_btn_newproject">
-                <a class="button btn--main" asp-action="Create">Criar projeto</a>
-              </div>
-                    <table  id="table" class="table  table-striped">
-                        <thead>
-                            <tr>
-                              <th scope="col"></th>
-                              <th scope="col">Projeto</th>
-                              <th scope="col">Status</th>
-                              <th scope="col">Data de inicio</th>
-                              <th scope="col">Data de Entrega</th>
-                              <th scope="col">Valor</th>
-                              <th scope="col"></th>
-                            </tr>
-                          </thead>
-                          <tbody class="table-group-divider">
-                            @foreach (var item in Model.Projects)
-                            {
-                              <tr>
-                                <td></td>
-                                <td>@item.Name</td>
-                                <td>@item.Status</td>
-                                <td>@item.DataIncio</td>
-                                <td>@item.DataEntrega</td>
-                                <td>@item.Valor</td>
-                                <td>
-                                  <div class="containers__btn">
-                                      <a class="button btn--crud" title="Detalhes">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud icon--crud--blue" viewBox="0 0 16 16">
-                                              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                            </svg>
-                                      </a>
-                                      <a class="button btn--crud" title="Deletar" asp-controller="Project" asp-action="Delete" asp-route-id="@item.Id">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud icon__content--red" viewBox="0 0 16 16">
-                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                                            </svg>
-                                      </a>
-                                      <a class="button btn--crud" title="Atualizar" asp-controller="Project" asp-action="Update" asp-route-id="@item.Id">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud--green" viewBox="0 0 16 16">
-                                              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                                              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                                            </svg>
-                                      </a>
-                                  </div>
-                                </td>
-                              </tr>
-                            }
-                          </tbody>
-                      </table>
+  @if(TempData["Updated"] != null) 
+  {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@TempData["Updated"]</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  }
 
+  @if(TempData["DeletedMessage"] != null) 
+  {
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@TempData["DeletedMessage"]</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>              
+  }
+  @* Final da verificação de dados temporarios passados ao controlador *@
+
+  @* Incio da tabela com resultados paginados *@
+  <h2 class="heading__secondary text-black">Projetos</h2>
+  <div class="container_btn_newproject">
+      <a class="button btn--main btnCriarProjeto" id="btnCriarProjeto">Criar projeto</a>
+  </div>
+  <table  id="table" class="table  table-striped">
+      <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Projeto</th>
+            <th scope="col">Status</th>
+            <th scope="col">Data de inicio</th>
+            <th scope="col">Data de Entrega</th>
+            <th scope="col">Valor</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          @foreach (var item in Model.Projects)
+          {
+            <tr>
+              <td></td>
+              <td>@item.Name</td>
+              <td>@item.Status</td>
+              <td>@item.DataIncio</td>
+              <td>@item.DataEntrega</td>
+              <td>@item.Valor</td>
+              <td>
+                <div class="containers__btn">
+                    <a class="button btn--crud" title="Detalhes">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud icon--crud--blue" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                          </svg>
+                    </a>
+                    <a class="button btn--crud" title="Deletar" asp-controller="Project" asp-action="Delete" asp-route-id="@item.Id">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud icon__content--red" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                          </svg>
+                    </a>
+                    <a class="button btn--crud" title="Atualizar" asp-controller="Project" asp-action="Update" asp-route-id="@item.Id">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon--crud--green" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                          </svg>
+                    </a>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+  </table>
+  @* Final da tabela com todos os resultados *@
+
+  @* Modal para criar um novo projeto *@
+  <div class="modal fade show" id="modalCriarProjeto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Novo projeto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <input type="hidden" class="form-control projetoId">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
+              <input type="text" class="form-control form__input__projeto name" id="Name">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Status do projeto:</label>
+              <select asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto status" id="Status">
+              </select>
+            </div>
+            <div class="col-form-label">
+                <label  class="form-label">Data de inicio:</label>
+                <input type="date" class="form-control form__input__projeto data-inicio" id="DataIncio">
+            </div>
+            <div class="col-form-label">
+                <label class="form-label">Data de entrega:</label>
+                <input type="date" class="form-control form__input__projeto data-entrega" id="DataEntrega">
+            </div>
+            <div class="col-form-label">
+                <label for="floatingTextarea2">Descrição do projeto:</label>
+                <textarea class="form-control descricao" name="Descricao" id="floatingTextarea2" style="height: 100px;"></textarea>
+            </div>
+
+            <div class="mb-3 container__form container__form__input--projeto">
+                <label for="nomeProjeto" class="form-label">Valor:</label>
+                <input type="number" class="form-control form__input__projeto valor" id="Valor">
+            </div>            
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="button btn--main btn--novo-projeto">Criar projeto</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+@* Final da modal de criar novo projeto *@
+
+@* Inicio da sessão de scripts para js *@
 @section Scripts {
 }
+@* Final da sessão de scripts para js *@

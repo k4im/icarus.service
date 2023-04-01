@@ -3,6 +3,8 @@
 
 // Write your JavaScript code.
 
+
+
 $(document).ready( function () {
     $('#table').DataTable({
         "ordering": true,
@@ -33,3 +35,51 @@ $(document).ready( function () {
         }
     });
 } );
+
+
+$(document).ready(function () {
+    $("#btnCriarProjeto").click( () => {
+        $("#modalCriarProjeto").modal('show');
+        limparModal();
+        $(".projetoId").val(0);
+    });
+
+});
+
+
+function limparModal() {
+    $('.name').val('');
+    $('.data-incio').val('');
+    $('.data-entrega').val('');
+    $('.descricao').val('');
+    $('.valor').val('');
+};
+
+$(".btn--novo-projeto").click((projeto) => {
+    var novoProjeto = {
+        Id: $(".projetoId").val(),
+        Name: $('.name').val(),
+        Status: $('.status').val(),
+        DataInicio: $('.data-inicio').val(),
+        DataEntrega: $('.data-entrega').val(),
+        Descricao: $('.descricao').val(),
+        Valor: $('.valor').val()
+
+    };
+    criarProjeto(novoProjeto);
+});
+
+
+function criarProjeto(novoProjeto) {
+    $.ajax({
+        type: 'POST', 
+        url: '/Project/Create',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(novoProjeto),
+        success: function(projetoCriado){
+            console.log(novoProjeto)
+            $("#modalCriarProjeto").modal('hide');
+            console.log("deu certo")
+        }
+    }); 
+}

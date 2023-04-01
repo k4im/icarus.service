@@ -41,7 +41,7 @@ namespace icarus.application.Controllers
             return View();
         }
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(Project model) 
+        public async Task<IActionResult> Create([FromBody]Project model) 
         {
             
             if(ModelState.IsValid) 
