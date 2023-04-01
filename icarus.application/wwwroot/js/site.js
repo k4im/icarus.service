@@ -82,3 +82,27 @@ function criarProjeto(novoProjeto) {
         }
     }); 
 }
+    
+$('.btn-atualizar').click(function(){
+    var projetoId = $(this).attr('projeto-id');
+    pegarPeloId(projetoId);
+})
+
+function pegarPeloId(projetoId)
+{
+    console.log(pegarPeloId);
+     $.ajax ({
+         type: 'GET',
+         url: `/Project/Update?id=${projetoId}`,
+         success : function(projeto) {
+             $("#modalAtualizarProjeto").modal('show');
+             $('.projetoId').val(projetoId);
+             $('.name').val(projetoId.Name);
+             $('.status').val(projetoId.Status);
+             $('.data-incio').val(projetoId.DataInicio);
+             $('.data-entrega').val(projetoId.DataEntrega);
+             $('.descricao').val(projetoId.Descricao);
+             $('.valor').val(projetoId.Valor);
+         }
+     });
+}

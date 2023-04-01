@@ -57,6 +57,10 @@
     fill: var(--color-green);
     color: var(--color-green);
 }
+.icon--crud--yellow {
+    fill: var(--color-yellow);
+    color: var(--color-yellow);
+}
 
 .icon--crud--blue {
     fill: var(--color-blue);

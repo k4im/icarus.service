@@ -67,13 +67,12 @@ namespace icarus.application.Controllers
         {   
             HttpResponseMessage response = await _http.GetAsync($"http://localhost:5222/api/v1/Project/projeto/{id}");
             response.EnsureSuccessStatusCode();
-            var content = response.Content.ReadAsStringAsync().Result;
-            ProjectUpdate responseJson = JsonConvert.DeserializeObject<ProjectUpdate>(content);       
-            return View(responseJson);
+            var content = response.Content.ReadAsStringAsync().Result;       
+            return Json(content);
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update([FromForm]ProjectUpdate model, int? id )
+        public async Task<IActionResult> Update([FromBody]ProjectUpdate model, [FromBody]int? id )
         {
             if(!ModelState.IsValid) return RedirectToAction("Index");
             
@@ -106,12 +105,6 @@ namespace icarus.application.Controllers
         }
         
         
-        
-        //[HttpGet("Delete")]
-        //public IActionResult Delete(int? id) 
-        //{
-        //    return View("DeleteAction");
-        //}
         [HttpPost("Delete")]
         public async Task<IActionResult> Delete(int id) 
         {
