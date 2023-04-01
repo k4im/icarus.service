@@ -145,6 +145,40 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
           <div class="modal-body" id="modal-body">
+          <form>
+              <input type="hidden" class="form-control projetoId">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
+              <input type="text"  class="form-control form__input__projeto nameAtualizar" id="Name" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Status do projeto:</label>
+              <select  asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto" id="Status">
+              </select>
+            </div>
+            <div class="col-form-label">
+                <label  class="form-label">Data de inicio:</label>
+                <input type="datetime" class="form-control form__input__projeto data-inicioAtualizar" id="data-inicioAtualizar"disabled>
+            </div>
+            <div class="col-form-label">
+                <label class="form-label">Data de entrega:</label>
+                <input type="datetime" class="form-control form__input__projeto data-entregaAtualizar" id="DataEntrega"  disabled>
+            </div>
+            <div class="col-form-label">
+                <label for="floatingTextarea2">Descrição do projeto:</label>
+                <textarea class="form-control descricaoAtualizar" name="Descricao" id="floatingTextarea2" style="height: 100px;" disabled></textarea>
+            </div>
+
+            <div class="mb-3 container__form container__form__input--projeto">
+                <label for="nomeProjeto" class="form-label">Valor:</label>
+                <input type="text" class="form-control form__input__projeto valorAtualizar" id="ValorAtualizar" disabled>
+            </div>            
+          </form>
+        <div class="modal-footer">
+          <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="button btn--main" id="atualizarProjeto">Atualizar projeto</button>
+        </div>
+
 
           </div>
       </div>

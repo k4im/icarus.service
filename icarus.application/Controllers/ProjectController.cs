@@ -69,7 +69,9 @@ namespace icarus.application.Controllers
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;  
             var responseJson = JsonConvert.DeserializeObject<Project>(content);     
-            return PartialView("_Update", responseJson);
+            // return PartialView("_Update", responseJson);
+            var projetJson = Json(responseJson);
+            return (projetJson);
         }
 
         [HttpPost("Update")]

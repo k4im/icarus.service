@@ -69,8 +69,9 @@ function atualizarProjeto(projetoAtualizado) {
         type: 'POST', 
         url: '/Project/Update',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(projetoAtualizado),
+        data: ( projetoUpdate => projetoAtualizado),
         success: function(){
+            alert(projetoAtualizado.Name);
             $("#modalCriarProjeto").modal('hide');
             window.location.reload();
         }
@@ -81,13 +82,20 @@ function atualizarProjeto(projetoAtualizado) {
 //===================== Requisição Ajax para o controlador recuperar o projeto pelo id
 function pegarPeloId(projetoId)
 {
+    limparModal();
     // Requisição ajax para recuperar os dados e apresentar na modal
     $.ajax ({
          type: 'GET',
          url: `/Project/Update?id=${projetoId}`, // rota do controlador
+         dataType: "JSON",
          success : function(result) {
+            // alert(result.dataInicio);
             $("#modalAtualizarProjeto").modal('show'); // abrindo a modal
-            $("#modal-body").html(result); // repassando os dados populados na view parcial para a modal de fato
+            $('.nameAtualizar').val(result.name);
+            $('#data-inicioAtualizar').val(result.dataInicio);
+            $('.data-entregaAtualizar').val(result.dataEntrega);
+            $('.descricaoAtualizar').val(result.descricao);
+            $('.valorAtualizar').val(result.valor);
          }
      });
 }
@@ -129,19 +137,21 @@ $(document).ready(function(projeto){
 })
 
 $(document).ready(function(){
-    $("modal-backdrop").on("click", "#puta", function(projeto){
-        console.log(1);
+    $("#atualizarProjeto").on("click", function(projeto){
+        alert("Bateu");
         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
         // criando um novo projeto com os campos que estão disponiveis
         var projetoAtualizado = {
             Id: $(".projetoId").val(projetoId),
-            Name: $('.name').val(),
-            Status: $('.status').val(),
-            DataInicio: $('.data-inicio').val(),
-            DataEntrega: $('.data-entrega').val(),
-            Descricao: $('.descricao').val(),
-            Valor: $('.valor').val()
+            Name: $('.nameAtualizar').val(),
+            Status: $('.statusAtualizar').val(),
+            DataInicio: $('.data-inicioAtualizar').val(),
+            DataEntrega: $('.data-entregaAtualizar').val(),
+            Descricao: $('.descricaoAtualizar').val(),
+            Valor: $('.valorAtualizar').val(),
+            
         }
+        alert(projetoAtualizado.Valor);
         atualizarProjeto(projetoAtualizado);
     });
 })
