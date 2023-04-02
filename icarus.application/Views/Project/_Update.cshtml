@@ -1,37 +1,37 @@
 @model Project;
 
 
-          <form>
-              <input type="hidden" class="form-control projetoId">
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
-              <input type="text"  value="@Model.Name" class="form-control form__input__projeto name" id="Name" disabled>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Status do projeto:</label>
-              <select value="@Model.Status" asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto status" id="Status">
-              </select>
-            </div>
-            <div class="col-form-label">
-                <label  class="form-label">Data de inicio:</label>
-                <input type="text" class="form-control form__input__projeto data-inicio" id="DataIncio"  value="@Model.DataInicio" disabled>
-            </div>
-            <div class="col-form-label">
-                <label class="form-label">Data de entrega:</label>
-                <input type="text" class="form-control form__input__projeto data-entrega" id="DataEntrega" value="@Model.DataEntrega" disabled>
-            </div>
-            <div class="col-form-label">
-                <label for="floatingTextarea2">Descrição do projeto:</label>
-                <textarea class="form-control descricao" name="Descricao" id="floatingTextarea2" style="height: 100px;" disabled placeholder="@Model.Descricao"></textarea>
-            </div>
+<form asp-controller="Project" asp-action="Update" method="POST">
+    <input type="hidden" class="form-control projetoId" asp-for="@Model.Id">
+  <div class="mb-3">
+    <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
+    <input type="text" asp-for="@Model.Name" value="@Model.Name" class="form-control form__input__projeto name" id="Name" disabled>
+  </div>
+  <div class="mb-3">
+    <label for="message-text" class="col-form-label">Status do projeto:</label>
+    <select asp-for="@Model.Status" value="@Model.Status" asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto status" id="Status">
+    </select>
+  </div>
+  <div class="col-form-label">
+      <label  class="form-label">Data de inicio:</label>
+      <input asp-for="@Model.DataInicio" type="datetime" class="form-control form__input__projeto data-inicio" id="DataIncio"  value="@Model.DataInicio" disabled>
+  </div>
+  <div class="col-form-label">
+      <label class="form-label">Data de entrega:</label>
+      <input asp-for="@Model.DataEntrega" type="datetime" class="form-control form__input__projeto data-entrega" id="DataEntrega" value="@Model.DataEntrega" disabled>
+  </div>
+  <div class="col-form-label">
+      <label for="floatingTextarea2">Descrição do projeto:</label>
+      <textarea asp-for="@Model.Descricao" class="form-control descricao" name="Descricao" id="floatingTextarea2" style="height: 100px;" disabled placeholder="@Model.Descricao"></textarea>
+  </div>
+  <div class="mb-3 container__form container__form__input--projeto">
+      <label for="nomeProjeto" class="form-label">Valor:</label>
+      <input asp-for="@Model.Valor" type="number" class="form-control form__input__projeto valor" id="Valor" value="@Model.Valor" disabled>
+  </div>         
+  <div class="modal-footer">
+    <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
+    <button type="submit" class="button btn--main" id="puta">Atualizar projeto</button>
+  </div>   
+</form>
 
-            <div class="mb-3 container__form container__form__input--projeto">
-                <label for="nomeProjeto" class="form-label">Valor:</label>
-                <input type="number" class="form-control form__input__projeto valor" id="Valor" value="@Model.Valor" disabled>
-            </div>            
-          </form>
-        <div class="modal-footer">
-          <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="button btn--main" id="puta">Atualizar projeto</button>
-        </div>
 

@@ -63,20 +63,21 @@ function criarProjeto(novoProjeto) {
 
 
 //======================= Função de atualzar projeto
-function atualizarProjeto(projetoAtualizado) {
-    // Requisição ajax para atualização da modal
-    $.ajax({
-        type: 'POST', 
-        url: '/Project/Update',
-        contentType: "application/json; charset=utf-8",
-        data: ( projetoUpdate => projetoAtualizado),
-        success: function(){
-            alert(projetoAtualizado.Name);
-            $("#modalCriarProjeto").modal('hide');
-            window.location.reload();
-        }
-    }); 
-}
+// function atualizarProjeto(projetoAtualizado) {
+//     // Requisição ajax para atualização da modal
+//     console.log(projetoAtualizado);
+//     $.ajax({
+//         type: 'POST', 
+//         url: '/Project/Update',
+//         dataType: "JSON",
+//         data: {projeto: projetoAtualizado},
+//         contentType: "application/json; charset=utf-8",
+//         success: function(){
+//             $("#modalCriarProjeto").modal('hide');
+//             window.location.reload();
+//         }
+//     }); 
+// }
 
 
 //===================== Requisição Ajax para o controlador recuperar o projeto pelo id
@@ -87,15 +88,12 @@ function pegarPeloId(projetoId)
     $.ajax ({
          type: 'GET',
          url: `/Project/Update?id=${projetoId}`, // rota do controlador
-         dataType: "JSON",
+        //  dataType: "JSON",
          success : function(result) {
             // alert(result.dataInicio);
+            // $("#modalCriarProjeto").modal('show'); // abrindo a modal
             $("#modalAtualizarProjeto").modal('show'); // abrindo a modal
-            $('.nameAtualizar').val(result.name);
-            $('#data-inicioAtualizar').val(result.dataInicio);
-            $('.data-entregaAtualizar').val(result.dataEntrega);
-            $('.descricaoAtualizar').val(result.descricao);
-            $('.valorAtualizar').val(result.valor);
+            $("#modal-body").html(result);
          }
      });
 }
@@ -124,6 +122,7 @@ $(document).ready(function(){
             Valor: $('.valor').val()
     
         };
+        // if($(".projetoId").val() > 0) atualizarProjeto(novoProjeto);
         criarProjeto(novoProjeto); // chamando função que cria o projeto
     });
 })
@@ -136,22 +135,23 @@ $(document).ready(function(projeto){
     });    
 })
 
-$(document).ready(function(){
-    $("#atualizarProjeto").on("click", function(projeto){
-        alert("Bateu");
-        var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
-        // criando um novo projeto com os campos que estão disponiveis
-        var projetoAtualizado = {
-            Id: $(".projetoId").val(projetoId),
-            Name: $('.nameAtualizar').val(),
-            Status: $('.statusAtualizar').val(),
-            DataInicio: $('.data-inicioAtualizar').val(),
-            DataEntrega: $('.data-entregaAtualizar').val(),
-            Descricao: $('.descricaoAtualizar').val(),
-            Valor: $('.valorAtualizar').val(),
+// $(document).ready(function(){
+//     $("#atualizarProjeto").on("click", function(projeto){
+//         // alert("Bateu na criação de projeto");
+//         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
+//         // criando um novo projeto com os campos que estão disponiveis
+//         var projetoAtualizado = {
+//             Id: $(".projetoId").val(projetoId),
+//             Name: $('.name').val(),
+//             Status: $('.status').val(),
+//             DataInicio: $('.data-inicio').val(),
+//             DataEntrega: $('.data-entrega').val(),
+//             Descricao: $('.descricao').val(),
+//             Valor: $('.valor').val(),
             
-        }
-        alert(projetoAtualizado.Valor);
-        atualizarProjeto(projetoAtualizado);
-    });
-})
+//         }
+//         // alert(`Projeto criado, id do projeto: ${projetoAtualizado.Id}`);
+//         console.log(projetoAtualizado);
+//         atualizarProjeto(projetoAtualizado);
+//     });
+// })
