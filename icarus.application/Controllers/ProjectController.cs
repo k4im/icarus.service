@@ -109,7 +109,7 @@ namespace icarus.application.Controllers
         
         
         [HttpPost("Delete")]
-        public async Task<IActionResult> Delete(int id) 
+        public async Task<IActionResult> Delete(int? id) 
         {
             var responseDelete = await _http.DeleteAsync($"http://localhost:5222/api/v1/Project/delete/{id}");
             responseDelete.EnsureSuccessStatusCode();

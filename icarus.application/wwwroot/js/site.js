@@ -62,23 +62,6 @@ function criarProjeto(novoProjeto) {
 
 
 
-//======================= Função de atualzar projeto
-// function atualizarProjeto(projetoAtualizado) {
-//     // Requisição ajax para atualização da modal
-//     console.log(projetoAtualizado);
-//     $.ajax({
-//         type: 'POST', 
-//         url: '/Project/Update',
-//         dataType: "JSON",
-//         data: {projeto: projetoAtualizado},
-//         contentType: "application/json; charset=utf-8",
-//         success: function(){
-//             $("#modalCriarProjeto").modal('hide');
-//             window.location.reload();
-//         }
-//     }); 
-// }
-
 
 //===================== Requisição Ajax para o controlador recuperar o projeto pelo id
 function pegarPeloId(projetoId)
@@ -125,7 +108,7 @@ $(document).ready(function(){
         // if($(".projetoId").val() > 0) atualizarProjeto(novoProjeto);
         criarProjeto(novoProjeto); // chamando função que cria o projeto
     });
-})
+});
     
 // ====================== Recuperação de id do projeto
 $(document).ready(function(projeto){
@@ -133,25 +116,22 @@ $(document).ready(function(projeto){
         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
         pegarPeloId(projetoId); // Chamando a função para popular o modal
     });    
-})
+});
 
-// $(document).ready(function(){
-//     $("#atualizarProjeto").on("click", function(projeto){
-//         // alert("Bateu na criação de projeto");
-//         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
-//         // criando um novo projeto com os campos que estão disponiveis
-//         var projetoAtualizado = {
-//             Id: $(".projetoId").val(projetoId),
-//             Name: $('.name').val(),
-//             Status: $('.status').val(),
-//             DataInicio: $('.data-inicio').val(),
-//             DataEntrega: $('.data-entrega').val(),
-//             Descricao: $('.descricao').val(),
-//             Valor: $('.valor').val(),
-            
-//         }
-//         // alert(`Projeto criado, id do projeto: ${projetoAtualizado.Id}`);
-//         console.log(projetoAtualizado);
-//         atualizarProjeto(projetoAtualizado);
-//     });
-// })
+
+// ===================== Delete recuperando click 
+
+$(document).ready(function() {
+    $(".btn--delete").click(function(){
+        var id = $(this).attr('projeto-id');
+        $.ajax ({
+            type: 'POST',
+            url: `/Project/Delete?id=${id}`, // rota do controlador
+           //  dataType: "JSON",
+            success : function(result) {
+                alert("Projeto foi deletado com sucesso!")
+                window.location.reload(); // atualizando a pagina
+            }
+        });
+    });
+});
