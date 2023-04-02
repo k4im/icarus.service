@@ -15,7 +15,7 @@ namespace icarus.application.Models
         // [DataType("NVARCHAR(150)")]
         public string Name { get; set; }
         
-        // [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         // [DataType("NVARCHAR(100)")]
         public string Status { get; set; }        
 

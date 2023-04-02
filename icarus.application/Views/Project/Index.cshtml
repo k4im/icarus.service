@@ -99,19 +99,23 @@
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nome do projeto:</label>
               <input type="text" class="form-control form__input__projeto name" id="Name">
+              <span class="validacaoName text-danger"></span>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Status do projeto:</label>
               <select asp-items="@icarus.application.Models.HelperProject.GetStatus()" type="text" class="form-control form__input__projeto status" id="Status">
               </select>
+              <span class="validacaoStatus text-danger"></span>
             </div>
             <div class="col-form-label">
                 <label  class="form-label">Data de inicio:</label>
                 <input type="date" class="form-control form__input__projeto data-inicio" id="DataIncio">
+              <span class="validacaoDataInicio text-danger"></span>                
             </div>
             <div class="col-form-label">
                 <label class="form-label">Data de entrega:</label>
                 <input type="date" class="form-control form__input__projeto data-entrega" id="DataEntrega">
+              <span class="validacaoDataEntrega text-danger"></span>
             </div>
             <div class="col-form-label">
                 <label for="floatingTextarea2">Descrição do projeto:</label>
@@ -121,6 +125,7 @@
             <div class="mb-3 container__form container__form__input--projeto">
                 <label for="nomeProjeto" class="form-label">Valor:</label>
                 <input type="number" class="form-control form__input__projeto valor" id="Valor">
+              <span class="validacaoValor text-danger"></span>
             </div>            
           </form>
         </div>

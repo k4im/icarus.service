@@ -80,6 +80,8 @@ function pegarPeloId(projetoId)
          }
      });
 }
+
+
 // ================== Abrindo a modal para criar um novo projeto e setando o valor do id para zero
 $(document).ready(function () {
     $("#btnCriarProjeto").click( () => {
@@ -105,14 +107,14 @@ $(document).ready(function(){
             Valor: $('.valor').val()
     
         };
-        // if($(".projetoId").val() > 0) atualizarProjeto(novoProjeto);
+        // if(validarProjeto(novoProjeto)) 
         criarProjeto(novoProjeto); // chamando função que cria o projeto
     });
 });
     
 // ====================== Recuperação de id do projeto
 $(document).ready(function(projeto){
-    $('.btn-atualizar').click(function(){
+    $('#table, tbody').on("click", ".btn-atualizar", function(){
         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
         pegarPeloId(projetoId); // Chamando a função para popular o modal
     });    
@@ -122,7 +124,7 @@ $(document).ready(function(projeto){
 // ===================== Delete recuperando click 
 
 $(document).ready(function() {
-    $(".btn--delete").click(function(){
+    $("#table tbody").on("click", ".btn--delete", function(){
         var id = $(this).attr('projeto-id');
         $.ajax ({
             type: 'POST',
