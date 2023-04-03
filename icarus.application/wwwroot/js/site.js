@@ -36,16 +36,37 @@ $(document).ready( function () {
     });
 } );
 
-// ============== Função de limpeza de modal
+// =========================== 
+// Função de limpeza de modal |
+// =========================== 
 function limparModal() {
     $('.name').val('');
     $('.data-incio').val('');
     $('.data-entrega').val('');
     $('.descricao').val('');
     $('.valor').val('');
+    $(".validacaoName").text("");
 };
 
-// ================ Função de criar novo projeto
+// =========================== 
+// validar form |
+// =========================== 
+function validarForm(novoProjeto) {
+    if(novoProjeto.Name.length < 1) $(".validacaoName").text("O projeto precisa conter um nome!");
+    if(novoProjeto.Name.length > 1) $(".validacaoName").text("");
+    if(novoProjeto.DataInicio.length < 1) $(".validacaoDataInicio").text("O projeto precisa conter uma data de incio!");
+    if(novoProjeto.DataInicio.length > 1) $(".validacaoDataInicio").text("");
+    if(novoProjeto.DataEntrega.length < 1) $(".validacaoDataEntrega").text("O projeto precisa conter uma data de Entrega!");
+    if(novoProjeto.DataEntrega.length > 1) $(".validacaoDataEntrega").text("");
+    if(novoProjeto.Valor.length < 1) $(".validacaoValor").text("O projeto precisa conter um Valor!");
+    if(novoProjeto.Valor.length > 1) $(".validacaoValor").text("");
+    if(novoProjeto.Name.length > 1 && novoProjeto.DataInicio.length > 1 && novoProjeto.DataEntrega.length > 1 && novoProjeto.Valor.length > 1) return true;
+    
+};
+
+// ============================= 
+// Função de criar novo projeto |
+// ============================= 
 function criarProjeto(novoProjeto) {
    // Requisição ajax para criar um novo projeto
     $.ajax({
@@ -63,7 +84,9 @@ function criarProjeto(novoProjeto) {
 
 
 
-//===================== Requisição Ajax para o controlador recuperar o projeto pelo id
+//=============================================================== 
+//Requisição Ajax para o controlador recuperar o projeto pelo id|
+//=============================================================== 
 function pegarPeloId(projetoId)
 {
     limparModal();
@@ -82,7 +105,9 @@ function pegarPeloId(projetoId)
 }
 
 
-// ================== Abrindo a modal para criar um novo projeto e setando o valor do id para zero
+// ============================================================================= 
+// Abrindo a modal para criar um novo projeto e setando o valor do id para zero|
+// ============================================================================= 
 $(document).ready(function () {
     $("#btnCriarProjeto").click( () => {
         $("#modalCriarProjeto").modal('show'); // Abrindo a modal e adicionado a classe show
@@ -93,7 +118,9 @@ $(document).ready(function () {
 });
 
 
-// ======== Recuperando click na modal para criar o projeto 
+// ================================================= 
+// Recuperando click na modal para criar o projeto |
+// ================================================= 
 $(document).ready(function(){
     $(".btn--novo-projeto").click((projeto) => {
         // Criação de novo objecto em js para mapear com o objeto do controlador
@@ -107,12 +134,13 @@ $(document).ready(function(){
             Valor: $('.valor').val()
     
         };
-        // if(validarProjeto(novoProjeto)) 
-        criarProjeto(novoProjeto); // chamando função que cria o projeto
+        if(validarForm(novoProjeto)) criarProjeto(novoProjeto); // chamando função que cria o projeto
     });
 });
-    
-// ====================== Recuperação de id do projeto
+
+// =============================
+// Recuperação de id do projeto |   
+// ============================= 
 $(document).ready(function(projeto){
     $('#table, tbody').on("click", ".btn-atualizar", function(){
         var projetoId = $(this).attr('projeto-id'); // Setando a variavel com o valor do data attr.
@@ -121,19 +149,22 @@ $(document).ready(function(projeto){
 });
 
 
-// ===================== Delete recuperando click 
+// ========================= 
+// Delete recuperando click |
+// ========================= 
 
 $(document).ready(function() {
     $("#table tbody").on("click", ".btn--delete", function(){
+        $("#modalDelete").modal('show');
         var id = $(this).attr('projeto-id');
-        $.ajax ({
-            type: 'POST',
-            url: `/Project/Delete?id=${id}`, // rota do controlador
-           //  dataType: "JSON",
-            success : function(result) {
-                alert("Projeto foi deletado com sucesso!")
-                window.location.reload(); // atualizando a pagina
-            }
+        $("#btn-modal-delete").click(function(){
+            $.ajax ({
+                type: 'POST',
+                url: `/Project/Delete?id=${id}`, // rota do controlador
+                success : function(result) {
+                    window.location.reload(); // atualizando a pagina
+                }
+            });
         });
     });
 });

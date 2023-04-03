@@ -141,7 +141,7 @@
 
 
 
-  @* Modal para criar um novo projeto *@
+@* Modal para atualizar projeto *@
   <div class="modal fade show" id="modalAtualizarProjeto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -155,9 +155,27 @@
       </div>
     </div>
   </div>
-@* Final da modal de criar novo projeto *@
+@* Final da modal para atualizar projeto *@
 
-@* Inicio da sessão de scripts para js *@
-@section Scripts {
-}
-@* Final da sessão de scripts para js *@
+
+
+
+@* Modal para deletar projeto *@
+  <div class="modal fade show" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Você está prestes a deletar um projeto!</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1 class="modal-title fs-5">Tem certeza que gostaria de deletar este projeto?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button btn--main-outline btn-fechar" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="button btn--main" id="btn-modal-delete"">Deletar projeto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@* Final da modal para deletar projeto *@
