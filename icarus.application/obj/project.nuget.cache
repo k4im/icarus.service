@@ -1,14 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2COuhuzI/8wgVTS+e6WNyA6CsJyVdfTj+3m2Z7jwPHG7F7Wo97iH26lDroC4YzGpoQwz39wmgcLJQQSE0RVivg==",
+  "dgSpecHash": "Fl8sj4ougwmIN7xP7wpHTBD4KpEd75/fo6XJV40hbx/TDzTbBI2e82/uiw393lIfZ+GDy6M5v6hFIp/MfbH9fg==",
   "success": true,
-  "projectFilePath": "/home/k4imdesktop/icarus.service/icarus.application/icarus.application.csproj",
+  "projectFilePath": "/home/joaovictor/icarus.service/icarus.application/icarus.application.csproj",
   "expectedPackageFiles": [
-    "/home/k4imdesktop/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
-    "/home/k4imdesktop/.nuget/packages/system.net.http.json/8.0.0-preview.2.23128.3/system.net.http.json.8.0.0-preview.2.23128.3.nupkg.sha512",
-    "/home/k4imdesktop/.nuget/packages/system.text.encodings.web/8.0.0-preview.2.23128.3/system.text.encodings.web.8.0.0-preview.2.23128.3.nupkg.sha512",
-    "/home/k4imdesktop/.nuget/packages/system.text.json/8.0.0-preview.2.23128.3/system.text.json.8.0.0-preview.2.23128.3.nupkg.sha512",
-    "/home/k4imdesktop/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+    "/home/joaovictor/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/joaovictor/.nuget/packages/system.net.http.json/8.0.0-preview.2.23128.3/system.net.http.json.8.0.0-preview.2.23128.3.nupkg.sha512",
+    "/home/joaovictor/.nuget/packages/system.text.encodings.web/8.0.0-preview.2.23128.3/system.text.encodings.web.8.0.0-preview.2.23128.3.nupkg.sha512",
+    "/home/joaovictor/.nuget/packages/system.text.json/8.0.0-preview.2.23128.3/system.text.json.8.0.0-preview.2.23128.3.nupkg.sha512"
   ],
   "logs": []
 }
