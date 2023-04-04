@@ -50,9 +50,9 @@ public class HomeController : Controller
         ViewBag.totalProjetos = reponseJson.Projects.Count();
         
         if(reponseJson.Projects.Any()) {
-            var totalPendente = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente")).Sum(valor => valor.Valor);
-            var total = reponseJson.Projects.Sum(valor => valor.Valor);
-            var valorMedio = Math.Round(reponseJson.Projects.Average(valor => valor.Valor));
+            var totalPendente = Math.Round(reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente")).Sum(valor => valor.Valor), 2);
+            var total = Math.Round(reponseJson.Projects.Sum(valor => valor.Valor), 2);
+            var valorMedio = Math.Round(reponseJson.Projects.Average(valor => valor.Valor), 2);
             ViewBag.totalEmCaixa = total;
             ViewBag.valorPendente = totalPendente;
             ViewBag.valorMedio = valorMedio;
