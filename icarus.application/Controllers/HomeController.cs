@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Linq;
+/*
     Controlador da Home, onde o mesmo irá realizar uma contagem de todos os projeto que existem dentro do banco de dados do micro serviço
     sendo assim, será realizado apenas uma unica request para api, onde a mesma irá retornar todos projetos existentes para então
     realizar a filtragem de cada campo em especifico e ser passado para as ViewBags.
@@ -43,9 +44,17 @@ public class HomeController : Controller
         request.EnsureSuccessStatusCode();
         var responseBody = await request.Content.ReadAsStringAsync();
         ProjectResponseDTO reponseJson = JsonConvert.DeserializeObject<ProjectResponseDTO>(responseBody);
-        ViewBag.projetosFinalizados = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("finalizado") || status.Status.ToLower().Contains("confirmado")).Count();
-        ViewBag.projetosPendentes = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("prod")).Count();
+        ViewBag.projetosFinalizados = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("finalizado")).Count();
+        ViewBag.projetosConfirmado = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("confirmado")).Count();
+        ViewBag.projetosPendentes = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente") ||status.Status.ToLower().Contains("prod") ).Count();
         ViewBag.totalProjetos = reponseJson.Projects.Count();
+        
+        var totalPendente = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente")).Sum(valor => valor.Valor);
+        var total = reponseJson.Projects.Sum(valor => valor.Valor);
+        var valorMedio = Math.Round(reponseJson.Projects.Average(valor => valor.Valor));
+        ViewBag.totalEmCaixa = total;
+        ViewBag.valorPendente = totalPendente;
+        ViewBag.valorMedio = valorMedio;
         return View();
     }
 

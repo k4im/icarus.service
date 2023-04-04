@@ -19,6 +19,6 @@ namespace icarus.projetos.models
 
         public string Descricao { get; set; } 
 
-        public int Valor { get; set; }
+        public decimal Valor { get; set; }
     }
 }

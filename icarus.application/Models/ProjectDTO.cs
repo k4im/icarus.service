@@ -27,7 +27,7 @@ namespace icarus.application.models
         public string Descricao { get; set; } 
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        public int Valor { get; set; }
+        public decimal Valor { get; set; }
 
         public int Pages { get; set; }
         public int CurrentPage { get; set; }

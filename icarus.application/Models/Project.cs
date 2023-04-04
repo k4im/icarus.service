@@ -32,6 +32,6 @@ namespace icarus.application.Models
         public string Descricao { get; set; } 
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        public int Valor { get; set; }
+        public decimal Valor { get; set; }
     }
 }

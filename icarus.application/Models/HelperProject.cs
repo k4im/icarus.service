@@ -11,6 +11,7 @@ namespace icarus.application.Models
         public static string Produção = "Produção";
         public static string Finalizado = "Finalizado";
         public static string Confirmado = "Confirmado";
+        public static string Pendente = "Pendente";
     
        public static List<SelectListItem> GetStatus()
         {
@@ -18,7 +19,8 @@ namespace icarus.application.Models
             {
                 new SelectListItem {Text = HelperProject.Produção, Value = HelperProject.Produção},
                 new SelectListItem {Text = HelperProject.Finalizado, Value = HelperProject.Finalizado},
-                new SelectListItem {Text = HelperProject.Confirmado, Value = HelperProject.Confirmado}
+                new SelectListItem {Text = HelperProject.Confirmado, Value = HelperProject.Confirmado},
+                new SelectListItem {Text = HelperProject.Pendente, Value = HelperProject.Pendente}
             };
         }
 
