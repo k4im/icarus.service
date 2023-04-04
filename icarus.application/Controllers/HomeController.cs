@@ -49,12 +49,14 @@ public class HomeController : Controller
         ViewBag.projetosPendentes = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente") ||status.Status.ToLower().Contains("prod") ).Count();
         ViewBag.totalProjetos = reponseJson.Projects.Count();
         
-        var totalPendente = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente")).Sum(valor => valor.Valor);
-        var total = reponseJson.Projects.Sum(valor => valor.Valor);
-        var valorMedio = Math.Round(reponseJson.Projects.Average(valor => valor.Valor));
-        ViewBag.totalEmCaixa = total;
-        ViewBag.valorPendente = totalPendente;
-        ViewBag.valorMedio = valorMedio;
+        if(reponseJson.Projects.Any()) {
+            var totalPendente = reponseJson.Projects.Where(status => status.Status.ToLower().Contains("pendente")).Sum(valor => valor.Valor);
+            var total = reponseJson.Projects.Sum(valor => valor.Valor);
+            var valorMedio = Math.Round(reponseJson.Projects.Average(valor => valor.Valor));
+            ViewBag.totalEmCaixa = total;
+            ViewBag.valorPendente = totalPendente;
+            ViewBag.valorMedio = valorMedio;
+        }
         return View();
     }
 
