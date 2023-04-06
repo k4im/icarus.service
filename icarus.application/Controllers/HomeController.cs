@@ -1,10 +1,9 @@
-﻿using System.Linq;
-/*
+﻿/*
     Controlador da Home, onde o mesmo irá realizar uma contagem de todos os projeto que existem dentro do banco de dados do micro serviço
     sendo assim, será realizado apenas uma unica request para api, onde a mesma irá retornar todos projetos existentes para então
     realizar a filtragem de cada campo em especifico e ser passado para as ViewBags.
 */
-
+using System.Linq;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using icarus.application.Models;

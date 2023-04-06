@@ -80,7 +80,7 @@ namespace icarus.projetos.Repository
             }  
         }
 
-        public async Task DeleteProject(int id)
+        public async Task DeleteProject(int? id)
         {
             try 
             {

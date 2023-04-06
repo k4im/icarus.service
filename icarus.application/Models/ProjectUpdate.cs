@@ -8,30 +8,20 @@ namespace icarus.application.Models
 {
     public class ProjectUpdate
     {
-        [Key]
         public int Id { get; set; }
 
-        // [Required(ErrorMessage = "Campo obrigatório")]
-        // [DataType("NVARCHAR(150)")]
         public string Name { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório")]
-        // [DataType("NVARCHAR(100)")]
+        [DataType("NVARCHAR(100)")]
         public string Status { get; set; }        
 
-        // [Required(ErrorMessage = "Campo obrigatório")]
-        // [DataType("DATE")]
         public DateTime DataIncio { get; set; }  
 
-        // [Required(ErrorMessage = "Campo obrigatório")]
-        // [DataType("DATE")]
         public DateTime DataEntrega { get; set; } 
 
-        // [Required(ErrorMessage = "Campo obrigatório")]
-        // [DataType("NVARCHAR(350)")]
         public string Descricao { get; set; } 
 
-        // [Required(ErrorMessage = "Campo obrigatório")]
         public decimal Valor { get; set; }
     }
 }

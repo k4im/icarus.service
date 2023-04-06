@@ -16,7 +16,7 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddCors(options =>
 {
-    // this defines a CORS policy called "default"
+    // Definindo politica de CROS
     options.AddPolicy("default", policy =>
     {
         policy.WithOrigins("http://localhost:5187")

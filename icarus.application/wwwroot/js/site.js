@@ -49,7 +49,7 @@ function limparModal() {
 };
 
 // =========================== 
-// validar form |
+// validar form              |
 // =========================== 
 function validarForm(novoProjeto) {
     if(novoProjeto.Name.length < 1) $(".validacaoName").text("O projeto precisa conter um nome!");
@@ -94,10 +94,7 @@ function pegarPeloId(projetoId)
     $.ajax ({
          type: 'GET',
          url: `/Project/Update?id=${projetoId}`, // rota do controlador
-        //  dataType: "JSON",
          success : function(result) {
-            // alert(result.dataInicio);
-            // $("#modalCriarProjeto").modal('show'); // abrindo a modal
             $("#modalAtualizarProjeto").modal('show'); // abrindo a modal
             $("#modal-body").html(result);
          }

@@ -42,142 +42,12 @@ namespace icarus.projetos.Controllers
             return StatusCode(201);
         }
 
-        [HttpPost("Sample")]
-        public async Task<IActionResult> SampleData()
-        {
-            List<Project> sampleData = new List<Project> ();
-            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });            
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Produção",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });
-            sampleData.Add(new Project {
-                Name = "Teste",
-                Status = "Finalizado",
-                DataInicio = DateTime.Now,
-                DataEntrega = DateTime.Now,
-                Descricao  = "String",
-                Valor = 150
-            });                                    
-            foreach (var item in sampleData)
-            {
-                await _repo.CreateProject(item);
-            }
-            // if(model != null) await _repo.CreateProject(model);
-            return StatusCode(201);
-        }
-
 
         [HttpPut("update/{id}")]
         public IActionResult UpdateProject([FromBody]ProjectUpdate model, [FromRoute]int? id)
         {
-            // if(!ModelState.IsValid) return BadRequest(); 
-            
+            if(!ModelState.IsValid) return BadRequest(ModelState); 
+            if(id == null) return NotFound();
             try 
             {
                 _repo.UpdateProject(model, id);
@@ -191,8 +61,9 @@ namespace icarus.projetos.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteProject(int id)
+        public IActionResult DeleteProject(int? id)
         {
+            if(id == null) return NotFound();
             _repo.DeleteProject(id);
             return StatusCode(204);
         }
