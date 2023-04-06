@@ -56,6 +56,7 @@ namespace icarus.clientes.Controllers
                 var cliente = new Cliente {
                     Name = model.Name,
                     Phone = model.Phone,
+                    Cpf = model.Cpf,
                     City = model.City,
                     Neighborhood = model.Neighborhood,
                     Street = model.Street,
@@ -88,7 +89,7 @@ namespace icarus.clientes.Controllers
         }
 
 
-        [HttPut]
+        [HttpPut]
         [Route("update/{id?}")]
         public IActionResult Update(Cliente model, int? id) {
             if(id == null) return BadRequest();
