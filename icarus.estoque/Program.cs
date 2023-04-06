@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Teste"));
-
+// builder.Services.AddScoped<IGenericRepository<>>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
