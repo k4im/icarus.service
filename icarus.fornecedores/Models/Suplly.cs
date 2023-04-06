@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace icarus.clientes.Models
+namespace icarus.fornecedores.Models
 {
-    public class Cliente
+    public class Suplly
     {
         [Key]
         public int Id { get; set; }
@@ -20,8 +19,8 @@ namespace icarus.clientes.Models
         public required string Phone { get; set; }
 
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(14)")]
-        public required string Cpf { get; set; }
+        [DataType("NVARCHAR(18)")]
+        public required string Cnpj { get; set; }
         
         [Required(ErrorMessage ="Este campo é obrigatório")]
         [DataType("NVARCHAR(16)")]
@@ -43,6 +42,5 @@ namespace icarus.clientes.Models
         [DataType("NVARCHAR(20)")]
         public required string Cep { get; set; }
 
-        
     }
 }

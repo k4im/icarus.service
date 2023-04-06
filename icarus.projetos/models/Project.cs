@@ -13,11 +13,11 @@ namespace icarus.projetos.models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [DataType("NVARCHAR(150)")]
+        [DataType("NVARCHAR(25)")]
         public string Name { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório")]
-        [DataType("NVARCHAR(100)")]
+        [DataType("NVARCHAR(25)")]
         public string Status { get; set; }        
 
         [Required(ErrorMessage = "Campo obrigatório")]
@@ -29,7 +29,7 @@ namespace icarus.projetos.models
         public DateTime DataEntrega { get; set; } 
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [DataType("NVARCHAR(350)")]
+        [DataType("NVARCHAR(150)")]
         public string Descricao { get; set; } 
 
         [Required(ErrorMessage = "Campo obrigatório")]

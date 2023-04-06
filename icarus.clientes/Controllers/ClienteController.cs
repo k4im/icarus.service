@@ -61,7 +61,6 @@ namespace icarus.clientes.Controllers
                     Street = model.Street,
                     Cep = model.Cep,
                     HouseNumber = model.HouseNumber,
-                    Documents = model.Documents
 
                 };
                 _repo.Create(cliente);
@@ -83,6 +82,22 @@ namespace icarus.clientes.Controllers
                 return Ok();
             }
             catch(Exception e) {
+                Console.WriteLine(e);
+            }
+            return StatusCode(500);
+        }
+
+
+        [HttPut]
+        [Route("update/{id?}")]
+        public IActionResult Update(Cliente model, int? id) {
+            if(id == null) return BadRequest();
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try{
+                _repo.Update(model, id);
+                return  Ok();
+            }
+            catch(Exception e){
                 Console.WriteLine(e);
             }
             return StatusCode(500);

@@ -9,23 +9,27 @@ namespace icarus.clientes.Models
     public class ClienteDTO
     {
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(150)")]
+        [DataType("NVARCHAR(80)")]
         public required string Name { get; set; }
 
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(350)")]
+        [DataType("NVARCHAR(16)")]
         public required string Phone { get; set; }
+                
+        [Required(ErrorMessage ="Este campo é obrigatório")]
+        [DataType("NVARCHAR(14)")]
+        public required string Cpf { get; set; }
         
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(150)")]
+        [DataType("NVARCHAR(16)")]
         public required string City { get; set; }
         
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(150)")]
+        [DataType("NVARCHAR(50)")]
         public required string Neighborhood { get; set; }
 
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        [DataType("NVARCHAR(150)")]
+        [DataType("NVARCHAR(50)")]
         public required string Street { get; set; }
 
         [Required(ErrorMessage ="Este campo é obrigatório")]
