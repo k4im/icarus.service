@@ -28,18 +28,30 @@ namespace icarus.fornecedores.Repository
             return item;
         }
 
-        public void Create(T model)
+        public async void Create(T model)
         {
+            await _db.Set<T>().AddAsync(model);
+            await _db.SaveChangesAsync();
 
         }
 
-        public void Delete(int? id)
+        public async void Delete(int? id)
         {
+            var item = await GetById(id);
+            if(item == null) Results.NotFound();
+            _db.Set<T>().Remove(item);
+            await _db.SaveChangesAsync();
         }
 
-        public void Update(T model, int? id)
+        public async void Update(T model, int? id)
         {
-            throw new NotImplementedException();
+            if(model != null && id != null) {
+                var item = await GetById(id);
+                if (item == null) Results.NotFound();
+                item = model;
+                _db.Set<T>().Update(item);
+                await _db.SaveChangesAsync();
+            }
         }
     }
 }
