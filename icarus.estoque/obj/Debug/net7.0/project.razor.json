@@ -1,6 +1,6 @@
 {
-  "SerializedFilePath": "/home/joaovictor/icarus.service/icarus.fornecedores/obj/Debug/net7.0/project.razor.json",
-  "FilePath": "/home/joaovictor/icarus.service/icarus.fornecedores/icarus.fornecedores.csproj",
+  "SerializedFilePath": "/home/joaovictor/icarus.service/icarus.estoque/obj/Debug/net7.0/project.razor.json",
+  "FilePath": "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "7.0",
@@ -18642,7 +18642,7 @@
     ],
     "CSharpLanguageVersion": 1100
   },
-  "RootNamespace": "icarus.fornecedores",
+  "RootNamespace": "icarus.estoque",
   "Documents": [],
   "SerializationFormat": "0.3"
 }
