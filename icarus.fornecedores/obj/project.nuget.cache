@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "6UzqxI0R2EeaXporVvqIYmPyrbzIWSeYY9dzFyi3AbD1AItD2TDmnmOsrl64KmvlidobS0aRuGZfTh8PHlCslA==",
+  "dgSpecHash": "0IHst09R/Ru9vBRpNvbtw9ruToiOA/jMdshUJALS8UggnxX/J1gjOb8L2c7bfRp1hAfXgl9Lz8ak4GZdixLJEw==",
   "success": true,
   "projectFilePath": "/home/joaovictor/icarus.service/icarus.fornecedores/icarus.fornecedores.csproj",
   "expectedPackageFiles": [
+    "/home/joaovictor/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/home/joaovictor/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.aspnetcore.openapi/7.0.3/microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
+    "/home/joaovictor/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore/7.0.4/microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.4/microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.4/microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",

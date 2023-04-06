@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KqLOBe+tohtDPu7L+ns/TGKvVDbaH8QTX9T8li/0XiU94RZzbSvfJsBvkikyIMmwg4TY8YoRmAqILNSDwObqsw==",
+  "dgSpecHash": "+8geR1Y+lDSvrAK2Z4yMrj4ofBOJIqkP/X2wCi8xA3csk+KLq41fAwLuqYmUdtTBZjuJC/q8cOlnqhHd6wfwUQ==",
   "success": true,
-  "projectFilePath": "/home/joaovictor/icarus.service/icarus.clientes/icarus.clientes.csproj",
+  "projectFilePath": "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj",
   "expectedPackageFiles": [
     "/home/joaovictor/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -11,7 +11,6 @@
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore/7.0.4/microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.4/microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.4/microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",
-    "/home/joaovictor/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.4/microsoft.entityframeworkcore.inmemory.7.0.4.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "/home/joaovictor/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

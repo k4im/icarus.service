@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/joaovictor/icarus.service/icarus.clientes/icarus.clientes.csproj": {}
+    "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj": {}
   },
   "projects": {
-    "/home/joaovictor/icarus.service/icarus.clientes/icarus.clientes.csproj": {
+    "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/joaovictor/icarus.service/icarus.clientes/icarus.clientes.csproj",
-        "projectName": "icarus.clientes",
-        "projectPath": "/home/joaovictor/icarus.service/icarus.clientes/icarus.clientes.csproj",
+        "projectUniqueName": "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj",
+        "projectName": "icarus.estoque",
+        "projectPath": "/home/joaovictor/icarus.service/icarus.estoque/icarus.estoque.csproj",
         "packagesPath": "/home/joaovictor/.nuget/packages/",
-        "outputPath": "/home/joaovictor/icarus.service/icarus.clientes/obj/",
+        "outputPath": "/home/joaovictor/icarus.service/icarus.estoque/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/joaovictor/.nuget/NuGet/NuGet.Config"
@@ -51,10 +51,6 @@
               "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[7.0.4, )"
             },
