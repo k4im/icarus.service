@@ -97,7 +97,7 @@ namespace icarus.estoque.Controllers
             return StatusCode(500);
         }
 
-        [HttpPut("update")]
+        [HttpPut("update/{id?}")]
          public IActionResult UpdateProduto(Produto model, int? id) {
             if(!ModelState.IsValid) return BadRequest();
             try
