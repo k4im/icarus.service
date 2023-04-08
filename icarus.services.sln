@@ -7,11 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.projetos", "icarus.p
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.application", "icarus.application\icarus.application.csproj", "{2408E439-E88B-4A39-BFB6-F2AA55FAC2A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.clientes", "icarus.clientes\icarus.clientes.csproj", "{5907162C-0F88-4E74-B823-60BAF82B954A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.fornecedores", "icarus.fornecedores\icarus.fornecedores.csproj", "{DF6CCCC4-5220-458B-A866-3A85D2233C85}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.estoque", "icarus.estoque\icarus.estoque.csproj", "{F4EF45A5-D9BD-401F-A78B-F803938B6AAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.estoque", "icarus.estoque\icarus.estoque.csproj", "{4D5E785C-252C-4EA5-9372-103D31D73DB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,17 +26,9 @@ Global
 		{2408E439-E88B-4A39-BFB6-F2AA55FAC2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2408E439-E88B-4A39-BFB6-F2AA55FAC2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2408E439-E88B-4A39-BFB6-F2AA55FAC2A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5907162C-0F88-4E74-B823-60BAF82B954A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5907162C-0F88-4E74-B823-60BAF82B954A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5907162C-0F88-4E74-B823-60BAF82B954A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5907162C-0F88-4E74-B823-60BAF82B954A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF6CCCC4-5220-458B-A866-3A85D2233C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF6CCCC4-5220-458B-A866-3A85D2233C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF6CCCC4-5220-458B-A866-3A85D2233C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF6CCCC4-5220-458B-A866-3A85D2233C85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4EF45A5-D9BD-401F-A78B-F803938B6AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4EF45A5-D9BD-401F-A78B-F803938B6AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4EF45A5-D9BD-401F-A78B-F803938B6AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4EF45A5-D9BD-401F-A78B-F803938B6AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

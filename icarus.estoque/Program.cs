@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using icarus.estoque.Data;
-
+using icarus.estoque.Repository;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Teste"));
-// builder.Services.AddScoped<IGenericRepository<>>
+builder.Services.AddTransient<IRepoEstoque, RepoEstoque>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
