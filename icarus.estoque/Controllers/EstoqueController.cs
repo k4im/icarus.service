@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using icarus.estoque.Models;
 using icarus.estoque.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -18,96 +14,71 @@ namespace icarus.estoque.Controllers
         {
             _repo = repo;
         }
-
+    
+    
         [HttpGet]
-        public IActionResult BuscarProdutos(){
-            try
-            {
-                var clientes = _repo.BuscarProdutos();
-                return Ok(clientes);
+        public async Task<IActionResult> Produtos() {
+            var produtos = await _repo.BuscarProdutos();
+            if(produtos == null) return NotFound();
+            return Ok(produtos);
+        }
+
             
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e);
-            }
-            return StatusCode(500);
-        }
-
-
-
         [HttpGet("{id?}")]
-        public async Task<IActionResult> BuscarProdutos(int? id){
+        public async Task<IActionResult> Produto(int? id) {
             if(id == null) return BadRequest();
-            try
-            {
-                var cliente = await _repo.BuscarPorId(id);
-                return Ok(cliente);
-
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e);
-            }
-            return StatusCode(500);
-
+            var produtos = await _repo.BuscarProdutoId(id);
+            if(produtos == null) return NotFound();
+            return Ok(produtos);
         }
 
-        [HttpPost("create")]
-        public  IActionResult CriarProduto(Produto model) {
+
+        [HttpPost("produto/novo")]
+        public async Task<IActionResult> NovoProduto(Produto model) {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                var produto = new Produto
-                {
-                    Nome = model.Nome,
-                    Cor = model.Cor,
-                    Altura = model.Altura,
-                    Largura = model.Largura,
-                    Quantidade = model.Quantidade,
-                    ValorUnitario = model.ValorUnitario,
-                };
-                _repo.Create(produto);
-                return StatusCode(201);
-
+                await _repo.NovoProduto(model);
+                return Ok("Produto criado com sucesso");
+            
             }
-            catch (Exception e)
+            catch(Exception e) 
             {
                 Console.WriteLine(e);
             }
-            return StatusCode(500);
-        } 
-
-    
-        [HttpDelete("delete/{id?}")]
-        public IActionResult DeletarProduto(int? id){
-            if(id == null) return BadRequest();
-            try
-            {
-                _repo.Delete(id);
-                return Ok("Item deletado");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
             return StatusCode(500);
         }
 
-        [HttpPut("update/{id?}")]
-         public IActionResult UpdateProduto(Produto model, int? id) {
-            if(!ModelState.IsValid) return BadRequest();
+
+        [HttpDelete("produto/delete/{id?}")]
+        public async Task<IActionResult> DeletarProduto(int? id) {
+            if(id == null) return BadRequest();
             try
             {
-                _repo.Update(model, id);
-                return Ok("Produto atualizado");
+                await _repo.DeletarProduto(id);
+                return Ok("Produto deletado com sucesso");
+            
             }
-            catch (Exception e)
+            catch(Exception e) 
             {
+                Console.WriteLine(e);
+            }
+            return StatusCode(500);
+        }
 
+
+        [HttpPut("produto/atualizar/{id?}")]
+        public async Task<IActionResult> AtualizarProduto(int? id, Produto model) {
+            if(id == null) return BadRequest();
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                await _repo.AtualizarProduto(id, model);
+                return Ok("Produto atualizado com sucesso");
+            
+            }
+            catch(Exception e) 
+            {
                 Console.WriteLine(e);
             }
             return StatusCode(500);

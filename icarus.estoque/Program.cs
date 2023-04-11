@@ -1,17 +1,17 @@
 using icarus.estoque.Data;
 using icarus.estoque.Repository;
 using Microsoft.EntityFrameworkCore;
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+// Add services to the container.
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
-builder.Services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Teste"));
-builder.Services.AddTransient<IRepoEstoque, RepoEstoque>();
+builder.Services.AddScoped<IRepoEstoque, RepoEstoque>();
+builder.Services.AddDbContext<DataContextEstoque>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -8,15 +8,10 @@ namespace icarus.estoque.Repository
 {
     public interface IRepoEstoque
     {
-        List<Produto> BuscarProdutos();
-
-        Task<Produto> BuscarPorId(int? id);
-
-        void Create(Produto model);
-
-        void Delete(int? id);
-
-        void Update(Produto model, int? id);
-
+        Task<List<Produto>> BuscarProdutos();
+        Task<Produto> BuscarProdutoId(int? id);
+        Task NovoProduto(Produto modelo);
+        Task DeletarProduto(int? id);
+        Task AtualizarProduto(int? id, Produto modelo);
     }
 }

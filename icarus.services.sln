@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.application", "icaru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.estoque", "icarus.estoque\icarus.estoque.csproj", "{4D5E785C-252C-4EA5-9372-103D31D73DB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.gateway", "icarus.gateway\icarus.gateway.csproj", "{C200C1CC-B6A6-4B0C-9A1D-97FEDF2F73A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D5E785C-252C-4EA5-9372-103D31D73DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C200C1CC-B6A6-4B0C-9A1D-97FEDF2F73A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C200C1CC-B6A6-4B0C-9A1D-97FEDF2F73A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C200C1CC-B6A6-4B0C-9A1D-97FEDF2F73A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C200C1CC-B6A6-4B0C-9A1D-97FEDF2F73A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
