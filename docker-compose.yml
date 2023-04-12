@@ -49,6 +49,15 @@ services:
     depends_on:
       - icarusestoque
       - icarusprojetos
-  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: container-broker
+    environment:
+    - RABBITMQ_DEFAULT_USER=admin
+    - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+        - 5672:5672
+        - 15672:15672
+
 volumes:
   db-services:
