@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QffwFibImKTdX3w83uOPLjUkZTkzanOdidq3tJ0Bl2uN1qKZKCI3ulclcsQNEgh9HHFS/ovuvz3xVPEU65Nj6Q==",
+  "success": true,
+  "projectFilePath": "/home/k4imdesktop/icarus.service/icarus.gateway/icarus.gateway.csproj",
+  "expectedPackageFiles": [
+    "/home/k4imdesktop/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
