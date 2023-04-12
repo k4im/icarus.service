@@ -1,0 +1,74 @@
+{
+    "Routes" : 
+    [
+        {
+            "DownstreamPathTemplate" : "/api/Estoque",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port" : 5081
+                }
+            ],
+            "UpstreamPathTemplate" : "/api/estoque",
+            "UpstreamHttpMethod" : "GET"
+        },
+        {
+            "DownstreamPathTemplate" : "/api/Estoque/{id}",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port" : 5081
+                }
+            ],
+            "UpstreamPathTemplate" : "/api/produto/{id}",
+            "UpstreamHttpMethod" : "GET"
+        },
+        {
+            "DownstreamPathTemplate" : "/api/Estoque/produto/novo",
+            "DownstreamScheme" :"http", 
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "localhost",
+                    "Port" : 5081
+                }
+            ],
+            "UpstreamPathTemplate" : "/api/produto",
+            "UpstreamHttpMethod" : "POST"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Estoque/produto/delete/{id}",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "localhost",
+                    "Port" : 5081
+                }
+            ],
+
+            "UpstreamPathTemplate" : "/api/Estoque/pera/delete/{id}",
+            "UpstreamHttpMethod" : "DELETE"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Estoque/produto/atualizar/{id}",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "localhost",
+                    "Port" : 5081
+                }
+            ],
+            "UpstreamPathTemplate" : "/api/Estoque/produto/atualizar/{id}",
+            "UpstreamHttpMethod" : "PUT"
+        }
+        
+    ],
+
+    
+    "GlobalConfiguration" : {
+        "BaseUrl" : "http://localhost:5074"
+    }
+}

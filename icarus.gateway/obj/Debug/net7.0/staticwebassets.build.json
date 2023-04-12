@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "K57V/U9u3osYJIkhvcOw2XXer1iXImtjlzDg4Lvxlrg=",
+  "Source": "icarus.gateway",
+  "BasePath": "_content/icarus.gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
