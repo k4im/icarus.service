@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/k4imdesktop/icarus.service/icarus.application/icarus.application.csproj": {}
+    "/home/oem/icarus.service/icarus.application/icarus.application.csproj": {}
   },
   "projects": {
-    "/home/k4imdesktop/icarus.service/icarus.application/icarus.application.csproj": {
+    "/home/oem/icarus.service/icarus.application/icarus.application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.application/icarus.application.csproj",
+        "projectUniqueName": "/home/oem/icarus.service/icarus.application/icarus.application.csproj",
         "projectName": "icarus.application",
-        "projectPath": "/home/k4imdesktop/icarus.service/icarus.application/icarus.application.csproj",
-        "packagesPath": "/home/k4imdesktop/.nuget/packages/",
-        "outputPath": "/home/k4imdesktop/icarus.service/icarus.application/obj/",
+        "projectPath": "/home/oem/icarus.service/icarus.application/icarus.application.csproj",
+        "packagesPath": "/home/oem/.nuget/packages/",
+        "outputPath": "/home/oem/icarus.service/icarus.application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
+          "/home/oem/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -58,12 +58,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.3, 7.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -72,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

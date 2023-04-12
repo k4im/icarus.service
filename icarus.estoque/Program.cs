@@ -13,7 +13,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepoEstoque, RepoEstoque>();
 builder.Services.AddDbContext<DataContextEstoque>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

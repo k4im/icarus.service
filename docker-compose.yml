@@ -1,0 +1,54 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+    
+  db-services:
+    container_name: container-db-services
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+    - 3306:3306
+    volumes:
+      - db-services:/var/lib/mysql
+      
+  icarusestoque:
+    container_name: container-estoque
+    image: icarusestoque
+    build:
+      context: .
+      dockerfile: icarus.estoque/Dockerfile
+    ports:
+      - 5081:5081
+    depends_on:
+      - db-services
+
+  icarusprojetos:
+    container_name: container-projetos
+    image: icarusprojetos
+    build:
+      context: .
+      dockerfile: icarus.projetos/Dockerfile
+    ports:
+      - 5222:5222
+    depends_on:
+      - db-services
+
+  icarusgateway:
+    container_name: container-gateway
+    image: icarusgateway
+    build:
+      context: .
+      dockerfile: icarus.gateway/Dockerfile
+    ports:
+      - 5074:5074
+    depends_on:
+      - icarusestoque
+      - icarusprojetos
+  
+volumes:
+  db-services:

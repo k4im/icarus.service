@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 5222
 
-ENV ASPNETCORE_URLS=http://+:5222;http://+:8080;
+ENV ASPNETCORE_URLS=http://+:5222
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
@@ -11,10 +11,10 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["icarus.projetos.csproj", "./"]
-RUN dotnet restore "icarus.projetos.csproj"
+COPY ["icarus.projetos/icarus.projetos.csproj", "icarus.projetos/"]
+RUN dotnet restore "icarus.projetos/icarus.projetos.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/icarus.projetos"
 RUN dotnet build "icarus.projetos.csproj" -c Release -o /app/build
 
 FROM build AS publish

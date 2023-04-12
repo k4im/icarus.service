@@ -3,11 +3,11 @@
 version: '3.4'
 
 services:
-  icarusestoque:
-    image: icarusestoque
+  icarusgateway:
+    image: icarusgateway
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: icarus.gateway/Dockerfile
     ports:
       - 5081:5081
     environment:

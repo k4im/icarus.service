@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 5081
+EXPOSE 5074
 
-ENV ASPNETCORE_URLS=http://+:5081
+ENV ASPNETCORE_URLS=http://+:5074
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
@@ -11,16 +11,16 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["icarus.estoque/icarus.estoque.csproj", "icarus.estoque/"]
-RUN dotnet restore "icarus.estoque/icarus.estoque.csproj"
+COPY ["icarus.gateway/icarus.gateway.csproj", "icarus.gateway/"]
+RUN dotnet restore "icarus.gateway/icarus.gateway.csproj"
 COPY . .
-WORKDIR "/src/icarus.estoque"
-RUN dotnet build "icarus.estoque.csproj" -c Release -o /app/build
+WORKDIR "/src/icarus.gateway"
+RUN dotnet build "icarus.gateway.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "icarus.estoque.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "icarus.gateway.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "icarus.estoque.dll"]
+ENTRYPOINT ["dotnet", "icarus.gateway.dll"]

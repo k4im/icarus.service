@@ -1,4 +1,5 @@
-{
+{   
+
     "Routes" : 
     [
         {
@@ -6,7 +7,7 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "icarusestoque",
                     "Port" : 5081
                 }
             ],
@@ -18,7 +19,7 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "icarusestoque",
                     "Port" : 5081
                 }
             ],
@@ -30,7 +31,7 @@
             "DownstreamScheme" :"http", 
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
@@ -43,7 +44,7 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
@@ -57,7 +58,7 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
@@ -66,9 +67,8 @@
         }
         
     ],
-
-    
     "GlobalConfiguration" : {
         "BaseUrl" : "http://localhost:5074"
     }
+
 }
