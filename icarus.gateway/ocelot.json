@@ -48,7 +48,7 @@
                 }
             ],
 
-            "UpstreamPathTemplate" : "/api/Estoque/pera/delete/{id}",
+            "UpstreamPathTemplate" : "/api/Estoque/produto/delete/{id}",
             "UpstreamHttpMethod" : "DELETE"
         },
 
