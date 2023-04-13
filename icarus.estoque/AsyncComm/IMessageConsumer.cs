@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace icarus.estoque.Models
+namespace icarus.estoque.AsyncComm
 {
-    public class ProdutoPublisherDTO
+    public interface IMessageConsumer
     {
-        
+        void consumeMessage();
     }
 }
