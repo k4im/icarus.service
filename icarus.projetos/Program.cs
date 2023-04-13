@@ -1,3 +1,4 @@
+using icarus.projetos.AsyncComm;
 using icarus.projetos.data;
 using icarus.projetos.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddSingleton<IMessageBusService, MessageBusService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddCors(options =>
 {

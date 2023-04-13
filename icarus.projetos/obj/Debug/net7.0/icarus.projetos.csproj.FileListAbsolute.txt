@@ -170,6 +170,7 @@
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/MySql.Data.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/MySqlConnector.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Pomelo.EntityFrameworkCore.MySql.dll
+/home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/RabbitMQ.Client.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -199,3 +200,4 @@
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/icarus.projetos.pdb
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/icarus.projetos.genruntimeconfig.cache
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/ref/icarus.projetos.dll
+/home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Newtonsoft.Json.dll

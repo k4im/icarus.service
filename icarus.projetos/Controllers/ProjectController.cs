@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using icarus.projetos.AsyncComm;
 using icarus.projetos.models;
 using icarus.projetos.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +15,17 @@ namespace icarus.projetos.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _repo;
+        private readonly IMessageBusService _msgBus;
+        private readonly IMapper _mapper;
 
-        public ProjectController(IProjectRepository repo)
+        public ProjectController(IProjectRepository repo, 
+        IMessageBusService msgBus, IMapper mapper)
         {
             _repo = repo;
+            _msgBus = msgBus;
+            _mapper = mapper;
         }
-        
+
         [HttpGet("projetos")]
         public async Task<IActionResult> GetAllProjects() 
         {
@@ -38,7 +45,20 @@ namespace icarus.projetos.Controllers
         public async Task<IActionResult> CreateProject(Project model)
         {
             
-            if(ModelState.IsValid) await _repo.CreateProject(model);
+            if(ModelState.IsValid) 
+            {
+                await _repo.CreateProject(model);
+                try 
+                {
+                    var projeto = _mapper.Map<Project, ProjectDTO>(model);
+                    _msgBus.publishNewProjeto(projeto);
+                    Console.WriteLine("--> Mensagem enviado para o bus");
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine($"--> Não foi possivel enviar a mensagem para o bus: {e.Message}");
+                }
+            }
             return StatusCode(201);
         }
 
