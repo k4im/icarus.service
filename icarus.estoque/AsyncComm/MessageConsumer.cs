@@ -27,9 +27,8 @@ namespace icarus.estoque.AsyncComm
             {
                 _connection = factory.CreateConnection();
                 _channel = _connection.CreateModel();
-                var queueName = _channel.QueueDeclare().QueueName;
-                _channel.QueueDeclare(queueName, false, false, false);
-                _channel.QueueBind(queueName, "projeto-trigger", "");
+                _channel.QueueDeclare("projetos", true, false, false);
+                _channel.QueueBind("projetos", "projeto-trigger", "");
                 _connection.ConnectionShutdown += RabbitMQFailed;
 
 
@@ -44,7 +43,6 @@ namespace icarus.estoque.AsyncComm
 
         public void consumeMessage()
         {
-            var queueName = _channel.QueueDeclare().QueueName;
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (model, ea) =>
             {
@@ -52,7 +50,7 @@ namespace icarus.estoque.AsyncComm
                 var message = Encoding.UTF8.GetString(body);
                 Console.WriteLine($" --> Message recive:  {message}");
             };
-            _channel.BasicConsume(queue: queueName,
+            _channel.BasicConsume(queue: "projetos",
                                  autoAck: true,
                      consumer: consumer);
 

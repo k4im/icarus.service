@@ -29,8 +29,9 @@ namespace icarus.projetos.AsyncComm
                 _channel = _connection.CreateModel();
 
 
-                _channel.ExchangeDeclare(exchange: "projeto-trigger", type: ExchangeType.Fanout);
-
+                _channel.ExchangeDeclare(exchange: "projeto-trigger", type: ExchangeType.Fanout, true, false);
+                _channel.QueueDeclare("projetos", true, false, false);
+                _channel.QueueBind("projetos", "projeto-trigger", "");
                 _connection.ConnectionShutdown += RabbitMQFailed;
 
                 Console.WriteLine("--> Conectado ao Message Bus");
