@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace icarus.projetos.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _repo;
@@ -44,13 +44,13 @@ namespace icarus.projetos.Controllers
 
 
         [HttpPut("update/{id}")]
-        public IActionResult UpdateProject([FromBody]ProjectUpdate model, [FromRoute]int? id)
+        public async Task<IActionResult> UpdateProject([FromBody]ProjectUpdate model, [FromRoute]int? id)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState); 
             if(id == null) return NotFound();
             try 
             {
-                _repo.UpdateProject(model, id);
+                await _repo.UpdateProject(model, id);
                 return Ok();
             }
             catch(Exception e)
@@ -61,10 +61,10 @@ namespace icarus.projetos.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteProject(int? id)
+        public async Task<IActionResult> DeleteProject(int? id)
         {
             if(id == null) return NotFound();
-            _repo.DeleteProject(id);
+            await _repo.DeleteProject(id);
             return StatusCode(204);
         }
     

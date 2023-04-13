@@ -84,7 +84,7 @@ namespace icarus.projetos.Repository
         {
             try 
             {
-                var item = await _db.Projetos.FindAsync(id);
+                var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
                 if(item == null) Results.NotFound();
                 _db.Projetos.Remove(item);
                 await _db.SaveChangesAsync();
