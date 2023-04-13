@@ -1,3 +1,4 @@
+using icarus.estoque.AsyncComm;
 using icarus.estoque.Models;
 using icarus.estoque.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +10,26 @@ namespace icarus.estoque.Controllers
     public class EstoqueController : ControllerBase
     {
         private readonly IRepoEstoque _repo;
+        private readonly IMessageConsumer _msgCosumer;
 
-        public EstoqueController(IRepoEstoque repo)
+        public EstoqueController(IRepoEstoque repo, IMessageConsumer msgCosumer)
         {
             _repo = repo;
+            _msgCosumer = msgCosumer;
         }
-    
-    
+
         [HttpGet]
         public async Task<IActionResult> Produtos() {
             var produtos = await _repo.BuscarProdutos();
             if(produtos == null) return NotFound();
+            try
+            {
+                _msgCosumer.consumeMessage();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"--> Não foi possivel consumir: {e.Message}");
+            }
             return Ok(produtos);
         }
 

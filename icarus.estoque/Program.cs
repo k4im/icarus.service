@@ -1,3 +1,4 @@
+using icarus.estoque.AsyncComm;
 using icarus.estoque.Data;
 using icarus.estoque.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepoEstoque, RepoEstoque>();
+builder.Services.AddSingleton<IMessageConsumer, MessageConsumer>();
 builder.Services.AddDbContext<DataContextEstoque>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
 var app = builder.Build();
 // Configure the HTTP request pipeline.

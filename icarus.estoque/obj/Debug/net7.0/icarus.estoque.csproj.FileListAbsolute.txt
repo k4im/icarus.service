@@ -128,3 +128,4 @@
 /home/oem/icarus.service/icarus.estoque/obj/Debug/net7.0/icarus.estoque.pdb
 /home/oem/icarus.service/icarus.estoque/obj/Debug/net7.0/icarus.estoque.genruntimeconfig.cache
 /home/oem/icarus.service/icarus.estoque/obj/Debug/net7.0/ref/icarus.estoque.dll
+/home/oem/icarus.service/icarus.estoque/bin/Debug/net7.0/RabbitMQ.Client.dll
