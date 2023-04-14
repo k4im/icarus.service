@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using icarus.estoque.Models;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -27,8 +29,17 @@ namespace icarus.estoque.AsyncComm
             {
                 _connection = factory.CreateConnection();
                 _channel = _connection.CreateModel();
-                _channel.QueueDeclare("projetos", true, false, false);
-                _channel.QueueBind("projetos", "projeto-trigger", "");
+                // Declarando a fila 
+                _channel.QueueDeclare(queue: "projetos", 
+                    durable: true, 
+                    exclusive: false, 
+                    autoDelete: false);
+                // Definindo o balanceamento da fila para uma mensagem por vez.
+                _channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
+                
+                // Linkando a fila ao exchange
+                _channel.QueueBind(queue: "projetos", 
+                    exchange: "projeto-trigger", "");
                 _connection.ConnectionShutdown += RabbitMQFailed;
 
                 Console.WriteLine("--> Conectado ao Message Bus");
@@ -42,27 +53,56 @@ namespace icarus.estoque.AsyncComm
 
         public void consumeMessage()
         {
-            var consumer = new EventingBasicConsumer(_channel);
+            var projeto = Consume(_channel);
+        }
+        private ProjectDTO Consume(IModel channel) 
+        {
+            // Definindo um consumidor
+            var consumer = new EventingBasicConsumer(channel);
+            
+            var projeto = new ProjectDTO();
+            
+            // Definindo o que o consumidor recebe
             consumer.Received += (model, ea) =>
             {
                 try 
                 {
-                    
+                    // transformando o body em um array
                     byte[] body = ea.Body.ToArray();
+
+                    // transformando o body em string
                     var message = Encoding.UTF8.GetString(body);
-                    _channel.BasicAck(ea.DeliveryTag, false);
-                    Console.WriteLine($" --> Message recive:  {message}");
+
+                    projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);
+                    Console.WriteLine($"consumer: {projeto.Name}");
+                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 }
                 catch(Exception)
                 {
-                    _channel.BasicNack(ea.DeliveryTag, false, true);
+                    channel.BasicNack(ea.DeliveryTag, false, true);
                 }
 
             };
-            _channel.BasicConsume(queue: "projetos",
-                                 autoAck: false,
-                     consumer: consumer);
 
+
+            channel.BasicConsume(queue: "projetos",
+                                 autoAck: false,
+                     consumer: consumer);                     
+            
+            return projeto;
+        }
+
+
+        // Metodo para fechar a conexão com o broker 
+        private void Dispose()
+        {
+            Console.WriteLine("Message Bus disposed");
+            
+            // Verifica se a conexão está aberta e fecha
+            if(_channel.IsOpen)
+            {
+                _channel.Close();
+            }
         }
 
         private void RabbitMQFailed(object sender, ShutdownEventArgs e)

@@ -201,3 +201,5 @@
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/icarus.projetos.genruntimeconfig.cache
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/ref/icarus.projetos.dll
 /home/oem/icarus.service/icarus.projetos/bin/Debug/net7.0/Newtonsoft.Json.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Newtonsoft.Json.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/RabbitMQ.Client.dll
