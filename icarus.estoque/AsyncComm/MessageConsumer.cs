@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using icarus.estoque.Data;
 using icarus.estoque.Models;
+using icarus.estoque.Repository;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -12,13 +14,18 @@ namespace icarus.estoque.AsyncComm
 {
     public class MessageConsumer : IMessageConsumer
     {
-        private IConfiguration _config;
-        private IConnection _connection;
-        private IModel _channel;
+        private readonly IConfiguration _config;
+        private readonly IConnection _connection;
+        private readonly IModel _channel;
+        private readonly IRepoEstoque _repo;
 
-        public MessageConsumer(IConfiguration config)
+        private readonly DataContextEstoque _db;
+
+        public MessageConsumer(IConfiguration config, IRepoEstoque repo, DataContextEstoque db)
         {
             _config = config;
+            _repo = repo;
+            _db = db;
             var factory = new ConnectionFactory(){
                 HostName = _config["RabbitMQ"],
                 Port = int.Parse(_config["RabbitPort"]),
@@ -53,18 +60,18 @@ namespace icarus.estoque.AsyncComm
 
         public void consumeMessage()
         {
-            var projeto = Consume(_channel);
-            Console.WriteLine($"consumer: {projeto.Name}");
-        }
-        private ProjectDTO Consume(IModel channel) 
-        {
-            // Definindo um consumidor
-            var consumer = new EventingBasicConsumer(channel);
-
-            var projeto = new ProjectDTO();
+            var teste = Consume(_channel);
             
+        }
+        private int Consume(IModel channel) 
+        {
+            int QuantidadeDeChapa = 0;
+            // Definindo um consumidor
+            var consumer = new EventingBasicConsumer(channel); 
+
+            var msgsRecievedGate = new ManualResetEventSlim(false);
             // Definindo o que o consumidor recebe
-            consumer.Received += (model, ea) =>
+            consumer.Received +=  (model, ea) =>
             {
                 try 
                 {
@@ -73,24 +80,34 @@ namespace icarus.estoque.AsyncComm
 
                     // transformando o body em string
                     var message = Encoding.UTF8.GetString(body);
-
-                    var projeta = JsonConvert.DeserializeObject<ProjectDTO>(message);
-                    var projeto = projeta;
+                    var projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);
+                    QuantidadeDeChapa = projeto.QuantidadeDeChapa;
+                    msgsRecievedGate.Set();
+                    Console.WriteLine("--> Messagem tratada");
                     channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+
                 }
-                catch(Exception)
+                catch(Exception e)
                 {
-                    channel.BasicNack(ea.DeliveryTag, false, true);
+                    // por motivos de debug a não irá dar requeue
+                    channel.BasicNack(ea.DeliveryTag,
+                    multiple: false, 
+                    requeue: true);
+                    Console.WriteLine(e);
                 }
+
+
+
 
             };
-
-
-            channel.BasicConsume(queue: "projetos",
-                                 autoAck: false,
-                     consumer: consumer);                     
             
-            return projeto;
+            channel.BasicConsume(queue: "projetos",
+                         autoAck: false,
+             consumer: consumer);
+            msgsRecievedGate.Wait();
+            return QuantidadeDeChapa;
+            
+
         }
 
 
@@ -112,4 +129,6 @@ namespace icarus.estoque.AsyncComm
         }
 
     }
+
+
 }

@@ -33,6 +33,9 @@ namespace icarus.projetos.models
         public string Descricao { get; set; } 
 
         [Required(ErrorMessage = "Campo obrigatório")]
+        public int QuantidadeDeChapa { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório")]
         public decimal Valor { get; set; }
 
     }
