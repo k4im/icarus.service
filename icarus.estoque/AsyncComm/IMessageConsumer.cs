@@ -7,6 +7,6 @@ namespace icarus.estoque.AsyncComm
 {
     public interface IMessageConsumer
     {
-        void consumeMessage();
+        int consumeMessage();
     }
 }

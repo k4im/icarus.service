@@ -24,7 +24,8 @@ namespace icarus.estoque.Controllers
             if(produtos == null) return NotFound();
             try
             {
-                _msgCosumer.consumeMessage();
+                var qtdchapa = _msgCosumer.consumeMessage();
+                _repo.TratarMessage(qtdchapa, 4);
             }
             catch (Exception e)
             {

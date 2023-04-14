@@ -58,10 +58,10 @@ namespace icarus.estoque.AsyncComm
             }
         }
 
-        public void consumeMessage()
+        public int consumeMessage()
         {
             var teste = Consume(_channel);
-            
+            return teste;
         }
         private int Consume(IModel channel) 
         {
@@ -69,7 +69,9 @@ namespace icarus.estoque.AsyncComm
             // Definindo um consumidor
             var consumer = new EventingBasicConsumer(channel); 
 
+            // seta o EventSlim
             var msgsRecievedGate = new ManualResetEventSlim(false);
+            
             // Definindo o que o consumidor recebe
             consumer.Received +=  (model, ea) =>
             {
@@ -81,7 +83,9 @@ namespace icarus.estoque.AsyncComm
                     // transformando o body em string
                     var message = Encoding.UTF8.GetString(body);
                     var projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);
+                    // Repassa o valor da mensagem para a var
                     QuantidadeDeChapa = projeto.QuantidadeDeChapa;
+                    // seta o valor no EventSlim
                     msgsRecievedGate.Set();
                     Console.WriteLine("--> Messagem tratada");
                     channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
@@ -100,11 +104,13 @@ namespace icarus.estoque.AsyncComm
 
 
             };
-            
+            // Consome o evento
             channel.BasicConsume(queue: "projetos",
                          autoAck: false,
              consumer: consumer);
+            // Espera pelo valor setado
             msgsRecievedGate.Wait();
+            // retorna o valor tratado
             return QuantidadeDeChapa;
             
 
