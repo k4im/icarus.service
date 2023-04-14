@@ -54,12 +54,13 @@ namespace icarus.estoque.AsyncComm
         public void consumeMessage()
         {
             var projeto = Consume(_channel);
+            Console.WriteLine($"consumer: {projeto.Name}");
         }
         private ProjectDTO Consume(IModel channel) 
         {
             // Definindo um consumidor
             var consumer = new EventingBasicConsumer(channel);
-            
+
             var projeto = new ProjectDTO();
             
             // Definindo o que o consumidor recebe
@@ -73,8 +74,8 @@ namespace icarus.estoque.AsyncComm
                     // transformando o body em string
                     var message = Encoding.UTF8.GetString(body);
 
-                    projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);
-                    Console.WriteLine($"consumer: {projeto.Name}");
+                    var projeta = JsonConvert.DeserializeObject<ProjectDTO>(message);
+                    var projeto = projeta;
                     channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 }
                 catch(Exception)

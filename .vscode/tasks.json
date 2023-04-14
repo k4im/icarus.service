@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/icarus.projetos/icarus.projetos.csproj",
+                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/icarus.projetos/icarus.projetos.csproj",
+                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/icarus.projetos/icarus.projetos.csproj"
+                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
