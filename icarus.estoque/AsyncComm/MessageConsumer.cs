@@ -20,8 +20,8 @@ namespace icarus.estoque.AsyncComm
             var factory = new ConnectionFactory(){
                 HostName = _config["RabbitMQ"],
                 Port = int.Parse(_config["RabbitPort"]),
-                UserName = "admin",
-                Password = "admin",
+                UserName = _config["RabbitMQUser"],
+                Password = _config["RabbitMQPwd"],
             };
             try
             {
@@ -30,7 +30,6 @@ namespace icarus.estoque.AsyncComm
                 _channel.QueueDeclare("projetos", true, false, false);
                 _channel.QueueBind("projetos", "projeto-trigger", "");
                 _connection.ConnectionShutdown += RabbitMQFailed;
-
 
                 Console.WriteLine("--> Conectado ao Message Bus");
                 Console.WriteLine("--> Conectado ao a queue");
@@ -46,12 +45,22 @@ namespace icarus.estoque.AsyncComm
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (model, ea) =>
             {
-                byte[] body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-                Console.WriteLine($" --> Message recive:  {message}");
+                try 
+                {
+                    
+                    byte[] body = ea.Body.ToArray();
+                    var message = Encoding.UTF8.GetString(body);
+                    _channel.BasicAck(ea.DeliveryTag, false);
+                    Console.WriteLine($" --> Message recive:  {message}");
+                }
+                catch(Exception)
+                {
+                    _channel.BasicNack(ea.DeliveryTag, false, true);
+                }
+
             };
             _channel.BasicConsume(queue: "projetos",
-                                 autoAck: true,
+                                 autoAck: false,
                      consumer: consumer);
 
         }

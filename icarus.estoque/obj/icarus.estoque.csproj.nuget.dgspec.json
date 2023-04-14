@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/oem/icarus.service/icarus.estoque/icarus.estoque.csproj": {}
+    "/home/k4imdesktop/icarus.service/icarus.estoque/icarus.estoque.csproj": {}
   },
   "projects": {
-    "/home/oem/icarus.service/icarus.estoque/icarus.estoque.csproj": {
+    "/home/k4imdesktop/icarus.service/icarus.estoque/icarus.estoque.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/oem/icarus.service/icarus.estoque/icarus.estoque.csproj",
+        "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.estoque/icarus.estoque.csproj",
         "projectName": "icarus.estoque",
-        "projectPath": "/home/oem/icarus.service/icarus.estoque/icarus.estoque.csproj",
-        "packagesPath": "/home/oem/.nuget/packages/",
-        "outputPath": "/home/oem/icarus.service/icarus.estoque/obj/",
+        "projectPath": "/home/k4imdesktop/icarus.service/icarus.estoque/icarus.estoque.csproj",
+        "packagesPath": "/home/k4imdesktop/.nuget/packages/",
+        "outputPath": "/home/k4imdesktop/icarus.service/icarus.estoque/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/oem/.nuget/NuGet/NuGet.Config"
+          "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -80,6 +80,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.3, 7.0.3]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -88,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }

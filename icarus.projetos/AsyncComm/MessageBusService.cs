@@ -20,8 +20,8 @@ namespace icarus.projetos.AsyncComm
             _config = config;
             var factory = new ConnectionFactory(){
                 HostName = _config["RabbitMQ"], 
-                UserName = "admin",
-                Password = "admin",
+                UserName = _config["RabbitMQUser"],
+                Password = _config["RabbitMQPwd"],
                 Port = int.Parse(_config["RabbitPort"])};
             try
             {

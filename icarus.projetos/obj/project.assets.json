@@ -6748,19 +6748,19 @@
     ]
   },
   "packageFolders": {
-    "/home/oem/.nuget/packages/": {}
+    "/home/k4imdesktop/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/oem/icarus.service/icarus.projetos/icarus.projetos.csproj",
+      "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.projetos/icarus.projetos.csproj",
       "projectName": "icarus.projetos",
-      "projectPath": "/home/oem/icarus.service/icarus.projetos/icarus.projetos.csproj",
-      "packagesPath": "/home/oem/.nuget/packages/",
-      "outputPath": "/home/oem/icarus.service/icarus.projetos/obj/",
+      "projectPath": "/home/k4imdesktop/icarus.service/icarus.projetos/icarus.projetos.csproj",
+      "packagesPath": "/home/k4imdesktop/.nuget/packages/",
+      "outputPath": "/home/k4imdesktop/icarus.service/icarus.projetos/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/oem/.nuget/NuGet/NuGet.Config"
+        "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -6848,6 +6848,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.3, 7.0.3]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6856,7 +6862,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -6865,7 +6871,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "icarus.projetos depende de MySql.Data (>= 7.0.4), mas MySql.Data 7.0.4 não foi encontrado. A melhor correspondência aproximada de MySql.Data 8.0.11 foi resolvida.",
+      "message": "icarus.projetos depends on MySql.Data (>= 7.0.4) but MySql.Data 7.0.4 was not found. An approximate best match of MySql.Data 8.0.11 was resolved.",
       "libraryId": "MySql.Data",
       "targetGraphs": [
         "net7.0"

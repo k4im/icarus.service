@@ -448,19 +448,19 @@
     ]
   },
   "packageFolders": {
-    "/home/oem/.nuget/packages/": {}
+    "/home/k4imdesktop/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/oem/icarus.service/icarus.gateway/icarus.gateway.csproj",
+      "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.gateway/icarus.gateway.csproj",
       "projectName": "icarus.gateway",
-      "projectPath": "/home/oem/icarus.service/icarus.gateway/icarus.gateway.csproj",
-      "packagesPath": "/home/oem/.nuget/packages/",
-      "outputPath": "/home/oem/icarus.service/icarus.gateway/obj/",
+      "projectPath": "/home/k4imdesktop/icarus.service/icarus.gateway/icarus.gateway.csproj",
+      "packagesPath": "/home/k4imdesktop/.nuget/packages/",
+      "outputPath": "/home/k4imdesktop/icarus.service/icarus.gateway/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/oem/.nuget/NuGet/NuGet.Config"
+        "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -500,6 +500,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.3, 7.0.3]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -508,7 +514,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }
