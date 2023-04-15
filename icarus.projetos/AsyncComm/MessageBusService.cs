@@ -73,7 +73,6 @@ namespace icarus.projetos.AsyncComm
             }
 
              Console.WriteLine("--> RabbitMQ Connection Closed...");
-            Dispose();
         }
 
         // Metodo privado de envio da mensagem
