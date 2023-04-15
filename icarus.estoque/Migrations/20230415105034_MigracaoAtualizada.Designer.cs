@@ -10,8 +10,8 @@ using icarus.estoque.Data;
 namespace icarus.estoque.Migrations
 {
     [DbContext(typeof(DataContextEstoque))]
-    [Migration("20230411232925_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20230415105034_MigracaoAtualizada")]
+    partial class MigracaoAtualizada
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

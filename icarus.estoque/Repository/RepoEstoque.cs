@@ -59,7 +59,7 @@ namespace icarus.estoque.Repository
     
         public void TratarMessage(int QuantidadeDeChapa, int id)
         {
-            var produto =  _db.Produtos.FirstOrDefault(x => x.Id == id);
+            var produto =  _db.Produtos.FirstOrDefault(x => x.Nome.ToLower().Contains("chapa"));
             if(produto == null) Results.NotFound();
             produto.Quantidade -= QuantidadeDeChapa;
             _db.Produtos.Update(produto);

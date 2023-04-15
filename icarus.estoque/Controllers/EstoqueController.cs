@@ -25,7 +25,7 @@ namespace icarus.estoque.Controllers
             try
             {
                 var qtdchapa = _msgCosumer.consumeMessage();
-                _repo.TratarMessage(qtdchapa, 4);
+                if(qtdchapa != 0) _repo.TratarMessage(qtdchapa, 4);
             }
             catch (Exception e)
             {

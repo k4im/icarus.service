@@ -65,6 +65,7 @@ namespace icarus.estoque.AsyncComm
         }
         private int Consume(IModel channel) 
         {
+            if(channel.MessageCount("projetos") == 0) return 0;
             int QuantidadeDeChapa = 0;
             // Definindo um consumidor
             var consumer = new EventingBasicConsumer(channel); 
@@ -84,7 +85,10 @@ namespace icarus.estoque.AsyncComm
                     var message = Encoding.UTF8.GetString(body);
                     var projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);
                     // Repassa o valor da mensagem para a var
-                    QuantidadeDeChapa = projeto.QuantidadeDeChapa;
+                    for (int i = 0; i <= channel.MessageCount("projetos"); i++)
+                    {
+                        QuantidadeDeChapa += projeto.QuantidadeDeChapa;
+                    }
                     // seta o valor no EventSlim
                     msgsRecievedGate.Set();
                     Console.WriteLine("--> Messagem tratada");

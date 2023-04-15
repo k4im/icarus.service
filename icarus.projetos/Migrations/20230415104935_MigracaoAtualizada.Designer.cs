@@ -11,8 +11,8 @@ using icarus.projetos.data;
 namespace icarus.projetos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230414154143_NovoProduto")]
-    partial class NovoProduto
+    [Migration("20230415104935_MigracaoAtualizada")]
+    partial class MigracaoAtualizada
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
