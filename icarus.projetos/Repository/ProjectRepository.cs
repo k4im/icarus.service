@@ -64,6 +64,7 @@ namespace icarus.projetos.Repository
                     Descricao = model.Descricao,
                     DataInicio = model.DataInicio,
                     DataEntrega = model.DataEntrega,
+                    QuantidadeDeChapa = model.QuantidadeDeChapa,
                     Valor = model.Valor
                 };
                 try

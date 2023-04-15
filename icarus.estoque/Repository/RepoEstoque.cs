@@ -57,13 +57,13 @@ namespace icarus.estoque.Repository
         }
     
     
-        public void TratarMessage(int QuantidadeDeChapa, int id)
+        public async Task TratarMessage(int QuantidadeDeChapa, int id)
         {
-            var produto =  _db.Produtos.FirstOrDefault(x => x.Nome.ToLower().Contains("chapa"));
+            var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower().Contains("chapa"));
             if(produto == null) Results.NotFound();
             produto.Quantidade -= QuantidadeDeChapa;
             _db.Produtos.Update(produto);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
     }

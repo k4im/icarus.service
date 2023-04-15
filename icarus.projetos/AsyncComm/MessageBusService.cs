@@ -73,6 +73,7 @@ namespace icarus.projetos.AsyncComm
             }
 
              Console.WriteLine("--> RabbitMQ Connection Closed...");
+            Dispose();
         }
 
         // Metodo privado de envio da mensagem
@@ -87,6 +88,7 @@ namespace icarus.projetos.AsyncComm
                 basicProperties: null,
                 body: body);
             Console.WriteLine("--> Mensagem enviado");
+
         }
 
         // Metodo para fechar a conexão com o broker 
@@ -97,7 +99,7 @@ namespace icarus.projetos.AsyncComm
             // Verifica se a conexão está aberta e fecha
             if(_channel.IsOpen)
             {
-                _channel.Close();
+                _channel.Dispose();
             }
         }
 

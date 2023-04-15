@@ -115,6 +115,7 @@ namespace icarus.estoque.AsyncComm
             // Espera pelo valor setado
             msgsRecievedGate.Wait();
             // retorna o valor tratado
+            Dispose();
             return QuantidadeDeChapa;
             
 
