@@ -7,23 +7,27 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "icarusestoque",
                     "Port" : 5081
                 }
             ],
-            "UpstreamPathTemplate" : "/api/estoque",
-            "UpstreamHttpMethod" : "GET"
+            "UpstreamPathTemplate" : "/gateway/estoque",
+            "UpstreamHttpMethod" : "GET",
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "uma chave secreta para teste - não usar em producao",
+                "AllowedScopes": []
+            }
         },
         {
             "DownstreamPathTemplate" : "/api/Estoque/{id}",
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    "Host": "icarusestoque",
                     "Port" : 5081
                 }
             ],
-            "UpstreamPathTemplate" : "/api/produto/{id}",
+            "UpstreamPathTemplate" : "/gateway/produto/{id}",
             "UpstreamHttpMethod" : "GET"
         },
         {
@@ -31,11 +35,11 @@
             "DownstreamScheme" :"http", 
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
-            "UpstreamPathTemplate" : "/api/produto",
+            "UpstreamPathTemplate" : "/gateway/produto",
             "UpstreamHttpMethod" : "POST"
         },
 
@@ -44,12 +48,12 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
 
-            "UpstreamPathTemplate" : "/api/Estoque/produto/delete/{id}",
+            "UpstreamPathTemplate" : "/gateway/Estoque/produto/deletar/{id}",
             "UpstreamHttpMethod" : "DELETE"
         },
 
@@ -58,13 +62,81 @@
             "DownstreamScheme" : "http",
             "DownstreamHostAndPorts" : [
                 {
-                    "Host" : "localhost",
+                    "Host" : "icarusestoque",
                     "Port" : 5081
                 }
             ],
-            "UpstreamPathTemplate" : "/api/Estoque/produto/atualizar/{id}",
+            "UpstreamPathTemplate" : "/gateway/Estoque/produto/atualizar/{id}",
+            "UpstreamHttpMethod" : "PUT"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Project/projetos",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "icarusprojetos",
+                    "Port" : 5222
+                }
+            ],
+            "UpstreamPathTemplate" : "/gateway/Project/projetos",
+            "UpstreamHttpMethod" : "GET"
+
+        },
+        {
+            "DownstreamPathTemplate" : "/api/Project/projeto/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "icarusprojetos",
+                    "Port" : 5222
+                }
+            ],
+            "UpstreamPathTemplate" : "/gateway/Project/projetos/{id}",
+            "UpstreamHttpMethod" : "GET"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Project/Create",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "icarusprojetos",
+                    "Port" : 5222
+                }
+            ],
+            "UpstreamPathTemplate" : "/gateway/Project/novoprojeto",
+            "UpstreamHttpMethod" : "POST"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Project/update/{id}",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "icarusprojetos",
+                    "Port" : 5222
+                }
+            ],
+            "UpstreamPathTemplate" : "/gateway/Project/atuallizar/{id}",
+            "UpstreamHttpMethod" : "PUT"
+        },
+
+        {
+            "DownstreamPathTemplate" : "/api/Project/delete/{id}",
+            "DownstreamScheme" : "http",
+            "DownstreamHostAndPorts" : [
+                {
+                    "Host" : "icarusprojetos",
+                    "Port" : 5222
+                }
+            ],
+            "UpstreamPathTemplate" : "/gateway/Project/deletar/{id}",
             "UpstreamHttpMethod" : "PUT"
         }
+
+        
+
         
     ],
     "GlobalConfiguration" : {

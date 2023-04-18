@@ -72,3 +72,16 @@
 /home/oem/icarus.service/icarus.gateway/obj/Debug/net7.0/icarus.gateway.pdb
 /home/oem/icarus.service/icarus.gateway/obj/Debug/net7.0/icarus.gateway.genruntimeconfig.cache
 /home/oem/icarus.service/icarus.gateway/obj/Debug/net7.0/ref/icarus.gateway.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.Owin.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.Owin.Security.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.Owin.Security.Jwt.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Microsoft.Owin.Security.OAuth.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/Owin.dll
+/home/oem/icarus.service/icarus.gateway/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
