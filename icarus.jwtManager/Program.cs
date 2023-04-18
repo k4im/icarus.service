@@ -20,6 +20,8 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configura
 builder.Services.AddTransient<IRepoAuth, RepoAuth>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+
+
 #region aspnet Identity Config
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
