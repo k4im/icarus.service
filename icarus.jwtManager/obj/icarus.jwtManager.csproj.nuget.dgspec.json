@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {}
+    "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {}
   },
   "projects": {
-    "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {
+    "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
+        "projectUniqueName": "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
         "projectName": "icarus.jwtManager",
-        "projectPath": "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
-        "packagesPath": "/home/k4imdesktop/.nuget/packages/",
-        "outputPath": "/home/k4imdesktop/icarus.service/icarus.jwtManager/obj/",
+        "projectPath": "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
+        "packagesPath": "/home/oem/.nuget/packages/",
+        "outputPath": "/home/oem/icarus.service/icarus.jwtManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
+          "/home/oem/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -46,10 +46,6 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.3, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -75,10 +71,6 @@
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[7.0.5, )"
-            },
-            "Microsoft.Owin.Security.Jwt": {
-              "target": "Package",
-              "version": "[4.2.2, )"
             },
             "MySql.Data": {
               "target": "Package",
@@ -108,12 +100,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.3, 7.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -122,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

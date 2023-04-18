@@ -8,7 +8,7 @@ namespace icarus.jwtManager.Repository
 {
     public interface IRepoAuth
     {
-        Task<UsuarioDTO> Registrar(UsuarioDTO request);
-        Task<UsuarioDTO> Logar(UsuarioDTO request);
+        Task<RegistroDTO> Registrar(UsuarioDTO request);
+        Task<LogarDTO> Logar(UsuarioDTO request);
     }
 }

@@ -12,31 +12,30 @@ namespace icarus.jwtManager.Repository
 {
     public class RepoAuth : IRepoAuth
     {
+        /*Propriedades injetadas na classe*/
         readonly IMapper _mapper;
         readonly DataContext _db;
         readonly UserManager<AppUser> _userManager;
         readonly SignInManager<AppUser> _signInManager;
-        readonly RoleManager<IdentityUser> _roleManager;
-        readonly UserStore<AppUser> _userStoreManager;
         readonly IConfiguration _config;
+
+        /*Definindo o construtor da calasse*/
         public RepoAuth(IMapper mapper, 
         DataContext db, 
         UserManager<AppUser> userManager, 
         SignInManager<AppUser> signInManager, 
-        RoleManager<IdentityUser> roleManager, 
-        UserStore<AppUser> userStoreManager,
         IConfiguration config)
         {
             _mapper = mapper;
             _db = db;
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _config = config;
-            _userStoreManager = new UserStore<AppUser>(_db);
         }
-        public async Task<UsuarioDTO> Registrar(UsuarioDTO request)
+
+        public async Task<RegistroDTO> Registrar(UsuarioDTO request)
         {
+            /*Gera um objeto do padrão IdentityUser após isto seta os valores para os valores do request*/
             var IdentityUser = new AppUser
             {
                 UserName = request.UserName,
@@ -45,26 +44,35 @@ namespace icarus.jwtManager.Repository
             };
 
             var result = await _userManager.CreateAsync(IdentityUser, request.Senha);
-            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
-            var usuarioResponse = new UsuarioDTO
-            {
-                UserName = request.UserName,
-                Email = request.Email
-            };
 
+            /*Realizando a liberação do usuario criado, neste metodo é possivel criar uma logica
+            para realizar a autenticação via email*/
+            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
             if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
             
-            return usuarioResponse;
+            var registroDTO = new RegistroDTO 
+            {   UserName = request.UserName,
+                Email = request.Email
+            };
+            return registroDTO;
 
         }
-        public async Task<UsuarioDTO> Logar(UsuarioDTO request)
+        public async Task<LogarDTO> Logar(UsuarioDTO request)
         {
             var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
+            var token = string.Empty;
             /*Implementar Token*/
-            if(result.Succeeded) await CriarToken(request.Email);
+            if(result.Succeeded) {
+                token = await CriarToken(request.Email);
+            }
 
             /*Finalizar implementação Identity*/
-            return new UsuarioDTO();
+            var LoginDTO = new LogarDTO{
+                SucessoAoLogar = true,
+                Email = request.Email,
+                Token = token
+            };
+            return LoginDTO;
         }
 
 

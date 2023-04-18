@@ -10,5 +10,7 @@ namespace icarus.jwtManager.Data
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
+        public DataContext(DbContextOptions options) : base(options)
+        {}
     }
 }
