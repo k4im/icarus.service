@@ -59,15 +59,12 @@ services:
     ports:
         - 5672:5672
         - 15672:15672
-
-
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 172.19.0.0/16
-         gateway: 172.19.0.2
+  icarusjwt:
+    image: icarusAuth
+    container_name: container-auth
+    build:
+      context: .
+      dockerfile: icarus.jwtManager/Dockerfile
 
 volumes:
   db-services:

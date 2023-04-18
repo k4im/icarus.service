@@ -1,12 +1,14 @@
 using icarus.estoque.AsyncComm;
 using icarus.estoque.Models;
 using icarus.estoque.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace icarus.estoque.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EstoqueController : ControllerBase
     {
         private readonly IRepoEstoque _repo;
@@ -19,6 +21,7 @@ namespace icarus.estoque.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> Produtos() {
             var produtos = await _repo.BuscarProdutos();
             if(produtos == null) return NotFound();
