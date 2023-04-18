@@ -64,15 +64,24 @@ namespace icarus.jwtManager.Repository
             /*Implementar Token*/
             if(result.Succeeded) {
                 token = await CriarToken(request.Email);
+                
+                /*Finalizar implementação Identity*/
+                var LoginDTO = new LogarDTO{
+                    SucessoAoLogar = true,
+                    Email = request.Email,
+                    Token = token
+                };
+                return LoginDTO;
             }
 
-            /*Finalizar implementação Identity*/
-            var LoginDTO = new LogarDTO{
+            var Falha = new LogarDTO{
                 SucessoAoLogar = true,
                 Email = request.Email,
-                Token = token
+                Token = "login falhou"
             };
-            return LoginDTO;
+            return Falha;
+
+
         }
 
 
@@ -85,7 +94,7 @@ namespace icarus.jwtManager.Repository
             var keyByte = Encoding.UTF8.GetBytes(secretKey);
 
             var key = new SymmetricSecurityKey(keyByte);
-            var creds = new SigningCredentials(key, SecurityAlgorithms.RsaSha512);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
             var token = new JwtSecurityToken(
                 claims: claims,

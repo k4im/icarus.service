@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj",
+                "${workspaceFolder}/icarus.jwtManager/icarus.jwtManager.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj",
+                "${workspaceFolder}/icarus.jwtManager/icarus.jwtManager.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/icarus.estoque/icarus.estoque.csproj"
+                "${workspaceFolder}/icarus.jwtManager/icarus.jwtManager.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

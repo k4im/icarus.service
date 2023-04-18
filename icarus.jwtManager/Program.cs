@@ -29,10 +29,11 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     
 builder.Services.Configure<IdentityOptions>(opt =>
 {
-    opt.Password.RequiredLength = 8;
-    opt.Password.RequireNonAlphanumeric = true;
-    opt.Password.RequireLowercase = true;
-    opt.Password.RequireUppercase = true;
+    opt.Password.RequiredLength = 3;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireDigit = false;
     opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(50);
     opt.Lockout.MaxFailedAccessAttempts = 2;
 });
