@@ -1,42 +1,65 @@
 using icarus.jwtManager.Models;
 using AutoMapper;
 using icarus.jwtManager.Data;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace icarus.jwtManager.Repository
 {
     public class RepoAuth : IRepoAuth
     {
-        private readonly IMapper _mapper;
-        private readonly DataContext _db;
+        readonly IMapper _mapper;
+        readonly DataContext _db;
+        readonly UserManager<AppUser> _userManager;
+        readonly SignInManager<AppUser> _signInManager;
+        readonly RoleManager<IdentityUser> _roleManager;
+        readonly UserStore<AppUser> _userStoreManager;
 
-        public RepoAuth(IMapper mapper, DataContext db)
+        public RepoAuth(IMapper mapper, 
+        DataContext db, 
+        UserManager<AppUser> userManager, 
+        SignInManager<AppUser> signInManager, 
+        RoleManager<IdentityUser> roleManager, 
+        UserStore<AppUser> userStoreManager)
         {
             _mapper = mapper;
             _db = db;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _userStoreManager = new UserStore<AppUser>(_db);
         }
-
-        public async Task<UsuarioDTO> Logar(UsuarioDTO request)
-        {
-            var usuario = await _db.Usuarios.FirstOrDefaultAsync(x => x.UserName == request.UserName);
-            if(request.UserName == usuario)
-        }
-
         public async Task<UsuarioDTO> Registrar(UsuarioDTO request)
         {
-            Usuario user = new Usuario();
+            var IdentityUser = new AppUser
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                EmailConfirmed = true
+            };
 
-            string pwdHashed = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            var result = await _userManager.CreateAsync(IdentityUser, request.Senha);
+            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
+            var usuarioResponse = new UsuarioDTO
+            {
+                UserName = request.UserName,
+                Email = request.Email
+            };
 
-            user.UserName = request.UserName;
-            user.Password = pwdHashed;
+            if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
+            
+            return usuarioResponse;
 
-            await _db.Usuarios.AddAsync(user);
-            await _db.SaveChangesAsync();
-
-            var usuarioMapper = _mapper.Map<Usuario, UsuarioDTO>(user);
-
-            return usuarioMapper;
         }
+        public async Task<UsuarioDTO> Logar(UsuarioDTO request)
+        {
+            var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
+            /*Implementar Token*/
+
+            /*Finalizar implementação Identity*/
+            return new UsuarioDTO();
+        }
+
+
     }
 }

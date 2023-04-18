@@ -1,8 +1,10 @@
 
 using System.Text;
 using icarus.jwtManager.Data;
+using icarus.jwtManager.Models;
 using icarus.jwtManager.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,7 +20,23 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configura
 builder.Services.AddTransient<IRepoAuth, RepoAuth>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-#region  adicionado jwt
+#region aspnet Identity Config
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
+    
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 8;
+    opt.Password.RequireNonAlphanumeric = true;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireUppercase = true;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(50);
+    opt.Lockout.MaxFailedAccessAttempts = 2;
+});
+#endregion
+
+#region  configurando jwt
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(opt => {
     opt.TokenValidationParameters = new TokenValidationParameters{

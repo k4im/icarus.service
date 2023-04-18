@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {}
+    "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {}
   },
   "projects": {
-    "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {
+    "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
+        "projectUniqueName": "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
         "projectName": "icarus.jwtManager",
-        "projectPath": "/home/oem/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
-        "packagesPath": "/home/oem/.nuget/packages/",
-        "outputPath": "/home/oem/icarus.service/icarus.jwtManager/obj/",
+        "projectPath": "/home/k4imdesktop/icarus.service/icarus.jwtManager/icarus.jwtManager.csproj",
+        "packagesPath": "/home/k4imdesktop/.nuget/packages/",
+        "outputPath": "/home/k4imdesktop/icarus.service/icarus.jwtManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/oem/.nuget/NuGet/NuGet.Config"
+          "/home/k4imdesktop/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -65,6 +69,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[7.0.5, )"
             },
@@ -100,6 +108,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.3, 7.0.3]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -108,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }

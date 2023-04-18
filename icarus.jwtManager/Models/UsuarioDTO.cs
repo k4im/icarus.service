@@ -8,14 +8,18 @@ namespace icarus.jwtManager.Models
 {
     public class UsuarioDTO
     {
+
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(35)")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        public string Password { get; set; }
+        [DataType("NVARCHAR(85)")]
+        public string Email { get; set; }
 
-        [Required(ErrorMessage = "Este campo é obrigatório")] 
-        public string PasswordHashed { get; set; }        
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        public string Senha { get; set; }
+
+        public string Descricao { get; set; } 
     }
 }
