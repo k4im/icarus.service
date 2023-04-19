@@ -12,11 +12,7 @@
                 }
             ],
             "UpstreamPathTemplate" : "/gateway/estoque",
-            "UpstreamHttpMethod" : "GET",
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "uma chave secreta para teste - não usar em producao",
-                "AllowedScopes": []
-            }
+            "UpstreamHttpMethod" : "GET"
         },
         {
             "DownstreamPathTemplate" : "/api/Estoque/{id}",

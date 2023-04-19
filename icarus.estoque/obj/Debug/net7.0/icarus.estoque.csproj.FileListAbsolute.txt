@@ -145,3 +145,16 @@
 /home/oem/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.Owin.Security.OAuth.dll
 /home/oem/icarus.service/icarus.estoque/bin/Debug/net7.0/Owin.dll
 /home/oem/icarus.service/icarus.estoque/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.Owin.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.Owin.Security.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.Owin.Security.Jwt.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Microsoft.Owin.Security.OAuth.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/Owin.dll
+/home/k4imdesktop/icarus.service/icarus.estoque/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

@@ -60,12 +60,13 @@ services:
         - 5672:5672
         - 15672:15672
   icarusjwt:
-    image: icarusAuth
+    image: icarus-auth
     container_name: container-auth
     build:
       context: .
       dockerfile: icarus.jwtManager/Dockerfile
-
+    ports:
+      - 5057:5057
 volumes:
   db-services:
 
