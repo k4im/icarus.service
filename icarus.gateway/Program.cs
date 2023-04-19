@@ -7,27 +7,31 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+var urlAuth = builder.Configuration["Jwt:Issuer"];
+var AuthenticationProviderKey = "teste";
 
-// var authenticationProviderKey = builder.Configuration["JWt:SecretKey"];
-// builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-// .AddJwtBearer(authenticationProviderKey, x => {
-//     x.Authority = builder.Configuration["Jwt:Issuer"];
-//     x.Audience = builder.Configuration["Jwt:Audience"];
-//     x.RequireHttpsMetadata = false;
-//     x.SaveToken = true;
-//     x.Configuration = new OpenIdConnectConfiguration();  //<-- Most IMP Part
-//     x.TokenValidationParameters = new TokenValidationParameters{
-//         ValidateIssuer = false,
-//         ValidateAudience = false,
-//         ValidateLifetime = true,
-//         ValidateIssuerSigningKey = true,
+builder.Services.AddAuthentication( opt => {
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(AuthenticationProviderKey, opt =>{
+    opt.Authority = urlAuth;
+    opt.SaveToken = true;
+    opt.RequireHttpsMetadata = false;
+    opt.Configuration = new OpenIdConnectConfiguration();
+    opt.TokenValidationParameters = new TokenValidationParameters {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime= false,
+        ValidateIssuerSigningKey = false,
+        
 
-//         ValidIssuer = builder.Configuration["Jwt:Issuer"],
-//         ValidAudience = builder.Configuration["Jwt:Audience"],
-//         IssuerSigningKey = new SymmetricSecurityKey
-//         (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
-//     };
-// });
+        ValidIssuer = urlAuth,
+        IssuerSigningKey = new SymmetricSecurityKey
+        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+    };
+}
+);
 #region  configuração de ocelot
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("ocelot.json", optional: false, 
