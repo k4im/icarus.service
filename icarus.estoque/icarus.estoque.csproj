@@ -14,7 +14,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Owin.Security.Jwt" Version="4.2.2" />
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />

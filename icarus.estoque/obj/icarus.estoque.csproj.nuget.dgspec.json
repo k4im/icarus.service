@@ -56,10 +56,6 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
-            "Microsoft.Owin.Security.Jwt": {
-              "target": "Package",
-              "version": "[4.2.2, )"
-            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.32.1, )"

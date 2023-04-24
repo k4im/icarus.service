@@ -6,12 +6,14 @@ using AutoMapper;
 using icarus.projetos.AsyncComm;
 using icarus.projetos.models;
 using icarus.projetos.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace icarus.projetos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _repo;
