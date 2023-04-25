@@ -94,7 +94,7 @@ namespace icarus.jwtManager.Repository
             var keyByte = Encoding.UTF8.GetBytes(secretKey);
 
             var key = new SymmetricSecurityKey(keyByte);
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 claims: claims,
@@ -103,7 +103,7 @@ namespace icarus.jwtManager.Repository
                 audience : _config["Jwt:Audience"],
                 issuer : _config["Jwt:Issuer"]
             );
-
+        
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
@@ -112,8 +112,9 @@ namespace icarus.jwtManager.Repository
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim("name", user.UserName),
+                new Claim("email", user.Email),
+                new Claim("key", _config["Jwt:Key"])
             };
 
             return claims;
