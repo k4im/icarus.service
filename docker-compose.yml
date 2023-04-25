@@ -24,6 +24,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".50"
           memory: 512M      
   
   
@@ -46,6 +47,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".50"
           memory: 2048M  
   
 
@@ -100,7 +102,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '.80'
           memory: 2048M  
   
   # --------------------------
@@ -120,6 +122,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".65"
           memory: 512M        
        
   # --------------------------
@@ -140,6 +143,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".30"
           memory: 512M        
 
   # --------------------------
@@ -160,6 +164,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".30"
           memory: 512M        
 
   # --------------------------
@@ -197,6 +202,7 @@ services:
     deploy:
       resources:
         limits:
+          cpus: ".30"
           memory: 512M        
 
 volumes:
