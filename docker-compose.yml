@@ -15,8 +15,6 @@ services:
     environment:
       MYSQL_PASSWORD: "root"
       MYSQL_ROOT_PASSWORD: "root"
-    ports:
-    - 3306:3306
     volumes:
       - db-services:/var/lib/mysql
     networks:
@@ -34,8 +32,6 @@ services:
   kong-database:
     image: postgres:9.6
     container_name: kong-database
-    ports:
-      - 5432:5432
     environment:
       - POSTGRES_USER=kong
       - POSTGRES_DB=kong
@@ -134,8 +130,6 @@ services:
     build:
       context: .
       dockerfile: icarus.estoque/Dockerfile
-    ports:
-      - 5081:5081
     depends_on:
       - db-services
     networks:
@@ -155,8 +149,6 @@ services:
     build:
       context: .
       dockerfile: icarus.projetos/Dockerfile
-    ports:
-      - 5222:5222
     depends_on:
       - db-services
     networks:
@@ -195,8 +187,6 @@ services:
     build:
       context: .
       dockerfile: icarus.jwtManager/Dockerfile
-    ports:
-      - 5057:5057
     networks:
       - kong-net
     deploy:
