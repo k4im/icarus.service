@@ -21,6 +21,11 @@ services:
       - db-services:/var/lib/mysql
     networks:
       - kong-net  
+    deploy:
+      resources:
+        limits:
+          memory: 512M      
+  
   
   # --------------------------
   # Banco de dados kong
@@ -38,6 +43,11 @@ services:
       - "db-data-kong-postgres:/var/lib/postgresql/data"
     networks:
       - kong-net
+    deploy:
+      resources:
+        limits:
+          memory: 2048M  
+  
 
   # --------------------------
   # Kong migrations
@@ -87,6 +97,11 @@ services:
       - kong-migrations
     networks:
       - kong-net  
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2048M  
   
   # --------------------------
   # konga
@@ -102,7 +117,10 @@ services:
       - NODE_ENV=production
     networks:
       - kong-net  
-      
+    deploy:
+      resources:
+        limits:
+          memory: 512M        
        
   # --------------------------
   # Serviço de estoque
@@ -119,6 +137,10 @@ services:
       - db-services
     networks:
       - kong-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M        
 
   # --------------------------
   # Serviço de projetos
@@ -135,23 +157,10 @@ services:
       - db-services
     networks:
       - kong-net
-
-  # --------------------------
-  # Gateway de development ocelot
-  # --------------------------  
-  icarusgateway:
-    container_name: container-gateway
-    image: icarusgateway
-    build:
-      context: .
-      dockerfile: icarus.gateway/Dockerfile
-    ports:
-      - 5074:5074
-    depends_on:
-      - icarusestoque
-      - icarusprojetos
-    networks:
-      - kong-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M        
 
   # --------------------------
   # Servidor de bus
@@ -167,6 +176,10 @@ services:
         - 15672:15672
     networks:
       - kong-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M   
 
   # --------------------------
   # Serviço de auth
@@ -181,6 +194,10 @@ services:
       - 5057:5057
     networks:
       - kong-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M        
 
 volumes:
   db-services:
