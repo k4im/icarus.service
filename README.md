@@ -1,4 +1,4 @@
-# icarus.service
+# icarus
 
 Após realizar o clone do repositório instale o Entity framework em sua maquina:
 
