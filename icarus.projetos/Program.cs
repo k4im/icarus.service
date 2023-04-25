@@ -49,24 +49,6 @@ builder.Services.AddSingleton<IMessageBusService, MessageBusService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 
-#region  configuração da barreira jwt
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(opt => {
-    opt.TokenValidationParameters = new TokenValidationParameters{
-        ValidateIssuer = true,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])
-        )
-    };
-});
-#endregion
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -78,7 +60,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

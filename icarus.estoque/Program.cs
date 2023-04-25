@@ -48,22 +48,6 @@ builder.Services.AddDbContext<DataContextEstoque>(opt => opt.UseMySql(builder.Co
 builder.Services.AddTransient<IRepoEstoque, RepoEstoque>();
 builder.Services.AddScoped<IMessageConsumer, MessageConsumer>();
 
-#region Configuração da barreira JWT
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(opt => {
-    opt.TokenValidationParameters = new TokenValidationParameters{
-        ValidateIssuer = true,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])
-        )
-    };
-});
-#endregion
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -73,7 +57,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
