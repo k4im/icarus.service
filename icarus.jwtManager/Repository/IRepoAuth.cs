@@ -10,5 +10,6 @@ namespace icarus.jwtManager.Repository
     {
         Task<RegistroDTO> Registrar(UsuarioDTO request);
         Task<LogarDTO> Logar(UsuarioDTO request);
+        Task<string> LogOut();
     }
 }

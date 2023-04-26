@@ -119,5 +119,11 @@ namespace icarus.jwtManager.Repository
 
             return claims;
         }
+
+        public async Task<string> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return "Usuario deslogado!";
+        }
     }
 }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using icarus.jwtManager.Models;
 using icarus.jwtManager.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +43,22 @@ namespace icarus.jwtManager.Controllers
                 Console.WriteLine($"Ocorreu um erro na execução: {e.Message}");
             } 
             return StatusCode(500);
+        }
+
+        [HttpPost("Logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            try
+            {
+                var logOut = await _repo.LogOut();
+                return Ok(logOut);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Não foi possivel realizar Logout: {e.Message}");
+            }
+            return StatusCode(500);
+
         }
     }
 }
