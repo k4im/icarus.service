@@ -10,5 +10,6 @@ namespace icarus.jwtManager.Models
         public bool SucessoAoLogar { get; set; } = false;
         public string Email { get; set; }
         public string Token { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

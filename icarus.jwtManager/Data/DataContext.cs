@@ -12,5 +12,7 @@ namespace icarus.jwtManager.Data
     {
         public DataContext(DbContextOptions options) : base(options)
         {}
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }
