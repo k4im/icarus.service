@@ -10,9 +10,10 @@ namespace icarus.jwtManager.Models
     {
 
         [Key]
+        public int Id { get; set; }
+      
         public string UserEmail { get; set; }
         
-        [Required(ErrorMessage = "Campo precisa ser preenchido")]
         public string TokenRefresh { get; set; }
     }
 }

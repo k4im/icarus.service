@@ -213,14 +213,17 @@ namespace icarus.jwtManager.Migrations
 
             modelBuilder.Entity("icarus.jwtManager.Models.RefreshToken", b =>
                 {
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("TokenRefresh")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("UserEmail");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
 
                     b.ToTable("RefreshTokens");
                 });

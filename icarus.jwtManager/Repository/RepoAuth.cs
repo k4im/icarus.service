@@ -2,11 +2,11 @@ using icarus.jwtManager.Models;
 using AutoMapper;
 using icarus.jwtManager.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
 
 namespace icarus.jwtManager.Repository
 {
@@ -75,10 +75,16 @@ namespace icarus.jwtManager.Repository
             var token = string.Empty;
             var refreshToken = string.Empty;
 
-            if(result.Succeeded) {
+            if (result.Succeeded) {
                 token = await CriarToken(request.Email);
                 refreshToken = GerarRefreshToken();
-                SalvarRefreshToken(request.Email, token);
+                
+                var refreshTokenDTO = new RefreshToken {
+                    UserEmail = request.Email,
+                    TokenRefresh = refreshToken
+                };
+                
+                await SalvarRefreshToken(refreshTokenDTO);
                 var LoginDTO = new LogarDTO{
                     SucessoAoLogar = true,
                     Email = request.Email,
@@ -95,6 +101,38 @@ namespace icarus.jwtManager.Repository
             };
             return Falha;
 
+
+        }
+
+
+        public async Task<string> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return "Usuario deslogado!";
+        }
+
+        public async Task<LogarDTO> RefreshToken(string token, string refreshToken)
+        {
+            var principal = PegarPincipalDoTokenAntigo(token);
+            var userName = principal.Identity.Name;
+            var refreshTokenSalvo = await BuscarRefreshToken(userName);
+            if(refreshTokenSalvo.TokenRefresh != refreshToken) throw new SecurityTokenException("Token invalido");
+
+            var refreshTokenDTO = new RefreshToken {
+                UserEmail = userName,
+                TokenRefresh = refreshTokenSalvo.TokenRefresh
+            };
+            var novoToken = CriarToken(userName);
+            var novoRefreshToken = GerarRefreshToken();
+            await DeletarRefreshToken(userName);
+            await SalvarRefreshToken(refreshTokenDTO);
+
+            return new LogarDTO {
+                SucessoAoLogar = true,
+                Email = userName,
+                Token = token,
+                RefreshToken = refreshToken
+            };
 
         }
 
@@ -127,19 +165,32 @@ namespace icarus.jwtManager.Repository
             return jwt;
         }
 
-
-        private async void SalvarRefreshToken(string email, string refreshToken)
+        private  async Task DeletarRefreshToken(string username)
         {
-            var dto = new RefreshToken {
-                UserEmail = email,
-                TokenRefresh = refreshToken
-            };
-            await _db.RefreshTokens.AddAsync(dto);
+            var refreshToken = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username);
+            _db.RefreshTokens.Remove(refreshToken);
             await _db.SaveChangesAsync();
         }
 
 
-        private string GerarRefreshToken() 
+        private  async Task SalvarRefreshToken(RefreshToken request)
+        {
+
+            
+            var dto = new RefreshToken {
+                UserEmail = request.UserEmail,
+                TokenRefresh = request.TokenRefresh
+            };
+            var user = await BuscarRefreshToken(request.UserEmail);
+            if(user == null)
+            {
+                _db.RefreshTokens.Add(dto);
+                await _db.SaveChangesAsync();    
+            }
+        }
+
+
+        private  string GerarRefreshToken() 
         {
             /*
                 Este metodo irá gerar um novo refresh token para o usuario
@@ -153,7 +204,16 @@ namespace icarus.jwtManager.Repository
         }
 
 
-        private ClaimsPrincipal PegarPincipalDoTokenAntigo(string token)
+
+        private  async Task<RefreshToken> BuscarRefreshToken(string username)
+        {
+            var token = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username);
+            if(token == null) Results.NotFound("Não existe um refresh token para esse usuario");
+            return token;
+        }
+
+
+        private  ClaimsPrincipal PegarPincipalDoTokenAntigo(string token)
         {
             /*
                 Metodo que valida e extrai as claims de um token 
@@ -172,12 +232,14 @@ namespace icarus.jwtManager.Repository
                 IssuerSigningKey = key,
                 ValidateLifetime = false
             };
-
+            var jwt = new JwtSecurityToken(token);
             var tokenHandler = new JwtSecurityTokenHandler();
             var principal = tokenHandler.ValidateToken(token, parametrosValidosToken, out var securityToken);
         
             return principal;
         }
+
+
         private List<Claim> GerarClaims(AppUser user)
         {
             List<Claim> claims = new List<Claim>
@@ -190,10 +252,5 @@ namespace icarus.jwtManager.Repository
             return claims;
         }
 
-        public async Task<string> LogOut()
-        {
-            await _signInManager.SignOutAsync();
-            return "Usuario deslogado!";
-        }
     }
 }

@@ -11,8 +11,8 @@ using icarus.jwtManager.Data;
 namespace icarus.jwtManager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230426184432_refreshToken")]
-    partial class refreshToken
+    [Migration("20230426203711_FixBase")]
+    partial class FixBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,14 +216,17 @@ namespace icarus.jwtManager.Migrations
 
             modelBuilder.Entity("icarus.jwtManager.Models.RefreshToken", b =>
                 {
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("TokenRefresh")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("UserEmail");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
 
                     b.ToTable("RefreshTokens");
                 });

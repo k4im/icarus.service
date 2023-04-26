@@ -45,6 +45,23 @@ namespace icarus.jwtManager.Controllers
             return StatusCode(500);
         }
 
+
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenDTO request)
+        {
+            try
+            {
+                var refreshToken = await _repo.RefreshToken(request.UserName, request.Token);
+                return Ok(refreshToken);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Ocorreu um erro na execução: {e.Message}");
+            } 
+            return StatusCode(500);
+        }
+
         [HttpPost("logout")]
         public async Task<IActionResult> LogOut()
         {
