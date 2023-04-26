@@ -108,13 +108,28 @@ localhost:8000/
 
 ## para acessar qualquer rota é além do login é necessario estar autenticado:
 
-#### para isto vá na rota:
+#### para isto crie um usuario  na rota:
+
+``` 
+localhost:8000/registro
+``` 
+####  no corpo da requesição envie:
+
+``` json 
+{
+  "userName": "string",
+  "email": "string",
+  "senha": "string",
+  "descricao": "string"
+}
+``` 
+
+#### realize o login na rota:
 
 ``` 
 localhost:8000/login
 ``` 
-
-#### e no corpo da requesição envie:
+#### no corpo da requesição envie as mesmas credenciais usadas para a criação do usuario:
 
 ``` json 
 {
