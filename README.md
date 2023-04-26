@@ -106,7 +106,7 @@ localhost:1337
 localhost:8000/
 ``` 
 
-## para acessar qualquer rota é além do login é necessario estar autenticado:
+## para acessar qualquer rota além do login é necessario estar autenticado:
 
 #### para isto crie um usuario  na rota:
 
