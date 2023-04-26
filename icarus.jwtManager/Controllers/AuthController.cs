@@ -45,7 +45,7 @@ namespace icarus.jwtManager.Controllers
             return StatusCode(500);
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<IActionResult> LogOut()
         {
             try
