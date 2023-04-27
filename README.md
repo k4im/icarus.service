@@ -107,7 +107,7 @@ localhost:8000/
 ``` 
 
 ## para acessar qualquer rota além do login é necessario estar autenticado:
-
+> **Access Tokens são validos por uma hora**
 #### para isto crie um usuario  na rota:
 
 ``` 
@@ -142,10 +142,10 @@ localhost:8000/login
 #### Para solicitar um novo Access Token:
 
 ``` 
-localhost:8000/refresh-token
+localhost:8000/refresh
 ``` 
 #### no corpo da requesição envie as mesmas credenciais usadas para a criação do usuario:
-
+> **Importante enviar a requisição antes de o token expirar pois a rota necessita de autenticação**
 ``` json 
 {
   "userName": "string",
