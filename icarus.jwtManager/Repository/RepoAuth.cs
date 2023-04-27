@@ -19,6 +19,7 @@ namespace icarus.jwtManager.Repository
         readonly IConfiguration _config;
         private List<(string, string)> _refreshToken = new ();
         readonly IRepoAuthExtend _refreshTokenService;
+        
         /*Definindo o construtor da calasse*/
         public RepoAuth(IMapper mapper, 
         DataContext db, 
@@ -119,9 +120,11 @@ namespace icarus.jwtManager.Repository
             */
             var principal = _refreshTokenService.PegarPincipalDoTokenAntigo(request.Token);
             var userName = principal.Identity.Name;
-            var refreshTokenSalvo = await _refreshTokenService.BuscarRefreshToken(request.UserName);
+            var refreshTokenSalvo = await _refreshTokenService.BuscarRefreshToken(request.UserName, request.RefreshToken);
+            
             if(refreshTokenSalvo.TokenRefresh != request.RefreshToken) throw new SecurityTokenException("Token invalido");
             if (refreshTokenSalvo.ExpiraEm <= DateTime.Now) throw new SecurityTokenException("Token Expirado");
+            
             var novoToken = await CriarToken(request.UserName);
             var novoRefreshToken = _refreshTokenService.GerarRefreshToken(userName);
             

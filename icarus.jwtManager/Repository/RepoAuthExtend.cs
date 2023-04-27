@@ -31,8 +31,7 @@ namespace icarus.jwtManager.Repository
 
         public async Task SalvarRefreshToken(RefreshToken request)
         {
-
-            
+           
             var dto = new RefreshToken {
                 UserEmail = request.UserEmail,
                 TokenRefresh = request.TokenRefresh,
@@ -51,7 +50,10 @@ namespace icarus.jwtManager.Repository
                 Para que o mesmo quando necessário realize
                 o pedido para um novo acess token
             */
-            var randomToken = new Guid();
+            var random = new Random(); 
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var chars = Enumerable.Range(0, 150).Select(x => pool[random.Next(0, pool.Length)]);
+            var randomToken = new string(chars.ToArray());          
             byte[] tokenBytes = Encoding.UTF8.GetBytes(randomToken.ToString());
             var tokenConverted = Convert.ToBase64String(tokenBytes);
             
@@ -67,9 +69,9 @@ namespace icarus.jwtManager.Repository
 
 
 
-        public async Task<RefreshToken> BuscarRefreshToken(string username)
+        public async Task<RefreshToken> BuscarRefreshToken(string username, string refreshToken)
         {
-            var token = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username);
+            var token = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username && x.TokenRefresh == refreshToken);
             if(token == null) Results.NotFound("Não existe um refresh token para esse usuario");
             return token;
         }

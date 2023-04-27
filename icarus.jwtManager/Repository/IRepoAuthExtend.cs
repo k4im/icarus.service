@@ -9,7 +9,7 @@ namespace icarus.jwtManager.Repository
 {
     public interface IRepoAuthExtend
     {
-        Task<RefreshToken> BuscarRefreshToken(string username);
+        Task<RefreshToken> BuscarRefreshToken(string username, string refreshToken);
 
         ClaimsPrincipal PegarPincipalDoTokenAntigo(string token);
 
