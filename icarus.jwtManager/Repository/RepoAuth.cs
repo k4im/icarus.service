@@ -111,27 +111,28 @@ namespace icarus.jwtManager.Repository
             return "Usuario deslogado!";
         }
 
-        public async Task<LogarDTO> RefreshToken(string token, string refreshToken)
+        public async Task<LogarDTO> RefreshToken(RefreshTokenDTO request)
         {
-            var principal = PegarPincipalDoTokenAntigo(token);
+            var principal = PegarPincipalDoTokenAntigo(request.Token);
             var userName = principal.Identity.Name;
-            var refreshTokenSalvo = await BuscarRefreshToken(userName);
-            if(refreshTokenSalvo.TokenRefresh != refreshToken) throw new SecurityTokenException("Token invalido");
+            var refreshTokenSalvo = await BuscarRefreshToken(request.UserName);
+            if(refreshTokenSalvo.TokenRefresh != request.RefreshToken) throw new SecurityTokenException("Token invalido");
 
+            var novoToken = await CriarToken(request.UserName);
+            var novoRefreshToken = GerarRefreshToken();
+            
             var refreshTokenDTO = new RefreshToken {
                 UserEmail = userName,
-                TokenRefresh = refreshTokenSalvo.TokenRefresh
+                TokenRefresh = novoRefreshToken
             };
-            var novoToken = CriarToken(userName);
-            var novoRefreshToken = GerarRefreshToken();
-            await DeletarRefreshToken(userName);
+            await DeletarRefreshToken(request.UserName);
             await SalvarRefreshToken(refreshTokenDTO);
 
             return new LogarDTO {
                 SucessoAoLogar = true,
                 Email = userName,
-                Token = token,
-                RefreshToken = refreshToken
+                Token = novoToken,
+                RefreshToken = novoRefreshToken
             };
 
         }
@@ -224,15 +225,16 @@ namespace icarus.jwtManager.Repository
 
             var key = new SymmetricSecurityKey(keyByte);
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            
-            var parametrosValidosToken = new TokenValidationParameters {
+
+            var parametrosValidosToken = new TokenValidationParameters
+            {
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = key,
                 ValidateLifetime = false
             };
-            var jwt = new JwtSecurityToken(token);
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var principal = tokenHandler.ValidateToken(token, parametrosValidosToken, out var securityToken);
         

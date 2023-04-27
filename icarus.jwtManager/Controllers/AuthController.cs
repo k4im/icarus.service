@@ -52,7 +52,7 @@ namespace icarus.jwtManager.Controllers
         {
             try
             {
-                var refreshToken = await _repo.RefreshToken(request.UserName, request.Token);
+                var refreshToken = await _repo.RefreshToken(request);
                 return Ok(refreshToken);
             }
             catch (Exception e)
