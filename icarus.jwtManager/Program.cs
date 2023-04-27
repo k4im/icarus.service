@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configuration.GetConnectionString("docker"), serverVersion));
 builder.Services.AddTransient<IRepoAuth, RepoAuth>();
+builder.Services.AddTransient<IRepoAuthExtend, RepoAuthExtend>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 

@@ -10,6 +10,8 @@ namespace icarus.jwtManager.Models
 
         public string UserName { get; set; }
         public string Token { get; set; }        
-        public string RefreshToken { get; set; }        
+        public string RefreshToken { get; set; } 
+        public DateTime CriadoEm { get; set; }
+        public DateTime ExpiraEm { get; set; }       
     }
 }
