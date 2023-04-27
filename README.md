@@ -139,6 +139,20 @@ localhost:8000/login
   "descricao": "string"
 }
 ``` 
+#### Para solicitar um novo Access Token:
+
+``` 
+localhost:8000/refresh-token
+``` 
+#### no corpo da requesição envie as mesmas credenciais usadas para a criação do usuario:
+
+``` json 
+{
+  "userName": "string",
+  "token": "string",
+  "refreshToken": "string",
+}
+``` 
 --- 
 #### para atualizar ou criar um novo projeto:
 
