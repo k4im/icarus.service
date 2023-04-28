@@ -19,9 +19,9 @@ namespace icarus.projetos.Repository
         }
 
 
-        public async Task<ProjectResponseDTO> BuscarProdutos(int pagina) 
+        public async Task<ProjectResponseDTO> BuscarProdutos(int pagina, float resultadoPorPagina) 
         {
-            var ResultadoPorPagina = 5f;
+            var ResultadoPorPagina = resultadoPorPagina;
             var projetos = await _db.Projetos.ToListAsync();
             var TotalDePaginas = Math.Ceiling(projetos.Count() / ResultadoPorPagina);
             var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();

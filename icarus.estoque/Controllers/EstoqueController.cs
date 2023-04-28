@@ -20,9 +20,9 @@ namespace icarus.estoque.Controllers
             _msgCosumer = msgCosumer;
         }
 
-        [HttpGet("produtos/{pagina}")]
-        public async Task<IActionResult> Produtos(int pagina = 1) {
-            var produtos = await _repo.BuscarProdutos(pagina);
+        [HttpGet("produtos/{resultadoPorPagina?}/{pagina?}")]
+        public async Task<IActionResult> Produtos(int pagina = 1, float resultadoPorPagina = 5) {
+            var produtos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
             if(produtos == null) return NotFound();
             try
             {

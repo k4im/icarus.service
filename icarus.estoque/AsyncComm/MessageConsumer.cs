@@ -88,7 +88,7 @@ namespace icarus.estoque.AsyncComm
                     // Repassa o valor da mensagem para a var
                     for (int i = 0; i <= channel.MessageCount("projetos"); i++)
                     {
-                        projetos.projetos.Add(projeto);
+                        projetos.Projetos.Add(projeto);
 
                     }
                     // seta o valor no EventSlim

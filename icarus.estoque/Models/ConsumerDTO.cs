@@ -7,6 +7,6 @@ namespace icarus.estoque.Models
 {
     public class ConsumerDTO
     {
-        public List<ProjectDTO> projetos { get; set; } = new List<ProjectDTO>();
+        public List<ProjectDTO> Projetos { get; set; } = new List<ProjectDTO>();
     }
 }

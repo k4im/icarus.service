@@ -10,7 +10,7 @@ namespace icarus.projetos.Repository
     {
         string LastSearchTxt { get; set; }
 
-        Task<ProjectResponseDTO> BuscarProdutos(int pagina);
+        Task<ProjectResponseDTO> BuscarProdutos(int pagina, float resultadoPorPagina);
         
         Task CriarProjeto(Project model);
         

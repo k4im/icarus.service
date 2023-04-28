@@ -28,10 +28,10 @@ namespace icarus.projetos.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("projetos/{pagina}")]
-        public async Task<IActionResult> GetAllProjects(int pagina = 1) 
+        [HttpGet("projetos/{resultadoPorPagina?}/{pagina?}")]
+        public async Task<IActionResult> GetAllProjects(int pagina = 1, float resultadoPorPagina = 5) 
         {
-            var projetos = await _repo.BuscarProdutos(pagina);
+            var projetos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
             return Ok(projetos);
         }
         

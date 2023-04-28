@@ -28,9 +28,9 @@ namespace icarus.estoque.Repository
             return item;
         }
 
-        public async Task<EstoqueResponseDTO> BuscarProdutos(int pagina)
+        public async Task<EstoqueResponseDTO> BuscarProdutos(int pagina, float resultadoPorPagina)
         {
-            var ResultadoPorPagina = 5f;
+            var ResultadoPorPagina = resultadoPorPagina;
             var projetos = await _db.Produtos.ToListAsync();
             
             await ValidarProdutos(projetos);
@@ -39,7 +39,7 @@ namespace icarus.estoque.Repository
             var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();
             
             var response = new EstoqueResponseDTO {
-                Projects = projetosPaginados,
+                Produtos = projetosPaginados,
                 Paginas = (int)TotalDePaginas,
                 PaginaAtual = pagina,
                 TotalDePaginas = (int)TotalDePaginas 
@@ -72,7 +72,7 @@ namespace icarus.estoque.Repository
     
         public async Task TratarMessage(ConsumerDTO consumer)
         {
-            foreach (var projeto in consumer.projetos)
+            foreach (var projeto in consumer.Projetos)
             {
                 var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower() == projeto.Chapa);
                 if(produto == null) Results.NotFound();
