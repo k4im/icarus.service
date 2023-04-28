@@ -8,7 +8,7 @@ namespace icarus.estoque.Repository
 {
     public interface IRepoEstoque
     {
-        Task<List<Produto>> BuscarProdutos();
+        Task<EstoqueResponseDTO> BuscarProdutos(int pagina);
         Task<Produto> BuscarProdutoId(int? id);
         Task NovoProduto(Produto modelo);
         Task DeletarProduto(int? id);

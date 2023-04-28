@@ -28,10 +28,20 @@ namespace icarus.estoque.Repository
             return item;
         }
 
-        public async Task<List<Produto>> BuscarProdutos()
+        public async Task<EstoqueResponseDTO> BuscarProdutos(int pagina)
         {
-            var produtos = await _db.Produtos.ToListAsync();
-            return produtos;
+            var ResultadoPorPagina = 5f;
+            var projetos = await _db.Produtos.ToListAsync();
+            var TotalDePaginas = Math.Ceiling(projetos.Count() / ResultadoPorPagina);
+            var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();
+            
+            var response = new EstoqueResponseDTO {
+                Projects = projetosPaginados,
+                Paginas = (int)TotalDePaginas,
+                PaginaAtual = pagina,
+                TotalDePaginas = (int)TotalDePaginas 
+            };
+            return response;
         }
 
         public async Task DeletarProduto(int? id)
