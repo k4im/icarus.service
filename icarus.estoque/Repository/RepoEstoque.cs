@@ -32,6 +32,9 @@ namespace icarus.estoque.Repository
         {
             var ResultadoPorPagina = 5f;
             var projetos = await _db.Produtos.ToListAsync();
+            
+            await ValidarProdutos(projetos);
+            
             var TotalDePaginas = Math.Ceiling(projetos.Count() / ResultadoPorPagina);
             var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();
             
@@ -67,14 +70,27 @@ namespace icarus.estoque.Repository
         }
     
     
-        public async Task TratarMessage(int QuantidadeDeChapa, int id)
+        public async Task TratarMessage(ConsumerDTO consumer)
         {
-            var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower().Contains("chapa"));
-            if(produto == null) Results.NotFound();
-            produto.Quantidade -= QuantidadeDeChapa;
-            _db.Produtos.Update(produto);
-            await _db.SaveChangesAsync();
+            foreach (var projeto in consumer.projetos)
+            {
+                var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower() == projeto.Chapa);
+                if(produto == null) Results.NotFound();
+                produto.Quantidade -= projeto.QuantidadeDeChapa;
+                _db.Produtos.Update(produto);
+                await _db.SaveChangesAsync();
+            }
+
         }
 
+    
+    
+        private async Task ValidarProdutos(List<Produto> produtos)
+        {
+            foreach (var produto in produtos)
+            {
+                if(produto.Quantidade <= 0) await DeletarProduto(produto.Id);
+            }
+        }
     }
 }

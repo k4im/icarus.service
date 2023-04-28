@@ -13,6 +13,6 @@ namespace icarus.estoque.Repository
         Task NovoProduto(Produto modelo);
         Task DeletarProduto(int? id);
         Task AtualizarProduto(int? id, Produto modelo);
-        Task TratarMessage(int QuantidadeDeChapa, int id);
+        Task TratarMessage(ConsumerDTO consumer);
     }
 }

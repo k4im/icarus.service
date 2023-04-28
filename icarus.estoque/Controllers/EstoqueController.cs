@@ -8,7 +8,7 @@ namespace icarus.estoque.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class EstoqueController : ControllerBase
     {
         private readonly IRepoEstoque _repo;
@@ -26,8 +26,8 @@ namespace icarus.estoque.Controllers
             if(produtos == null) return NotFound();
             try
             {
-                var qtdchapa = _msgCosumer.consumeMessage();
-                if(qtdchapa != 0) await _repo.TratarMessage(qtdchapa, 4);
+                var consumer = _msgCosumer.consumeMessage();
+                if(consumer != null) await _repo.TratarMessage(consumer);
             }
             catch (Exception e)
             {
