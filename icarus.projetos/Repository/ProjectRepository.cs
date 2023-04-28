@@ -19,7 +19,7 @@ namespace icarus.projetos.Repository
         }
 
 
-        public async Task<ProjectResponseDTO> GetAllProjects(int pagina) 
+        public async Task<ProjectResponseDTO> BuscarProdutos(int pagina) 
         {
             var ResultadoPorPagina = 5f;
             var projetos = await _db.Projetos.ToListAsync();
@@ -35,7 +35,7 @@ namespace icarus.projetos.Repository
             return response;
         }
 
-        public async Task<Project> GetById(int? id) 
+        public async Task<Project> BuscarPorId(int? id) 
         {
             var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
             if(item == null) return null;
@@ -51,7 +51,7 @@ namespace icarus.projetos.Repository
             return response;
         }
         
-        public async Task CreateProject(Project model)
+        public async Task CriarProjeto(Project model)
         {
             if (model != null) 
             {
@@ -80,7 +80,7 @@ namespace icarus.projetos.Repository
             }  
         }
 
-        public async Task DeleteProject(int? id)
+        public async Task DeletarProjeto(int? id)
         {
             try 
             {
@@ -95,7 +95,7 @@ namespace icarus.projetos.Repository
             
         }
 
-        public async Task UpdateProject(ProjectUpdate model, int? id)
+        public async Task AtualizarProjeto(ProjectUpdate model, int? id)
         {
                 if (id != null && model != null) 
                 {

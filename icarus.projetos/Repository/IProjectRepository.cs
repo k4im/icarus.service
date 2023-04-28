@@ -10,14 +10,14 @@ namespace icarus.projetos.Repository
     {
         string LastSearchTxt { get; set; }
 
-        Task<ProjectResponseDTO> GetAllProjects(int pagina);
+        Task<ProjectResponseDTO> BuscarProdutos(int pagina);
         
-        Task CreateProject(Project model);
+        Task CriarProjeto(Project model);
         
-        Task UpdateProject(ProjectUpdate model, int? id);
+        Task AtualizarProjeto(ProjectUpdate model, int? id);
         
-        Task DeleteProject(int? id);
-        Task<Project> GetById(int? id);
+        Task DeletarProjeto(int? id);
+        Task<Project> BuscarPorId(int? id);
 
     }
 }

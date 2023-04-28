@@ -31,14 +31,14 @@ namespace icarus.projetos.Controllers
         [HttpGet("projetos/{pagina}")]
         public async Task<IActionResult> GetAllProjects(int pagina = 1) 
         {
-            var projetos = await _repo.GetAllProjects(pagina);
+            var projetos = await _repo.BuscarProdutos(pagina);
             return Ok(projetos);
         }
         
         [HttpGet("projeto/{id?}")]
         public async Task<IActionResult> GetById(int? id) 
         {
-            var item = await _repo.GetById(id);
+            var item = await _repo.BuscarPorId(id);
             if(item == null) return NotFound();
             return Ok(item);
         }
@@ -49,7 +49,7 @@ namespace icarus.projetos.Controllers
             
             if(ModelState.IsValid) 
             {
-                await _repo.CreateProject(model);
+                await _repo.CriarProjeto(model);
                 try 
                 {
                     var projeto = _mapper.Map<Project, ProjectDTO>(model);
@@ -72,7 +72,7 @@ namespace icarus.projetos.Controllers
             if(id == null) return NotFound();
             try 
             {
-                await _repo.UpdateProject(model, id);
+                await _repo.AtualizarProjeto(model, id);
                 return Ok();
             }
             catch(Exception e)
@@ -86,7 +86,7 @@ namespace icarus.projetos.Controllers
         public async Task<IActionResult> DeleteProject(int? id)
         {
             if(id == null) return NotFound();
-            await _repo.DeleteProject(id);
+            await _repo.DeletarProjeto(id);
             return StatusCode(204);
         }
     
