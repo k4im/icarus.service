@@ -9,9 +9,8 @@ namespace icarus.projetos.models
     {
         
         public List<Project> Projects { get; set; } = new List<Project>();
-        public int Pages { get; set; }
-        public int CurrentPage { get; set; }
-        public int PageCount { get; set; }
-        public string LastSearch { get; set; }
+        public int Paginas { get; set; }
+        public int PaginaAtual { get; set; }
+        public int TotalDePaginas { get; set; }
     }
 }

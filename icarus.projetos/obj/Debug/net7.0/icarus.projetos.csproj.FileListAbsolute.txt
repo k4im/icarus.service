@@ -211,3 +211,11 @@
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/icarus.projetos.pdb
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/icarus.projetos.genruntimeconfig.cache
 /home/oem/icarus.service/icarus.projetos/obj/Debug/net7.0/ref/icarus.projetos.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/k4imdesktop/icarus.service/icarus.projetos/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

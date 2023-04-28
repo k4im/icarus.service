@@ -8,16 +8,16 @@ namespace icarus.projetos.Repository
 {
     public interface IProjectRepository
     {
-        public string LastSearchTxt { get; set; }
+        string LastSearchTxt { get; set; }
 
-        public Task<ProjectResponseDTO> GetAllProjects();
+        Task<ProjectResponseDTO> GetAllProjects(int pagina);
         
-        public Task CreateProject(Project model);
+        Task CreateProject(Project model);
         
-        public Task UpdateProject(ProjectUpdate model, int? id);
+        Task UpdateProject(ProjectUpdate model, int? id);
         
-        public Task DeleteProject(int? id);
-        public Task<Project> GetById(int? id);
+        Task DeleteProject(int? id);
+        Task<Project> GetById(int? id);
 
     }
 }

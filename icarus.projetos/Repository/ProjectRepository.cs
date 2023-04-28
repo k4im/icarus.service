@@ -1,8 +1,3 @@
-using System.Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using icarus.projetos.data;
 using icarus.projetos.models;
@@ -24,14 +19,18 @@ namespace icarus.projetos.Repository
         }
 
 
-        public async Task<ProjectResponseDTO> GetAllProjects() 
+        public async Task<ProjectResponseDTO> GetAllProjects(int pagina) 
         {
+            var ResultadoPorPagina = 5f;
             var projetos = await _db.Projetos.ToListAsync();
+            var TotalDePaginas = Math.Ceiling(projetos.Count() / ResultadoPorPagina);
+            var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();
+            
             var response = new ProjectResponseDTO {
-                Projects = projetos,
-                Pages = 0,
-                CurrentPage = 0,
-                PageCount = 0 
+                Projects = projetosPaginados,
+                Paginas = (int)TotalDePaginas,
+                PaginaAtual = pagina,
+                TotalDePaginas = (int)TotalDePaginas 
             };
             return response;
         }

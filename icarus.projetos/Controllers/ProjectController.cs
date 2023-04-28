@@ -13,7 +13,7 @@ namespace icarus.projetos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _repo;
@@ -28,10 +28,10 @@ namespace icarus.projetos.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("projetos")]
-        public async Task<IActionResult> GetAllProjects() 
+        [HttpGet("projetos/{pagina}")]
+        public async Task<IActionResult> GetAllProjects(int pagina = 1) 
         {
-            var projetos = await _repo.GetAllProjects();
+            var projetos = await _repo.GetAllProjects(pagina);
             return Ok(projetos);
         }
         
