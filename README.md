@@ -164,6 +164,7 @@ localhost:8000/refresh
   "dataInicio": "2023-04-13T11:36:22.594Z",
   "dataEntrega": "2023-04-13T11:36:22.594Z",
   "chapa": "string",
+  "QuantidadeDeChapa": 0,
   "descricao": "string",
   "valor": 0
 }
