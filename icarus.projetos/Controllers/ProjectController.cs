@@ -28,7 +28,7 @@ namespace icarus.projetos.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("projetos/{resultadoPorPagina?}/{pagina?}")]
+        [HttpGet("projetos/{pagina?}/{resultadoPorPagina?}")]
         public async Task<IActionResult> GetAllProjects(int pagina = 1, float resultadoPorPagina = 5) 
         {
             var projetos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
