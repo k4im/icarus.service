@@ -1,0 +1,411 @@
+openapi: 3.0.1
+info:
+  title: Gateway API
+  version: v1
+servers:
+  - url : http://localhost:8000
+paths:
+  /estoque/{pagina}/{resultadoPorPagina}:
+    get:
+      tags:
+        - Estoque
+      parameters:
+        - name: pagina
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: resultadoPorPagina
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: number
+            format: float
+            default: 5
+      responses:
+        '200':
+          description: Success
+  /produto/{id}:
+    get:
+      tags:
+        - Estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /produto/novo:
+    post:
+      tags:
+        - Estoque
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '200':
+          description: Success
+  /produto/delete/{id}:
+    delete:
+      tags:
+        - Estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /produto/atualizar/{id}:
+    put:
+      tags:
+        - Estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '200':
+          description: Success
+          
+  /registro:
+    post:
+      tags:
+        - Autenticar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+      responses:
+        '200':
+          description: Success
+          
+  /refresh-token:
+    post:
+      tags:
+        - Autenticar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDTO'
+      responses:
+        '200':
+          description: Success
+  
+  /login:
+    post:
+      tags:
+        - Autenticar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UsuarioDTO'
+      responses:
+        '200':
+          description: Success
+  /logout:
+    post:
+      tags:
+        - Autenticar
+      responses:
+        '200':
+          description: Success
+  
+  /projetos/{pagina}/{resultadoPorPagina}:
+    get:
+      tags:
+        - projetos
+      parameters:
+        - name: pagina
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: resultadoPorPagina
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: number
+            format: float
+            default: 5
+      responses:
+        '200':
+          description: Success
+  
+  /projeto/{id}:
+    get:
+      tags:
+        - projetos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /projeto/novo:
+    post:
+      tags:
+        - projetos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: Success
+          
+  /projeto/atualizar/{id}:
+    put:
+      tags:
+        - projetos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectUpdate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectUpdate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectUpdate'
+      responses:
+        '200':
+          description: Success
+  /projeto/delete/{id}:
+    delete:
+      tags:
+        - projetos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+
+components:
+  schemas:
+    Produto:
+      required:
+        - cor
+        - nome
+        - quantidade
+        - valorUnitario
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        nome:
+          minLength: 1
+          type: string
+        cor:
+          minLength: 1
+          type: string
+        quantidade:
+          type: integer
+          format: int32
+        valorUnitario:
+          type: integer
+          format: int32
+      additionalProperties: false
+    RefreshTokenDTO:
+      type: object
+      properties:
+        userName:
+          type: string
+          nullable: true
+        token:
+          type: string
+          nullable: true
+        refreshToken:
+          type: string
+          nullable: true
+        criadoEm:
+          type: string
+          format: date-time
+        expiraEm:
+          type: string
+          format: date-time
+      additionalProperties: false
+    UsuarioDTO:
+      required:
+        - email
+        - senha
+        - userName
+      type: object
+      properties:
+        userName:
+          minLength: 1
+          type: string
+        email:
+          minLength: 1
+          type: string
+        senha:
+          minLength: 1
+          type: string
+        descricao:
+          type: string
+          nullable: true
+      additionalProperties: false  
+    Project:
+      required:
+        - chapa
+        - dataEntrega
+        - dataInicio
+        - descricao
+        - name
+        - quantidadeDeChapa
+        - status
+        - valor
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        dataInicio:
+          type: string
+          format: date-time
+        dataEntrega:
+          type: string
+          format: date-time
+        chapa:
+          minLength: 1
+          type: string
+        descricao:
+          minLength: 1
+          type: string
+        quantidadeDeChapa:
+          type: integer
+          format: int32
+        valor:
+          type: number
+          format: double
+      additionalProperties: false
+    ProjectUpdate:
+      required:
+        - status
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        status:
+          minLength: 1
+          type: string
+        dataIncio:
+          type: string
+          format: date-time
+        dataEntrega:
+          type: string
+          format: date-time
+        descricao:
+          type: string
+          nullable: true
+        valor:
+          type: number
+          format: double
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: Please enter a valid token
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - Bearer: []
