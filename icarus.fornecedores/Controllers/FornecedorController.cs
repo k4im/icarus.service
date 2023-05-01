@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 using AutoMapper;
 using icarus.fornecedores.Models;
 using icarus.fornecedores.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace icarus.fornecedores.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class FornecedorController : ControllerBase
     {
         readonly IRepoFornecedor _repo;
+        readonly IMapper _mapper; 
         public FornecedorController(IRepoFornecedor repo)
         {
             _repo = repo;

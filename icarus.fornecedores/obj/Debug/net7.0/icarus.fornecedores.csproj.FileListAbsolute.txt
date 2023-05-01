@@ -65,3 +65,11 @@
 /home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
 /home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Mono.TextTemplating.dll
 /home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/System.CodeDom.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/k4imdesktop/icarus.service/icarus.fornecedores/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
