@@ -61,6 +61,7 @@ namespace icarus.projetos.Repository
                     Name = model.Name,
                     Status = model.Status,
                     Descricao = model.Descricao,
+                    Chapa = model.Chapa,
                     DataInicio = model.DataInicio,
                     DataEntrega = model.DataEntrega,
                     QuantidadeDeChapa = model.QuantidadeDeChapa,

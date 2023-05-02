@@ -17,8 +17,9 @@ namespace icarus.projetos.models
 
         public DateTime DataEntrega { get; set; } 
 
-        public string Descricao { get; set; } 
+        public string Chapa { get; set; } 
         
+        public string Descricao { get; set; } 
         public int QuantidadeDeChapa { get; set; }
     
         public decimal Valor { get; set; }

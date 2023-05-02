@@ -13,7 +13,7 @@ namespace icarus.projetos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _repo;
