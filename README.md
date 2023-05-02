@@ -3,7 +3,6 @@
 **Recursos necessários:**
 * Docker & docker compose
 - .Net 7.0 e Asp.Net 7.0
-* Dotnet Entity Frame Work
 
 ---
 ## Criando kong-net.
