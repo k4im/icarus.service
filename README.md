@@ -181,4 +181,17 @@ localhost:8000/refresh
   "valorUnitario": 0
 }
 ``` 
+----
 
+## Swagger & Rotas
+#### Para acessar o swagger digite a seguinte url no browser:
+```
+http://localhost:8085
+```
+![image](https://user-images.githubusercontent.com/108486349/235678436-33b01ab0-a161-42cb-8f0b-d94c90a39daa.png)
+
+### para acessar as configuraçãos do gateway no explore do swagger digite a seguinte url
+
+```
+http://localhost:8080/api.json
+```
