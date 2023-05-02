@@ -64,7 +64,7 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseMySql(builder.Configura
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddSingleton<IMessageBusService, MessageBusService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -76,7 +76,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors(opt =>
+{
+    opt.AllowAnyOrigin();
+    opt.AllowAnyHeader();
+    opt.AllowAnyMethod();
+});
 app.UseAuthentication();
 app.UseAuthorization();
 
