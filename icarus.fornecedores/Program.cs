@@ -61,6 +61,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     };
 });
 #endregion
+builder.Services.AddCors();
 // builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
 
@@ -70,7 +71,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(c => {
+    c.AllowAnyOrigin();
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+});  
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
