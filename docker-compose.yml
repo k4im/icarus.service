@@ -197,6 +197,18 @@ services:
           cpus: ".30"
           memory: 512M        
 
+
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "container-swagger"
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./api.json:/usr/share/nginx/html/api.json
+    environment:
+      SWAGGER_JSON: /api.json
+      # API_URL: ""
 volumes:
   db-services:
   db-data-kong-postgres:
