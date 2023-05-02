@@ -193,5 +193,5 @@ http://localhost:8085
 ### para acessar as configuraçãos do gateway no explore do swagger digite a seguinte url
 
 ```
-http://localhost:8080/api.json
+/api.json
 ```
