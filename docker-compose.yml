@@ -18,7 +18,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - db-services:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
     networks:
       - kong-net  
     deploy:
