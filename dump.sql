@@ -16,6 +16,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `estoque` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 -- -----------------------------------------------------
+-- Schema Fornecedores
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema Fornecedores
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `Fornecedores` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+-- -----------------------------------------------------
 -- Schema projetos
 -- -----------------------------------------------------
 
@@ -44,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `estoque`.`Produtos` (
   `ValorUnitario` INT NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -53,6 +60,35 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `estoque`.`__EFMigrationsHistory`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`__EFMigrationsHistory` (
+  `MigrationId` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `ProductVersion` VARCHAR(32) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`MigrationId`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+USE `Fornecedores` ;
+
+-- -----------------------------------------------------
+-- Table `Fornecedores`.`Fornecedores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Fornecedores`.`Fornecedores` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Nome` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Cnpj` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Endereco` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Cep` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Telefone` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `Fornecedores`.`__EFMigrationsHistory`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Fornecedores`.`__EFMigrationsHistory` (
   `MigrationId` VARCHAR(150) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
   `ProductVersion` VARCHAR(32) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
   PRIMARY KEY (`MigrationId`))
@@ -90,7 +126,6 @@ CREATE TABLE IF NOT EXISTS `projetos`.`Projetos` (
   `Chapa` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -264,7 +299,6 @@ CREATE TABLE IF NOT EXISTS `usuarios`.`RefreshTokens` (
   `ExpiraEm` DATETIME(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
