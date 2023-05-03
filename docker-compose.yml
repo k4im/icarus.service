@@ -198,8 +198,26 @@ services:
           cpus: ".30"
           memory: 512M        
 
+  # --------------------------
+  # Serviço de fornecedores
+  # --------------------------  
+  icarus-fornecedores:
+    image: icarus-fornecedores
+    container_name: container-fornecedores
+    build:
+      context: .
+      dockerfile: icarus.fornecedores/Dockerfile
+    networks:
+      - kong-net
+    deploy:
+      resources:
+        limits:
+          cpus: ".30"
+          memory: 512M        
 
-
+  # --------------------------
+  # container swagger
+  # --------------------------  
   swagger-ui:
     image: swaggerapi/swagger-ui
     container_name: "container-swagger"

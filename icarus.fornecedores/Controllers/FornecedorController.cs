@@ -38,7 +38,7 @@ namespace icarus.fornecedores.Controllers
             return StatusCode(500);
         }
     
-        [HttpGet("fornecedores/{id}")]
+        [HttpGet("fornecedor/{id}")]
         public async Task<IActionResult> BuscarPorId(int id)
         {
             try
