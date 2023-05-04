@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.jwtManager", "icarus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.fornecedores", "icarus.fornecedores\icarus.fornecedores.csproj", "{59830F81-3E40-475B-8931-6D2231A63B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.gateway", "icarus.gateway\icarus.gateway.csproj", "{2FC7CBAF-6902-4826-9C0E-7271FCB30EF8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

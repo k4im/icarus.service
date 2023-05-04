@@ -130,7 +130,9 @@ namespace icarus.jwtManager.Repository
             
             var refreshTokenDTO = new RefreshToken {
                 UserEmail = userName,
-                TokenRefresh = novoRefreshToken.TokenRefresh
+                TokenRefresh = novoRefreshToken.TokenRefresh,
+                CriadoEm = DateTime.Now,
+                ExpiraEm = DateTime.Now.AddHours(1)
             };
             await _refreshTokenService.DeletarRefreshToken(request.UserName);
             await _refreshTokenService.SalvarRefreshToken(refreshTokenDTO);
