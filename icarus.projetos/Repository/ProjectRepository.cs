@@ -41,7 +41,7 @@ namespace icarus.projetos.Repository
             if(item == null) return null;
             var response = new Project {
                 Id = item.Id,
-                Name = item.Name,
+                Nome = item.Nome,
                 Status = item.Status,
                 DataInicio = item.DataInicio,
                 DataEntrega = item.DataEntrega,
@@ -58,7 +58,7 @@ namespace icarus.projetos.Repository
                 var project = new Project 
                 {
                     Id = model.Id,
-                    Name = model.Name,
+                    Nome = model.Nome,
                     Status = model.Status,
                     Descricao = model.Descricao,
                     Chapa = model.Chapa,

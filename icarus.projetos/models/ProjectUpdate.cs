@@ -11,7 +11,7 @@ namespace icarus.projetos.models
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Nome { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("NVARCHAR(100)")]

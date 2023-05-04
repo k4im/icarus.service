@@ -12,7 +12,6 @@ namespace icarus.estoque.Models
         public string Nome { get; set; }
 
 
-        [Required(ErrorMessage ="Campo obrigatório")]
         [DataType("NVARCHAR(85)")]
         public string Cor { get; set; }
 

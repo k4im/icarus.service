@@ -47,7 +47,7 @@ USE `estoque` ;
 CREATE TABLE IF NOT EXISTS `estoque`.`Produtos` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Nome` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
-  `Cor` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Cor` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
   `Quantidade` INT NOT NULL,
   `ValorUnitario` INT NOT NULL,
   PRIMARY KEY (`Id`))
@@ -116,7 +116,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `projetos`.`Projetos` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Name` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `Nome` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
   `Status` LONGTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
   `DataInicio` DATETIME(6) NOT NULL,
   `DataEntrega` DATETIME(6) NOT NULL,

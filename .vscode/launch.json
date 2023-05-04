@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/icarus.estoque/bin/Debug/net7.0/icarus.estoque.dll",
+            "program": "${workspaceFolder}/icarus.jwtManager/bin/Debug/net7.0/icarus.jwtManager.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/icarus.estoque",
+            "cwd": "${workspaceFolder}/icarus.jwtManager",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -28,15 +28,6 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
-        },
-        {
-            "name": "Docker .NET Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/icarus.fornecedores/icarus.fornecedores.csproj"
-            }
         }
     ]
 }

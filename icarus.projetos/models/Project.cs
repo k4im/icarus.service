@@ -14,7 +14,7 @@ namespace icarus.projetos.models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("NVARCHAR(25)")]
-        public string Name { get; set; }
+        public string Nome { get; set; }
         
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("NVARCHAR(25)")]

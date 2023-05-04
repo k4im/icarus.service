@@ -45,7 +45,7 @@ namespace icarus.jwtManager.Repository
             */
             var IdentityUser = new AppUser
             {
-                UserName = request.UserName,
+                UserName = request.Email,
                 Email = request.Email,
                 EmailConfirmed = true
             };
@@ -56,7 +56,7 @@ namespace icarus.jwtManager.Repository
             if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
             
             var registroDTO = new RegistroDTO 
-            {   UserName = request.UserName,
+            {
                 Email = request.Email
             };
             return registroDTO;
