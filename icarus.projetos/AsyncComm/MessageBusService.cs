@@ -44,11 +44,12 @@ namespace icarus.projetos.AsyncComm
                 type: ExchangeType.Fanout, 
                 durable: true, 
                 autoDelete: false);
-                
+
                 // Linkando a fila ao exchange
                 _channel.QueueBind(queue: "projetos", 
                     exchange: "projeto-trigger", 
                     routingKey: "");
+
 
                 _connection.ConnectionShutdown += RabbitMQFailed;
 
@@ -81,10 +82,14 @@ namespace icarus.projetos.AsyncComm
             // transformando o json em array de bytes
             var body = Encoding.UTF8.GetBytes(evento);
             
+            // Persistindo a mensagem no broker
+            var props = _channel.CreateBasicProperties();
+            props.Persistent = true;
+
             // Realizando o envio para o exchange 
             _channel.BasicPublish(exchange: "projeto-trigger", 
                 routingKey: "", 
-                basicProperties: null,
+                basicProperties: props,
                 body: body);
             Console.WriteLine("--> Mensagem enviado");
 
