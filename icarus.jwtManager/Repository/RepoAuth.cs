@@ -43,31 +43,17 @@ namespace icarus.jwtManager.Repository
                 Realizando as confirmações de login assim como o já habilitando a conta
                 a realizar o login de imediato.
             */
-            var IdentityUser = new AppUser
+            var NovoUsuario = new AppUser
             {
-                UserName = request.Email,
+                UserName = await GerarChaveDeAcesso(),
                 Email = request.Email,
                 EmailConfirmed = true,
-                
             };
-            var usuario = await _userManager.FindByEmailAsync(request.Email);
-            if(usuario == null) 
-            {
-                var result = await _userManager.CreateAsync(IdentityUser, request.Senha);
 
-                if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
-                if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
-                
-                var registroDTO = new RegistroDTO 
-                {
-                    Email = request.Email,
-                    Mensagem = "Usuario criado com sucesso!"
-                };
-                return registroDTO;
-            }
-            return new RegistroDTO { Mensagem = "Este usuario já existe" };
-
+            var usuarioNovo = await CriarUsuario(NovoUsuario, request);
+            return usuarioNovo;
         }
+
         public async Task<LogarDTO> Logar(UsuarioDTO request)
         {
             /*
@@ -80,22 +66,10 @@ namespace icarus.jwtManager.Repository
                 caso o metodo falhe o mesmo irá retornar o dto informando a falha.
             */
             var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
-            var token = string.Empty;
 
             if (result.Succeeded) {
-                token = await CriarToken(request.Email);
-                var refreshToken = _refreshTokenService.GerarRefreshToken(request.Email);
-                await _refreshTokenService.SalvarRefreshToken(refreshToken);
-
-                var LoginDTO = new LogarDTO{
-                    SucessoAoLogar = true,
-                    Email = request.Email,
-                    Token = token,
-                    RefreshToken = refreshToken.TokenRefresh,
-                    ExpiraEm = DateTime.Now.AddHours(1),
-                    Mensagem = "Login realizado com sucesso!"
-                };
-                return LoginDTO;
+                var logado = await LogarUsuario(request);
+                return logado;
             }
 
             var Falha = new LogarDTO{
@@ -125,32 +99,27 @@ namespace icarus.jwtManager.Repository
                 um novo refresh token e enviado na resposta
             */
             var principal = _refreshTokenService.PegarPincipalDoTokenAntigo(request.Token);
-            var userName = principal.Identity.Name;
             var refreshTokenSalvo = await _refreshTokenService.BuscarRefreshToken(request.UserName, request.RefreshToken);
             
             if(refreshTokenSalvo.TokenRefresh != request.RefreshToken) throw new SecurityTokenException("Token invalido");
             if (refreshTokenSalvo.ExpiraEm <= DateTime.Now) throw new SecurityTokenException("Token Expirado");
             
             var novoToken = await CriarToken(request.UserName);
-            var novoRefreshToken = _refreshTokenService.GerarRefreshToken(userName);
-            
-            var refreshTokenDTO = new RefreshToken {
-                UserEmail = request.UserName,
-                TokenRefresh = novoRefreshToken.TokenRefresh,
-                CriadoEm = DateTime.UtcNow,
-                ExpiraEm = DateTime.UtcNow.AddHours(1)
-            };
+            var novoRefreshToken = CriarNovoRefreshToken(request);
+
             await _refreshTokenService.DeletarRefreshToken(request.UserName);
-            await _refreshTokenService.SalvarRefreshToken(refreshTokenDTO);
+            await _refreshTokenService.SalvarRefreshToken(novoRefreshToken);
 
             return new LogarDTO {
                 SucessoAoLogar = true,
-                Email = userName,
+                Email = request.UserName,
                 Token = novoToken,
                 RefreshToken = novoRefreshToken.TokenRefresh
             };
 
         }
+
+
 
         private async Task<string> CriarToken(string email)
         {
@@ -159,7 +128,7 @@ namespace icarus.jwtManager.Repository
                 access Token
             */
 
-            var usuario = await _userManager.FindByEmailAsync(email);
+            var usuario = await _userManager.FindByNameAsync(email);
             
             var claims = GerarClaims(usuario);
 
@@ -181,8 +150,6 @@ namespace icarus.jwtManager.Repository
             return jwt;
         }
 
-       
-
         private List<Claim> GerarClaims(AppUser user)
         {
             List<Claim> claims = new List<Claim>
@@ -195,5 +162,75 @@ namespace icarus.jwtManager.Repository
             return claims;
         }
 
+
+
+        /*
+            Metodos privados para abstração de Logar e registrar um novo usuario;
+        */
+    
+        private async Task<bool> ChecarUsuario(string ChaveDeAcesso)
+        {
+            var usuario  = await _userManager.FindByEmailAsync(ChaveDeAcesso);
+            if(usuario != null) return true;
+            return false;        
+        }
+
+        private async Task<RegistroDTO> CriarUsuario(AppUser NovoUsuario, UsuarioDTO request)
+        {
+            var result = await _userManager.CreateAsync(NovoUsuario, request.Senha);
+            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(NovoUsuario, false);
+            if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
+            
+            var registroDTO = new RegistroDTO 
+            {
+                ChaveDeAcesso = NovoUsuario.UserName,
+                Mensagem = "Usuario criado com sucesso!"
+            };
+            return registroDTO;
+        }
+
+        private async Task<LogarDTO> LogarUsuario(UsuarioDTO request)
+        {
+            var token = await CriarToken(request.Email);
+            var refreshToken = _refreshTokenService.GerarRefreshToken(request.Email);
+            await _refreshTokenService.SalvarRefreshToken(refreshToken);
+            var LoginDTO = new LogarDTO{
+                SucessoAoLogar = true,
+                Email = request.Email,
+                Token = token,
+                RefreshToken = refreshToken.TokenRefresh,
+                ExpiraEm = DateTime.Now.AddHours(1),
+                Mensagem = "Login realizado com sucesso!"
+            };
+            return LoginDTO;
+        } 
+    
+        private RefreshToken CriarNovoRefreshToken(RefreshTokenDTO request)
+        {
+            var novoRefreshToken = _refreshTokenService.GerarRefreshToken(request.UserName);
+            
+            var refreshTokenDTO = new RefreshToken {
+                UserEmail = request.UserName,
+                TokenRefresh = novoRefreshToken.TokenRefresh,
+                CriadoEm = DateTime.UtcNow,
+                ExpiraEm = DateTime.UtcNow.AddHours(1)
+            };
+            return refreshTokenDTO;
+        }
+    
+        private async Task<string> GerarChaveDeAcesso()
+        {
+            var random = new Random(); 
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var chars = Enumerable.Range(0, 5).Select(x => pool[random.Next(0, pool.Length)]);
+            var chaveRandom = new string(chars.ToArray());
+
+            if(await ChecarUsuario(chaveRandom)) 
+            {
+                var chave = await GerarChaveDeAcesso();
+                return chave;
+            }     
+            return chaveRandom;
+        }
     }
 }

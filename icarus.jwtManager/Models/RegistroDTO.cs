@@ -7,7 +7,7 @@ namespace icarus.jwtManager.Models
 {
     public class RegistroDTO
     {
-        public string Email { get; set; }
+        public string ChaveDeAcesso { get; set; }
         public string Mensagem { get; set; }
     }
 }
