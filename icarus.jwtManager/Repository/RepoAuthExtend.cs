@@ -61,8 +61,8 @@ namespace icarus.jwtManager.Repository
             {
                 UserEmail = usuario,
                 TokenRefresh = tokenConverted,
-                CriadoEm = DateTime.Now,
-                ExpiraEm = DateTime.Now.AddHours(1)
+                CriadoEm = DateTime.UtcNow,
+                ExpiraEm = DateTime.UtcNow.AddHours(1)
             };
             return refreshToken;
         }
