@@ -47,19 +47,25 @@ namespace icarus.jwtManager.Repository
             {
                 UserName = request.Email,
                 Email = request.Email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
+                
             };
-
-            var result = await _userManager.CreateAsync(IdentityUser, request.Senha);
-
-            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
-            if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
-            
-            var registroDTO = new RegistroDTO 
+            var usuario = await _userManager.FindByEmailAsync(request.Email);
+            if(usuario == null) 
             {
-                Email = request.Email
-            };
-            return registroDTO;
+                var result = await _userManager.CreateAsync(IdentityUser, request.Senha);
+
+                if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(IdentityUser, false);
+                if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
+                
+                var registroDTO = new RegistroDTO 
+                {
+                    Email = request.Email,
+                    Mensagem = "Usuario criado com sucesso!"
+                };
+                return registroDTO;
+            }
+            return new RegistroDTO { Mensagem = "Este usuario já existe" };
 
         }
         public async Task<LogarDTO> Logar(UsuarioDTO request)
@@ -85,15 +91,15 @@ namespace icarus.jwtManager.Repository
                     SucessoAoLogar = true,
                     Email = request.Email,
                     Token = token,
-                    RefreshToken = refreshToken.TokenRefresh
+                    RefreshToken = refreshToken.TokenRefresh,
+                    ExpiraEm = DateTime.Now.AddHours(1),
+                    Mensagem = "Login realizado com sucesso!"
                 };
                 return LoginDTO;
             }
 
             var Falha = new LogarDTO{
-                SucessoAoLogar = false,
-                Email = request.Email,
-                Token = "login falhou"
+                Mensagem = "Não foi possivel realizar o login"
             };
             return Falha;
 
