@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.projetos", "icarus.projetos\icarus.projetos.csproj", "{83D800FA-E4F4-4D08-BC5B-186A6534B120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.application", "icarus.application\icarus.application.csproj", "{2408E439-E88B-4A39-BFB6-F2AA55FAC2A2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.estoque", "icarus.estoque\icarus.estoque.csproj", "{4D5E785C-252C-4EA5-9372-103D31D73DB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icarus.jwtManager", "icarus.jwtManager\icarus.jwtManager.csproj", "{5D675E29-4324-4BEF-BDE9-B00981FA43A0}"
