@@ -6,18 +6,13 @@ using System.Threading.Tasks;
 
 namespace icarus.jwtManager.Models
 {
-    public class UsuarioDTO
+    public class LoginDTO
     {
-
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(35)")]
-        public string Email { get; set; }
-
-        [DataType("NVARCHAR(35)")]
-        public string Role { get; set; }
+        public string ChaveDeAcesso { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Senha { get; set; }
-
     }
 }

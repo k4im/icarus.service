@@ -19,14 +19,15 @@ namespace icarus.jwtManager.Repository
         readonly IConfiguration _config;
         private List<(string, string)> _refreshToken = new ();
         readonly IRepoAuthExtend _refreshTokenService;
-        
+        readonly RoleManager<IdentityRole> _roleManager;
         /*Definindo o construtor da calasse*/
         public RepoAuth(IMapper mapper, 
         DataContext db, 
         UserManager<AppUser> userManager, 
         SignInManager<AppUser> signInManager, 
         IConfiguration config,
-        IRepoAuthExtend refreshTokenService)
+        IRepoAuthExtend refreshTokenService,
+        RoleManager<IdentityRole> roleManager)
         {
             _mapper = mapper;
             _db = db;
@@ -34,6 +35,7 @@ namespace icarus.jwtManager.Repository
             _signInManager = signInManager;
             _config = config;
             _refreshTokenService = refreshTokenService;
+            _roleManager = roleManager;
         }
 
         public async Task<RegistroDTO> Registrar(UsuarioDTO request)
@@ -48,6 +50,7 @@ namespace icarus.jwtManager.Repository
                 UserName = await GerarChaveDeAcesso(),
                 Email = request.Email,
                 EmailConfirmed = true,
+                Role = request.Role
             };
 
             var usuarioNovo = await CriarUsuario(NovoUsuario, request);
@@ -156,6 +159,7 @@ namespace icarus.jwtManager.Repository
             {
                 new Claim("name", user.UserName),
                 new Claim("email", user.Email),
+                new Claim("Role", user.Role),
                 new Claim("key", _config["Jwt:Key"])
             };
 
@@ -178,7 +182,11 @@ namespace icarus.jwtManager.Repository
         private async Task<RegistroDTO> CriarUsuario(AppUser NovoUsuario, UsuarioDTO request)
         {
             var result = await _userManager.CreateAsync(NovoUsuario, request.Senha);
-            if(result.Succeeded) await _userManager.SetLockoutEnabledAsync(NovoUsuario, false);
+            if(result.Succeeded){
+                await CriarRoles();
+                await _userManager.SetLockoutEnabledAsync(NovoUsuario, false);
+                await _userManager.AddToRoleAsync(NovoUsuario, request.Role);     
+            }
             if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
             
             var registroDTO = new RegistroDTO 
@@ -231,6 +239,17 @@ namespace icarus.jwtManager.Repository
                 return chave;
             }     
             return chaveRandom;
+        }
+    
+    
+    
+        private async Task CriarRoles()
+        {
+            if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                await _roleManager.CreateAsync(new IdentityRole("Supervisor"));
+            }
         }
     }
 }
