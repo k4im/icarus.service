@@ -93,7 +93,7 @@ namespace icarus.jwtManager.Repository
             2) Metodo superior para logar um usuario.
             ==============
         */
-        public async Task<LogarDTO> Logar(LoginDTO request)
+        public async Task<LogadoDTO> Logar(LoginDTO request)
         {
             var result = await _signInManager.PasswordSignInAsync(request.ChaveDeAcesso, request.Senha, false, true);
 
@@ -103,7 +103,7 @@ namespace icarus.jwtManager.Repository
                 return logado;
             }
 
-            var Falha = new LogarDTO{
+            var Falha = new LogadoDTO{
                 Mensagem = "Não foi possivel realizar o login"
             };
             return Falha;
@@ -128,7 +128,7 @@ namespace icarus.jwtManager.Repository
             4) Metodo superior para gerar um refreshToken.
             ==============
         */
-        public async Task<LogarDTO> RefreshToken(RefreshTokenDTO request)
+        public async Task<LogadoDTO> RefreshToken(RefreshTokenDTO request)
         {
 
             /*
@@ -151,7 +151,7 @@ namespace icarus.jwtManager.Repository
             await _refreshTokenService.DeletarRefreshToken(request.ChaveDeAcesso);
             await _refreshTokenService.SalvarRefreshToken(novoRefreshToken);
 
-            return new LogarDTO {
+            return new LogadoDTO {
                 SucessoAoLogar = true,
                 ChaveDeAcesso = request.ChaveDeAcesso,
                 Token = novoToken,
@@ -250,12 +250,12 @@ namespace icarus.jwtManager.Repository
             8) Metodo de abstração para logar um usuario existente.
             ==============
         */
-        private async Task<LogarDTO> LogarUsuario(LoginDTO request)
+        private async Task<LogadoDTO> LogarUsuario(LoginDTO request)
         {
             var token = await CriarToken(request.ChaveDeAcesso);
             var refreshToken = _refreshTokenService.GerarRefreshToken(request.ChaveDeAcesso);
             await _refreshTokenService.SalvarRefreshToken(refreshToken);
-            var LoginDTO = new LogarDTO{
+            var LoginDTO = new LogadoDTO{
                 SucessoAoLogar = true,
                 ChaveDeAcesso = request.ChaveDeAcesso,
                 Token = token,

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace icarus.jwtManager.Models
 {
-    public class LogarDTO
+    public class LogadoDTO
     {
         public bool SucessoAoLogar { get; set; } = false;
         public string ChaveDeAcesso { get; set; }
