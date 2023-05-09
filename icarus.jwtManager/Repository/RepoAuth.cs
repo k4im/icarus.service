@@ -93,9 +93,9 @@ namespace icarus.jwtManager.Repository
             2) Metodo superior para logar um usuario.
             ==============
         */
-        public async Task<LogarDTO> Logar(UsuarioDTO request)
+        public async Task<LogarDTO> Logar(LoginDTO request)
         {
-            var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
+            var result = await _signInManager.PasswordSignInAsync(request.ChaveDeAcesso, request.Senha, false, true);
 
             if (result.Succeeded) 
             {
@@ -250,7 +250,7 @@ namespace icarus.jwtManager.Repository
             8) Metodo de abstração para logar um usuario existente.
             ==============
         */
-        private async Task<LogarDTO> LogarUsuario(UsuarioDTO request)
+        private async Task<LogarDTO> LogarUsuario(LoginDTO request)
         {
             var token = await CriarToken(request.ChaveDeAcesso);
             var refreshToken = _refreshTokenService.GerarRefreshToken(request.ChaveDeAcesso);

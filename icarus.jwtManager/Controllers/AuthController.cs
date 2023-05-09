@@ -31,7 +31,7 @@ namespace icarus.jwtManager.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UsuarioDTO request)
+        public async Task<IActionResult> Login(LoginDTO request)
         {
             try
             {
