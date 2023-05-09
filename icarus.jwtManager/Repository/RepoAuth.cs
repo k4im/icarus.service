@@ -1,3 +1,33 @@
+/*
+    1) Metodo superior que depende do metodo de abstração para realizar um registro novo
+    para assim criar um novo usuario no sistema de auth.
+    
+    2) Metodo superiro que realiza o login no sistema, depende do metodo de
+    abstração chamado logar para realizar a operação no sistema.
+    
+    3) Metodo para realizar LogOut.
+    
+    4)Metodo que ira realizar a requisição para um novo 
+    refresh token e acessToken para o usuario.
+    
+    5) Metodo de abstração de criação de um AccessToken e também metodo de gerar novas claims.
+
+    6) Metodo de checagem de usuario existente, verifica se o usuario já existe no banco
+    baseando-se em sua chave de acesso.
+    
+    7) Metodo de abstração de criação de um usuario, irá realizar as operações lógicas
+    para criar um novo usuario no banco de dados.
+    
+    8) Metodo de abstração de login de um usuario, irá realizar as operações lógicas
+    para criar login de  um usuario.
+    
+    9) Metodo de abstração para realizar todas as operações lógicas referentes a gerar
+    um novo RefreshToken.
+
+    10) Metodo de abstração para gerar um nova chave de acesso.
+    
+    11) Metodo de abstração para criar os roles.
+*/
 using icarus.jwtManager.Models;
 using AutoMapper;
 using icarus.jwtManager.Data;
@@ -11,7 +41,6 @@ namespace icarus.jwtManager.Repository
 {
     public class RepoAuth : IRepoAuth 
     {
-        /*Propriedades injetadas na classe*/
         readonly IMapper _mapper;
         readonly DataContext _db;
         readonly UserManager<AppUser> _userManager;
@@ -20,7 +49,7 @@ namespace icarus.jwtManager.Repository
         private List<(string, string)> _refreshToken = new ();
         readonly IRepoAuthExtend _refreshTokenService;
         readonly RoleManager<IdentityRole> _roleManager;
-        /*Definindo o construtor da calasse*/
+        
         public RepoAuth(IMapper mapper, 
         DataContext db, 
         UserManager<AppUser> userManager, 
@@ -38,13 +67,15 @@ namespace icarus.jwtManager.Repository
             _roleManager = roleManager;
         }
 
+        
+        
+        /*
+            ==============
+            1) Metodo superior para registrar um novo usuario.
+            ==============
+        */
         public async Task<RegistroDTO> Registrar(UsuarioDTO request)
         {
-            /*
-                Este metodo irá registar o usuario ao banco de dados
-                Realizando as confirmações de login assim como o já habilitando a conta
-                a realizar o login de imediato.
-            */
             var NovoUsuario = new AppUser
             {
                 UserName = await GerarChaveDeAcesso(),
@@ -57,20 +88,17 @@ namespace icarus.jwtManager.Repository
             return usuarioNovo;
         }
 
+        /*
+            ==============
+            2) Metodo superior para logar um usuario.
+            ==============
+        */
         public async Task<LogarDTO> Logar(UsuarioDTO request)
         {
-            /*
-                Este metodo irá receber o request do cliente
-                tentará relaizar o login com as credencias fornecidas
-                caso seja possivel realizar o login
-                o metodo irá gerar um AcessToken e um refresh token
-                repassando ambos ao cliente que requeriu,
-                
-                caso o metodo falhe o mesmo irá retornar o dto informando a falha.
-            */
             var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
 
-            if (result.Succeeded) {
+            if (result.Succeeded) 
+            {
                 var logado = await LogarUsuario(request);
                 return logado;
             }
@@ -83,13 +111,23 @@ namespace icarus.jwtManager.Repository
 
         }
 
-
+        /*
+            ==============
+            3) Metodo de logout.
+            ==============
+        */
         public async Task<string> LogOut()
         {
             await _signInManager.SignOutAsync();
             return "Usuario deslogado!";
         }
 
+
+        /*
+            ==============
+            4) Metodo superior para gerar um refreshToken.
+            ==============
+        */
         public async Task<LogarDTO> RefreshToken(RefreshTokenDTO request)
         {
 
@@ -102,36 +140,36 @@ namespace icarus.jwtManager.Repository
                 um novo refresh token e enviado na resposta
             */
             var principal = _refreshTokenService.PegarPincipalDoTokenAntigo(request.Token);
-            var refreshTokenSalvo = await _refreshTokenService.BuscarRefreshToken(request.UserName, request.RefreshToken);
+            var refreshTokenSalvo = await _refreshTokenService.BuscarRefreshToken(request.ChaveDeAcesso, request.RefreshToken);
             
             if(refreshTokenSalvo.TokenRefresh != request.RefreshToken) throw new SecurityTokenException("Token invalido");
             if (refreshTokenSalvo.ExpiraEm <= DateTime.Now) throw new SecurityTokenException("Token Expirado");
             
-            var novoToken = await CriarToken(request.UserName);
+            var novoToken = await CriarToken(request.ChaveDeAcesso);
             var novoRefreshToken = CriarNovoRefreshToken(request);
 
-            await _refreshTokenService.DeletarRefreshToken(request.UserName);
+            await _refreshTokenService.DeletarRefreshToken(request.ChaveDeAcesso);
             await _refreshTokenService.SalvarRefreshToken(novoRefreshToken);
 
             return new LogarDTO {
                 SucessoAoLogar = true,
-                Email = request.UserName,
+                ChaveDeAcesso = request.ChaveDeAcesso,
                 Token = novoToken,
                 RefreshToken = novoRefreshToken.TokenRefresh
             };
 
         }
 
-
-
-        private async Task<string> CriarToken(string email)
+        
+        /*
+            ==============
+            5) Metodo para criação de um AccessToken
+            ==============
+        */
+        private async Task<string> CriarToken(string ChaveDeAcesso)
         {
-            /*
-                Este metodo irá gerar um novo
-                access Token
-            */
 
-            var usuario = await _userManager.FindByNameAsync(email);
+            var usuario = await _userManager.FindByNameAsync(ChaveDeAcesso);
             
             var claims = GerarClaims(usuario);
 
@@ -169,7 +207,9 @@ namespace icarus.jwtManager.Repository
 
 
         /*
-            Metodos privados para abstração de Logar e registrar um novo usuario;
+            ==============
+            6) Metodo de abstração para checar se um usuario existe.
+            ==============
         */
     
         private async Task<bool> ChecarUsuario(string ChaveDeAcesso)
@@ -179,10 +219,17 @@ namespace icarus.jwtManager.Repository
             return false;        
         }
 
+
+        /*
+            ==============
+            7) Metodo de abstração para criar um usuario no banco de dados.
+            ==============
+        */
         private async Task<RegistroDTO> CriarUsuario(AppUser NovoUsuario, UsuarioDTO request)
         {
             var result = await _userManager.CreateAsync(NovoUsuario, request.Senha);
-            if(result.Succeeded){
+            if(result.Succeeded)
+            {
                 await CriarRoles();
                 await _userManager.SetLockoutEnabledAsync(NovoUsuario, false);
                 await _userManager.AddToRoleAsync(NovoUsuario, request.Role);     
@@ -197,14 +244,20 @@ namespace icarus.jwtManager.Repository
             return registroDTO;
         }
 
+    
+        /*
+            ==============
+            8) Metodo de abstração para logar um usuario existente.
+            ==============
+        */
         private async Task<LogarDTO> LogarUsuario(UsuarioDTO request)
         {
-            var token = await CriarToken(request.Email);
-            var refreshToken = _refreshTokenService.GerarRefreshToken(request.Email);
+            var token = await CriarToken(request.ChaveDeAcesso);
+            var refreshToken = _refreshTokenService.GerarRefreshToken(request.ChaveDeAcesso);
             await _refreshTokenService.SalvarRefreshToken(refreshToken);
             var LoginDTO = new LogarDTO{
                 SucessoAoLogar = true,
-                Email = request.Email,
+                ChaveDeAcesso = request.ChaveDeAcesso,
                 Token = token,
                 RefreshToken = refreshToken.TokenRefresh,
                 ExpiraEm = DateTime.Now.AddHours(1),
@@ -213,12 +266,18 @@ namespace icarus.jwtManager.Repository
             return LoginDTO;
         } 
     
+
+        /*
+            ==============
+            9) Metodo de abstração para gerar um novo RefreshToken.
+            ==============
+        */
         private RefreshToken CriarNovoRefreshToken(RefreshTokenDTO request)
         {
-            var novoRefreshToken = _refreshTokenService.GerarRefreshToken(request.UserName);
+            var novoRefreshToken = _refreshTokenService.GerarRefreshToken(request.ChaveDeAcesso);
             
             var refreshTokenDTO = new RefreshToken {
-                UserEmail = request.UserName,
+                ChaveDeAcesso = request.ChaveDeAcesso,
                 TokenRefresh = novoRefreshToken.TokenRefresh,
                 CriadoEm = DateTime.UtcNow,
                 ExpiraEm = DateTime.UtcNow.AddHours(1)
@@ -226,6 +285,12 @@ namespace icarus.jwtManager.Repository
             return refreshTokenDTO;
         }
     
+       
+        /*
+            ==============
+            10) Metodo de abstração para gerar uma chave de acesso.
+            ==============
+        */
         private async Task<string> GerarChaveDeAcesso()
         {
             var random = new Random(); 
@@ -241,8 +306,15 @@ namespace icarus.jwtManager.Repository
             return chaveRandom;
         }
     
-    
-    
+        
+        /*
+            ==============
+            11) Metodo de abstração para criar os papeis de usuaros.
+                Papeis pré existentes são: Admin e Supervisor.
+                Admin será responsavel por tudo e poderá realizar tudo no sistema 
+                enquanto o Supervisor tera apenas permissões de leitura.
+            ==============
+        */
         private async Task CriarRoles()
         {
             if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())

@@ -22,7 +22,7 @@ namespace icarus.jwtManager.Repository
 
         public async Task DeletarRefreshToken(string username)
         {
-            var refreshToken = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username);
+            var refreshToken = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.ChaveDeAcesso == username);
             if(refreshToken == null) Results.NotFound();
             _db.RefreshTokens.Remove(refreshToken);
             await _db.SaveChangesAsync();
@@ -33,7 +33,7 @@ namespace icarus.jwtManager.Repository
         {
            
             var dto = new RefreshToken {
-                UserEmail = request.UserEmail,
+                ChaveDeAcesso = request.ChaveDeAcesso,
                 TokenRefresh = request.TokenRefresh,
                 CriadoEm = request.CriadoEm,
                 ExpiraEm = request.ExpiraEm
@@ -59,7 +59,7 @@ namespace icarus.jwtManager.Repository
             
             var refreshToken = new RefreshToken
             {
-                UserEmail = usuario,
+                ChaveDeAcesso = usuario,
                 TokenRefresh = tokenConverted,
                 CriadoEm = DateTime.UtcNow,
                 ExpiraEm = DateTime.UtcNow.AddHours(1)
@@ -71,7 +71,7 @@ namespace icarus.jwtManager.Repository
 
         public async Task<RefreshToken> BuscarRefreshToken(string username, string refreshToken)
         {
-            var token = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.UserEmail == username && x.TokenRefresh == refreshToken);
+            var token = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.ChaveDeAcesso == username && x.TokenRefresh == refreshToken);
             if(token == null) Results.NotFound("Não existe um refresh token para esse usuario");
             return token;
         }

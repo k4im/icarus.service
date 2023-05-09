@@ -11,7 +11,7 @@ namespace icarus.jwtManager.Models
 
         [Key]
         public int Id { get; set; }
-        public string UserEmail { get; set; }
+        public string ChaveDeAcesso { get; set; }
         public string TokenRefresh { get; set; }
         public DateTime CriadoEm { get; set; }
         public DateTime ExpiraEm { get; set; }

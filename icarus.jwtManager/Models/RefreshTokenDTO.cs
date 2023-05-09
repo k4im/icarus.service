@@ -8,7 +8,7 @@ namespace icarus.jwtManager.Models
     public class RefreshTokenDTO
     {
 
-        public string UserName { get; set; }
+        public string ChaveDeAcesso { get; set; }
         public string Token { get; set; }        
         public string RefreshToken { get; set; } 
         public DateTime CriadoEm { get; set; }

@@ -11,6 +11,10 @@ namespace icarus.jwtManager.Models
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(35)")]
+        public string ChaveDeAcesso { get; set; }
+
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [DataType("NVARCHAR(35)")]
         public string Email { get; set; }
 
         [DataType("NVARCHAR(35)")]
