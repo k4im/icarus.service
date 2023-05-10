@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using icarus.projetos.models;
+using icarus.projetos.models.ModelsShared;
 
 namespace icarus.projetos.AsyncComm
 {
     public interface IMessageBusService
     {
-        void publishNewProjeto(ProjectDTO evento);
+        void publishNewProjeto(PublishProject evento);
     }
 }

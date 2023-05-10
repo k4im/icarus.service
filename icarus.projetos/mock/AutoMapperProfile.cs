@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using icarus.projetos.models;
+using icarus.projetos.models.ModelsShared;
 
 namespace icarus.projetos.mock
 {
@@ -12,6 +9,7 @@ namespace icarus.projetos.mock
         public AutoMapperProfile()
         {
             CreateMap<Project, ProjectDTO>();
+            CreateMap<Project, PublishProject>();
         }
     }
 }

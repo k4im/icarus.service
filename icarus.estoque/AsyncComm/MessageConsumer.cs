@@ -80,7 +80,7 @@ namespace icarus.estoque.AsyncComm
                 {
                     // transformando o body em um array
                     byte[] body = ea.Body.ToArray();
-
+                    
                     // transformando o body em string
                     var message = Encoding.UTF8.GetString(body);
                     var projeto = JsonConvert.DeserializeObject<ProjectDTO>(message);

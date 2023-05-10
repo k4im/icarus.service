@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using icarus.projetos.models;
+using icarus.projetos.models.ModelsShared;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 
@@ -62,7 +63,7 @@ namespace icarus.projetos.AsyncComm
         }
 
         // Metodo de publicação de um novo projeto contendo todos os dados do projeto
-        public void publishNewProjeto(ProjectDTO evento)
+        public void publishNewProjeto(PublishProject evento)
         {
             var projeto = evento;
             var message = JsonConvert.SerializeObject(projeto);

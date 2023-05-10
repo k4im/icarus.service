@@ -33,8 +33,6 @@ namespace icarus.estoque.Repository
             var ResultadoPorPagina = resultadoPorPagina;
             var projetos = await _db.Produtos.ToListAsync();
             
-            await ValidarProdutos(projetos);
-            
             var TotalDePaginas = Math.Ceiling(projetos.Count() / ResultadoPorPagina);
             var projetosPaginados = projetos.Skip((pagina - 1) * (int)ResultadoPorPagina).Take((int)ResultadoPorPagina).ToList();
             
@@ -80,17 +78,18 @@ namespace icarus.estoque.Repository
                 _db.Produtos.Update(produto);
                 await _db.SaveChangesAsync();
             }
-
         }
 
     
     
-        private async Task ValidarProdutos(List<Produto> produtos)
+        public async Task ValidarProdutos()
         {
+            var produtos = await _db.Produtos.ToListAsync();
             foreach (var produto in produtos)
             {
                 if(produto.Quantidade <= 0) await DeletarProduto(produto.Id);
             }
         }
+
     }
 }

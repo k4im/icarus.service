@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using icarus.projetos.AsyncComm;
 using icarus.projetos.models;
+using icarus.projetos.models.ModelsShared;
 using icarus.projetos.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,7 +53,7 @@ namespace icarus.projetos.Controllers
                 await _repo.CriarProjeto(model);
                 try 
                 {
-                    var projeto = _mapper.Map<Project, ProjectDTO>(model);
+                    var projeto = _mapper.Map<Project, PublishProject>(model);
                     _msgBus.publishNewProjeto(projeto);
                     Console.WriteLine("--> Mensagem enviado para o bus");
                 }
