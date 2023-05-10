@@ -81,7 +81,7 @@ namespace icarus.jwtManager.Repository
                 UserName = await GerarChaveDeAcesso(),
                 Email = request.Email,
                 EmailConfirmed = true,
-                Role = request.Role
+                Role = request.Role.ToUpper()
             };
 
             var usuarioNovo = await CriarUsuario(NovoUsuario, request);
@@ -319,8 +319,9 @@ namespace icarus.jwtManager.Repository
         {
             if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
             {
-                await _roleManager.CreateAsync(new IdentityRole("Admin"));
-                await _roleManager.CreateAsync(new IdentityRole("Supervisor"));
+                await _roleManager.CreateAsync(new IdentityRole("ADMIN"));
+                await _roleManager.CreateAsync(new IdentityRole("ATENDENTE"));
+                await _roleManager.CreateAsync(new IdentityRole("FINANCEIRO"));
             }
         }
     }
