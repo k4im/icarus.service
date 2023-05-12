@@ -46,9 +46,8 @@ namespace icarus.estoque.Repository
 
         public async Task DeletarProduto(int? id)
         {
-            var produto = await BuscarProdutoId(id);
-            _db.Produtos.Remove(produto);
-            await _db.SaveChangesAsync();
+            await _db.Produtos.Where(produto => produto.Id == id)
+                .ExecuteDeleteAsync();
         }
 
         public async Task NovoProduto(Produto modelo)
