@@ -76,11 +76,10 @@ namespace icarus.estoque.Controllers
                 return Ok("Produto deletado com sucesso");
             
             }
-            catch(Exception e) 
+            catch(Exception) 
             {
-                Console.WriteLine(e);
+                return StatusCode(409, "Não foi possivel deletar este dado, pois o mesmo foi deletado por um outro usuario!");
             }
-            return StatusCode(500);
         }
 
 
@@ -94,11 +93,11 @@ namespace icarus.estoque.Controllers
                 return Ok("Produto atualizado com sucesso");
             
             }
-            catch(Exception e) 
+            catch(Exception) 
             {
-                Console.WriteLine(e);
+                return StatusCode(409, "Não foi possivel atualizar este dado, pois o mesmo foi atualizado por um outro usuario!");
             }
-            return StatusCode(500);
+            
         }
     }
 }

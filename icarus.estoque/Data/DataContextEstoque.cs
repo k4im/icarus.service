@@ -14,6 +14,10 @@ namespace icarus.estoque.Data
             modelBuilder.Entity<Produto>()
                 .Property(produto => produto.Quantidade)
                 .IsConcurrencyToken();
+                
+            modelBuilder.Entity<Produto>()
+                .Property(produto => produto.RowVersion)
+                .IsConcurrencyToken();
         }
     
         public DbSet<Produto> Produtos { get; set; }

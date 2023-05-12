@@ -23,5 +23,8 @@ namespace icarus.estoque.Models
 
         [Required(ErrorMessage ="Campo obrigatório")]
         public int ValorUnitario { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

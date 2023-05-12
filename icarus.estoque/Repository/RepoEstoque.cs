@@ -16,16 +16,16 @@ namespace icarus.estoque.Repository
 
         public async Task AtualizarProduto(int? id, Produto modelo)
         {
+            var produto = await BuscarProdutoId(id);
+            produto.Quantidade = modelo.Quantidade;
             try
             {
-                await _db.Produtos.Where(produto => produto.Id == id)
-                    .ExecuteUpdateAsync(updates =>
-                    updates.SetProperty(produto => produto.Quantidade, modelo.Quantidade));
+                await _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
 
-                Console.WriteLine("Não foi possivel realizar a operação, por favor tente mais tarde!");
+                throw new Exception("Não foi possivel realizar a operação, por favor tente mais tarde!");
             }
         }
 
@@ -54,8 +54,17 @@ namespace icarus.estoque.Repository
 
         public async Task DeletarProduto(int? id)
         {
-            await _db.Produtos.Where(produto => produto.Id == id)
-                .ExecuteDeleteAsync();
+            var produto = await BuscarProdutoId(id);
+            try
+            {
+                _db.Remove(produto);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                throw new Exception("Não foi possivel realizar a operação, por favor tente mais tarde!");
+            }
         }
 
         public async Task NovoProduto(Produto modelo)
