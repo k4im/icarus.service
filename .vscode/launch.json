@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/icarus.jwtManager/bin/Debug/net7.0/icarus.jwtManager.dll",
+            "program": "${workspaceFolder}/icarus.estoque/bin/Debug/net7.0/icarus.estoque.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/icarus.jwtManager",
+            "cwd": "${workspaceFolder}/icarus.estoque",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",

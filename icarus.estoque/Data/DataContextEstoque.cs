@@ -7,6 +7,14 @@ namespace icarus.estoque.Data
     {
         public DataContextEstoque(DbContextOptions options) : base(options)
         {}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Fluent API for specifying concurrency token
+            modelBuilder.Entity<Produto>()
+                .Property(produto => produto.Quantidade)
+                .IsConcurrencyToken();
+        }
     
         public DbSet<Produto> Produtos { get; set; }
     }
