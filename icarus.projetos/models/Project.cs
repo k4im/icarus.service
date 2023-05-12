@@ -42,5 +42,8 @@ namespace icarus.projetos.models
         [Required(ErrorMessage = "Campo obrigatório")]
         public decimal Valor { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
     }
 }

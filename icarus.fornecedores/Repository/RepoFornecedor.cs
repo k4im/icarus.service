@@ -63,16 +63,31 @@ namespace icarus.fornecedores.Repository
         {
             var fornecedor = await BuscarPorId(id);
             fornecedor.Telefone = model.Telefone;
-            _db.Fornecedores.Update(fornecedor);
-            await _db.SaveChangesAsync();
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+                throw new Exception("Não foi possivel atualizar o dado, tente mais tarde!");
+            }
         }
 
         public async Task DeletarFornecedor(int? id)
         {
             var fornecedor = await BuscarPorId(id);
             if(fornecedor == null) Results.NotFound();
-            _db.Fornecedores.Remove(fornecedor);
-            await _db.SaveChangesAsync();
+            try
+            {
+                _db.Remove(fornecedor);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+                throw new Exception("Não foi possivel deletar o dado, tente mais tarde!");
+            }
         }
     }
 }

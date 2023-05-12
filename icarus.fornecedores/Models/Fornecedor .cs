@@ -30,5 +30,8 @@ namespace icarus.fornecedores.Models
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(14)")]
         public string Telefone { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

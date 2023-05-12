@@ -83,11 +83,11 @@ namespace icarus.fornecedores.Controllers
                 await _repo.AtualizarFornecedor(id, model);
                 return Ok("Produto atualizado com sucesso!");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine($"--> Não foi possivel criar o fornecedor: {e.Message}");
+                return StatusCode(409, "Não foi possivel atualizar o item, pois o mesmo foi atualizado por outro usuario!");
             }
-            return StatusCode(500);
+            
         }
 
         [HttpDelete("fornecedores/delete/{id}")]
@@ -98,11 +98,11 @@ namespace icarus.fornecedores.Controllers
                 await _repo.DeletarFornecedor(id);
                 return Ok("Fornecedor deletado com sucesso!");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine($"--> Não foi possivel criar o fornecedor: {e.Message}");
+                return StatusCode(409, "Não foi possivel deletar o item, pois o mesmo foi deletado por outro usuario!");
             }
-            return StatusCode(500);
+
         }
     }
 }

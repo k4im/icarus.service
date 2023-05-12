@@ -11,7 +11,13 @@ namespace icarus.projetos.data
     {
         public DataContext(DbContextOptions options) : base(options)
         {}
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Fluent API for specifying concurrency token
+            modelBuilder.Entity<Project>()
+                .Property(projeto => projeto.RowVersion)
+                .IsConcurrencyToken();
+        }
         public DbSet<Project> Projetos { get; set; } 
         public DbSet<ProjectFile> Arquivos { get; set; }
     }

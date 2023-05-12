@@ -76,19 +76,25 @@ namespace icarus.projetos.Controllers
                 await _repo.AtualizarProjeto(model, id);
                 return Ok();
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                Console.WriteLine(e);
+                return StatusCode(409, "Não foi possivel atualizar o item, o mesmo foi atualizado por outro usuario!");
             }
-            return BadRequest(); 
         }
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteProject(int? id)
         {
             if(id == null) return NotFound();
-            await _repo.DeletarProjeto(id);
-            return StatusCode(204);
+            try
+            {
+                await _repo.DeletarProjeto(id);
+                return StatusCode(204);
+            }
+            catch (Exception)
+            {
+                return StatusCode(409, "Não foi possivel deletar o item, o mesmo foi deletado por outro usuario!");
+            }
         }
     
 

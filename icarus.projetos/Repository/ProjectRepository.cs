@@ -83,29 +83,35 @@ namespace icarus.projetos.Repository
 
         public async Task DeletarProjeto(int? id)
         {
+            var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
+            if(item == null) Results.NotFound();
             try 
             {
-                var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-                if(item == null) Results.NotFound();
                 _db.Projetos.Remove(item);
                 await _db.SaveChangesAsync();
             }
-            catch (Exception e){
-                Console.WriteLine(e.Message);
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new Exception("Não foi possivel deletar o dado, tente mais tarde!");
             }
             
         }
 
         public async Task AtualizarProjeto(ProjectUpdate model, int? id)
         {
-                if (id != null && model != null) 
-                {
-                    var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-                    if(item == null) Results.NotFound();
-                    item.Status = model.Status;
-                    _db.Projetos.Update(item);
-                    await _db.SaveChangesAsync();
-                }
+            var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
+            if(item == null) Results.NotFound();
+            item.Status = model.Status;
+            try
+            {
+                _db.Projetos.Update(item);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+                throw new Exception("Não foi possivel atualizar o dado, tente mais tarde!");
+            }
         }
         
     }
