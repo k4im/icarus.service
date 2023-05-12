@@ -17,6 +17,7 @@ namespace icarus.estoque.Models
 
 
         [Required(ErrorMessage ="Campo obrigatório")]
+        [ConcurrencyCheck]
         public int Quantidade { get; set; }
 
 

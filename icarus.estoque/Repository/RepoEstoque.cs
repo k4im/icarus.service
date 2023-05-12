@@ -16,9 +16,17 @@ namespace icarus.estoque.Repository
 
         public async Task AtualizarProduto(int? id, Produto modelo)
         {
-            await _db.Produtos.Where(produto => produto.Id == id)
-                .ExecuteUpdateAsync(updates =>
-                updates.SetProperty(produto => produto.Quantidade, modelo.Quantidade));
+            try
+            {
+                await _db.Produtos.Where(produto => produto.Id == id)
+                    .ExecuteUpdateAsync(updates =>
+                    updates.SetProperty(produto => produto.Quantidade, modelo.Quantidade));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                Console.WriteLine("Não foi possivel realizar a operação, por favor tente mais tarde!");
+            }
         }
 
         public async Task<Produto> BuscarProdutoId(int? id)
@@ -60,7 +68,6 @@ namespace icarus.estoque.Repository
                 Quantidade = modelo.Quantidade,
                 ValorUnitario = modelo.ValorUnitario
             };
-
             await _db.Produtos.AddAsync(produto);
             await _db.SaveChangesAsync();
         }
