@@ -16,10 +16,9 @@ namespace icarus.estoque.Repository
 
         public async Task AtualizarProduto(int? id, Produto modelo)
         {
-            var item = await BuscarProdutoId(id);
-            item.Quantidade = modelo.Quantidade;
-            _db.Produtos.Update(item);
-            await _db.SaveChangesAsync();
+            await _db.Produtos.Where(produto => produto.Id == id)
+                .ExecuteUpdateAsync(updates =>
+                updates.SetProperty(produto => produto.Quantidade, modelo.Quantidade));
         }
 
         public async Task<Produto> BuscarProdutoId(int? id)

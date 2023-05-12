@@ -22,24 +22,21 @@ namespace icarus.estoque.Controllers
 
         [HttpGet("produtos/{pagina?}/{resultadoPorPagina?}")]
         public async Task<IActionResult> Produtos(int pagina = 1, float resultadoPorPagina = 5) {
-            var produtos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
-            if(produtos == null) return NotFound();
-            if(!produtos.Produtos.Any()) return Ok(produtos);
             try
             {
                 var consumer = _msgCosumer.consumeMessage();
-                if(consumer != null) await _repo.TratarMessage(consumer);
-                
-                await _repo.ValidarProdutos();
-                var produtosAtualizados = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
-                if(produtosAtualizados == null) return NotFound();
-                return Ok(produtosAtualizados);
-            
+                if(consumer != null) await _repo.TratarMessage(consumer);   
+             
             }
             catch (Exception e)
             {
                 Console.WriteLine($"--> Não foi possivel consumir: {e.Message}");
             }
+            
+            await _repo.ValidarProdutos();
+            var produtos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
+            if(produtos == null) return NotFound();
+            
             return Ok(produtos);
         }
 
