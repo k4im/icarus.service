@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using icarus.fornecedores.Models.ValueObjects;
 
 namespace icarus.fornecedores.Models
 {
@@ -21,11 +23,7 @@ namespace icarus.fornecedores.Models
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(30)")]
-        public string Endereco { get; set; }
-
-        [Required(ErrorMessage = "Este campo é obrigatório")]
-        [DataType("NVARCHAR(9)")]
-        public string Cep { get; set; }
+        public Endereco Endereco { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(14)")]

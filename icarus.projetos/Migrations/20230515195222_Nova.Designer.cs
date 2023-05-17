@@ -11,8 +11,8 @@ using icarus.projetos.data;
 namespace icarus.projetos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230428130433_Chapa")]
-    partial class Chapa
+    [Migration("20230515195222_Nova")]
+    partial class Nova
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,12 +42,17 @@ namespace icarus.projetos.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("QuantidadeDeChapa")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp(6)");
 
                     b.Property<string>("Status")
                         .IsRequired()

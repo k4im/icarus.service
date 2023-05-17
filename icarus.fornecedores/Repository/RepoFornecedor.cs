@@ -46,16 +46,8 @@ namespace icarus.fornecedores.Repository
 
         public async Task CriarFornecedor(Fornecedor model)
         {
-            var fornecedor = new Fornecedor 
-            {
-                Id = model.Id,
-                Nome = model.Nome,
-                Cnpj = model.Cnpj,
-                Cep = model.Cep,
-                Endereco = model.Endereco,
-                Telefone = model.Telefone
-            };
-            await _db.Fornecedores.AddAsync(fornecedor);
+            // var fornecedor = new Fornecedor(model.Nome, model.Cnpj, model.Endereço, model.Telefone);
+            // await _db.Fornecedores.AddAsync(fornecedor);
             await _db.SaveChangesAsync();
         }
 

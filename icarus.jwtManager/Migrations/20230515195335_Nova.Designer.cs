@@ -11,8 +11,8 @@ using icarus.jwtManager.Data;
 namespace icarus.jwtManager.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230426203711_FixBase")]
-    partial class FixBase
+    [Migration("20230515195335_Nova")]
+    partial class Nova
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,6 +175,9 @@ namespace icarus.jwtManager.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -191,6 +194,9 @@ namespace icarus.jwtManager.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
@@ -220,10 +226,16 @@ namespace icarus.jwtManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("TokenRefresh")
+                    b.Property<string>("ChaveDeAcesso")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("UserEmail")
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("ExpiraEm")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("TokenRefresh")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

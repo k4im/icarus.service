@@ -61,7 +61,6 @@ namespace icarus.fornecedores.Controllers
 
             try
             {
-                // var fornecedor = _mapper.Map<FornecedorDTO, Fornecedor>(model);
                 await _repo.CriarFornecedor(model);
                 return StatusCode(201, "Fornecedor criado com sucesso!");
             }
@@ -79,7 +78,6 @@ namespace icarus.fornecedores.Controllers
 
             try
             {
-                // var fornecedor = _mapper.Map<FornecedorDTO, Fornecedor>(model);
                 await _repo.AtualizarFornecedor(id, model);
                 return Ok("Produto atualizado com sucesso!");
             }

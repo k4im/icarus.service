@@ -46,6 +46,11 @@ namespace icarus.projetos.Migrations
                     b.Property<int>("QuantidadeDeChapa")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp(6)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
