@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace icarus.fornecedores.Models.ValueObjects
@@ -37,9 +38,9 @@ namespace icarus.fornecedores.Models.ValueObjects
 
         void validarRegex(string codigoPais, string codigoDeArea, string numero)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(codigoPais, "^[0-9]*$")) throw new Exception("Campo precisa conter apenas numeros");
-            if (!System.Text.RegularExpressions.Regex.IsMatch(codigoDeArea, "^[0-9]*$")) throw new Exception("Campo precisa conter apenas numeros");
-            if (!System.Text.RegularExpressions.Regex.IsMatch(numero, "^[0-9]*$")) throw new Exception("Campo precisa conter apenas numeros");
+            if (!Regex.IsMatch(codigoPais, "^[0-9]*$")) throw new Exception("Codigo do país precisa conter apenas numeros");
+            if (!Regex.IsMatch(codigoDeArea, "^[0-9]*$")) throw new Exception("Codigo de area precisa conter apenas numeros");
+            if (!Regex.IsMatch(numero, "^[0-9]*$")) throw new Exception("Numero de telefone precisa conter apenas numeros");
         }
     }
 }

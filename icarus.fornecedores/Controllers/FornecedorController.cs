@@ -72,13 +72,29 @@ namespace icarus.fornecedores.Controllers
             return StatusCode(500);
         }
 
-        [HttpPut("fornecedores/atualizar/{id}")]
+        [HttpPut("fornecedores/atualizarTelefone/{id}")]
         public async Task<IActionResult> AtualizarTelefone(int id, Telefone model)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
                 await _repo.TrocaDeTelefone(id, model);
+                return Ok("Produto atualizado com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(409, e.Message);
+            }
+            
+        }
+
+        [HttpPut("fornecedores/atualizarEndereco/{id}")]
+        public async Task<IActionResult> AtualizarEndereco(int id, Endereco model)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                await _repo.TrocaDeEndereco(id, model);
                 return Ok("Produto atualizado com sucesso!");
             }
             catch (Exception e)
