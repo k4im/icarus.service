@@ -23,7 +23,7 @@ namespace icarus.fornecedores.Models.ValueObjects
         {
             if (!Regex.IsMatch(cnpj, "^[0-9]*$")) throw new Exception("Insira apenas os numeros do cnpj");
             if(string.IsNullOrEmpty(cnpj)) throw new Exception("O cnpj não pode estar nulo!");
-            if(cnpj.Length < 14) throw new Exception("O cnpj deve conter no minimo 14 caracteres!");
+            if(cnpj.Length < 11) throw new Exception("O cnpj deve conter no minimo 14 caracteres!");
         }
 
     }
