@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using icarus.fornecedores.Data;
 using icarus.fornecedores.Models;
+using icarus.fornecedores.Models.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -46,40 +47,104 @@ namespace icarus.fornecedores.Repository
 
         public async Task CriarFornecedor(Fornecedor model)
         {
-            // var fornecedor = new Fornecedor(model.Nome, model.Cnpj, model.Endereço, model.Telefone);
-            // await _db.Fornecedores.AddAsync(fornecedor);
-            await _db.SaveChangesAsync();
+            using (var transaction = await _db.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var fornecedor = new Fornecedor(model.Nome, model.Cnpj, model.Endereco, model.Telefone);
+                    await _db.Fornecedores.AddAsync(fornecedor);
+                    await _db.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                }
+                catch (Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception($"Não foi possivel estar realizando esta operação: {e.Message}");
+                }
+            }    
+            
         }
 
-        public async Task AtualizarFornecedor(int? id, Fornecedor model)
+        public async Task TrocaDeTelefone(int? id, Telefone model)
         {
-            var fornecedor = await BuscarPorId(id);
-            fornecedor.Telefone = model.Telefone;
-            try
+            using(var transaction = await _db.Database.BeginTransactionAsync())
             {
-                await _db.SaveChangesAsync();
+
+                try
+                {
+
+                    var fornecedor = await BuscarPorId(id);
+                    fornecedor.MudarTelefone(model);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception("Não foi possivel atualizar o dado, pois o mesmo já foi atualizado por outro usuario!");
+                }
+                catch(Exception e )
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception($"Não foi possivel realizar está operação: {e.Message}");
+
+                }
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                
-                throw new Exception("Não foi possivel atualizar o dado, tente mais tarde!");
+            
+        }
+        public async Task TrocaDeEndereco(int? id, Endereco model)
+        {
+            using (var transaction = await _db.Database.BeginTransactionAsync())
+            {   
+                try
+                {
+                    var fornecedor = await BuscarPorId(id);
+                    fornecedor.MudancaDeEndereco(model);
+                    await _db.SaveChangesAsync();
+                    
+                    await transaction.CommitAsync();
+                }
+                catch(DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception("Não foi possivel atualizar o dado, pois o mesmo já foi atualizado por outro usuario!");
+                }
+                catch (Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception($"Não foi possivel realizar está operação: {e.Message}");
+                }
             }
         }
+
 
         public async Task DeletarFornecedor(int? id)
         {
-            var fornecedor = await BuscarPorId(id);
-            if(fornecedor == null) Results.NotFound();
-            try
+            using(var transaction = await _db.Database.BeginTransactionAsync())
             {
-                _db.Remove(fornecedor);
-                await _db.SaveChangesAsync();
+
+                try
+                {
+                    var fornecedor = await BuscarPorId(id);
+                    _db.Remove(fornecedor);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception("Não foi possivel deletar o dado, tente mais tarde!");
+                }
+                catch(Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    throw new Exception($"Não foi possivel possivel realizar esta operação: {e.Message}");
+                }
+
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                
-                throw new Exception("Não foi possivel deletar o dado, tente mais tarde!");
-            }
+            
+            
         }
     }
 }

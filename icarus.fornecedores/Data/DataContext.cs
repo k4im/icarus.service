@@ -25,28 +25,43 @@ namespace icarus.fornecedores.Data
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Cidade)
                     .HasColumnName("Cidade")
-                    .IsRequired(true);
+                    .IsRequired(false);
 
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Bairro)
                     .HasColumnName("Bairro")
-                    .IsRequired(true);
+                    .IsRequired(false);
 
 
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Rua)
                     .HasColumnName("Rua")
-                    .IsRequired(true);
+                    .IsRequired(false);
                     
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Cep)
                     .HasColumnName("Cep")
-                    .IsRequired(true);
+                    .IsRequired(false);
 
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Numero)
                     .HasColumnName("Numero")
-                    .IsRequired(true);
+                    .IsRequired(false);
+
+                builder.OwnsOne<Telefone>(fornecedor => fornecedor.Telefone)
+                    .Property(telefone => telefone.CodigoPais)
+                    .HasColumnName("CodigoDoPais")
+                    .IsRequired(false);
+
+                builder.OwnsOne<Telefone>(fornecedor => fornecedor.Telefone)
+                    .Property(telefone => telefone.CodigoDeArea)
+                    .HasColumnName("CodigoDeArea")
+                    .IsRequired(false);
+                
+                builder.OwnsOne<Telefone>(fornecedor => fornecedor.Telefone)
+                    .Property(telefone => telefone.Numero)
+                    .HasColumnName("Numero")
+                    .IsRequired(false);
             
             });
                 

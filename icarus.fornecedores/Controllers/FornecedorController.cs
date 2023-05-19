@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using icarus.fornecedores.Models;
+using icarus.fornecedores.Models.ValueObjects;
 using icarus.fornecedores.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -72,18 +73,17 @@ namespace icarus.fornecedores.Controllers
         }
 
         [HttpPut("fornecedores/atualizar/{id}")]
-        public async Task<IActionResult> AtualizarFornecedor(int id, Fornecedor model)
+        public async Task<IActionResult> AtualizarTelefone(int id, Telefone model)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
-
             try
             {
-                await _repo.AtualizarFornecedor(id, model);
+                await _repo.TrocaDeTelefone(id, model);
                 return Ok("Produto atualizado com sucesso!");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(409, "Não foi possivel atualizar o item, pois o mesmo foi atualizado por outro usuario!");
+                return StatusCode(409, e.Message);
             }
             
         }
@@ -96,9 +96,9 @@ namespace icarus.fornecedores.Controllers
                 await _repo.DeletarFornecedor(id);
                 return Ok("Fornecedor deletado com sucesso!");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(409, "Não foi possivel deletar o item, pois o mesmo foi deletado por outro usuario!");
+                return StatusCode(409, e.Message);
             }
 
         }

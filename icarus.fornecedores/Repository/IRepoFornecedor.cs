@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using icarus.fornecedores.Models;
+using icarus.fornecedores.Models.ValueObjects;
 
 namespace icarus.fornecedores.Repository
 {
@@ -16,6 +17,7 @@ namespace icarus.fornecedores.Repository
 
         Task DeletarFornecedor(int? id);
 
-        Task AtualizarFornecedor(int? id, Fornecedor model);
+        Task TrocaDeTelefone(int? id, Telefone model);
+        Task TrocaDeEndereco(int? id, Endereco model);
     }
 }
