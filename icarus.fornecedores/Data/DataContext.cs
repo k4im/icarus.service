@@ -67,7 +67,12 @@ namespace icarus.fornecedores.Data
                     .HasColumnName("NumeroTelefone")
                     .IsRequired(false);
             });
-                
+
+            modelBuilder.Entity<Fornecedor>(builder => {
+               builder.OwnsOne<CadastroNacionalPessoaJurídica>(fornecedor => fornecedor.Cnpj)
+                .Property(cnpj => cnpj.Cnpj)
+                .HasColumnName("CNPJ"); 
+            }); 
                
         }
         public DbSet<Fornecedor> Fornecedores { get; set; }

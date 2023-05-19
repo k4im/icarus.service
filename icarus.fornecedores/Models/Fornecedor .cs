@@ -14,9 +14,9 @@ namespace icarus.fornecedores.Models
 
         protected Fornecedor()
         {}
-        public Fornecedor(string nome, string cnpj, Endereco endereco, Telefone telefone)
+        public Fornecedor(string nome, CadastroNacionalPessoaJurídica cnpj, Endereco endereco, Telefone telefone)
         {
-            ValidarRegex(nome, cnpj);
+            ValidarNome(nome);
             Nome = nome;
             Cnpj = cnpj;
             Endereco = endereco;
@@ -28,21 +28,21 @@ namespace icarus.fornecedores.Models
         
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(45)")]
-        public string Nome { get;  set; }
+        public string Nome { get;  private set; }
         
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(14)")]
-        public string Cnpj { get;  set; }
+        public CadastroNacionalPessoaJurídica Cnpj { get;  private set; }
 
         [DataType("NVARCHAR(30)")]
-        public Endereco Endereco { get;  set; }
+        public Endereco Endereco { get;  private set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(14)")]
-        public Telefone Telefone { get;  set; }
+        public Telefone Telefone { get;  private set; }
 
         [Timestamp]
-        public byte[] RowVersion { get;  set; }
+        public byte[] RowVersion { get;  private set; }
     
 
         public void MudarTelefone(Telefone novoTelefone)
@@ -55,11 +55,9 @@ namespace icarus.fornecedores.Models
             this.Endereco = novoEndereco;
         }
 
-        void ValidarRegex(string nome, string cnpj)
+        void ValidarNome(string nome)
         {
             if (!Regex.IsMatch(nome, @"^[a-zA-Z]+$")) throw new Exception("Nome não pode conter caracteres especiais");
-            if (!Regex.IsMatch(cnpj, @"^[a-zA-Z]+$")) throw new Exception("CNPJ não pode conter caracteres especiais");
-
         }
     }
 }
