@@ -16,6 +16,8 @@ namespace icarus.fornecedores.Models.ValueObjects
         public string CodigoDeArea { get; set; }
         public string Numero { get; set; }
 
+        protected Telefone()
+        {}
 
         public Telefone(string codigoPais, string codigoDeArea, string numero)
         {

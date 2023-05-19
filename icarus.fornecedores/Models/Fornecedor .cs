@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using icarus.fornecedores.Models.ValueObjects;
 
@@ -10,6 +11,18 @@ namespace icarus.fornecedores.Models
 {
     public class Fornecedor 
     {
+
+        protected Fornecedor()
+        {}
+        public Fornecedor(string nome, string cnpj, Endereco endereco, Telefone telefone)
+        {
+            ValidarRegex(nome, cnpj);
+            Nome = nome;
+            Cnpj = cnpj;
+            Endereco = endereco;
+            Telefone = telefone;
+        }
+
         [Key]
         public int Id { get;  set; }
         
@@ -44,8 +57,8 @@ namespace icarus.fornecedores.Models
 
         void ValidarRegex(string nome, string cnpj)
         {
-            // if (!System.Text.RegularExpressions.Regex.IsMatch(nome, @"^[ A-Za-z0-9]$")) throw new Exception("Nome não pode conter caracteres especiais");
-            // if (!System.Text.RegularExpressions.Regex.IsMatch(cnpj, @"^[ A-Za-z0-9]$")) throw new Exception("CNPJ não pode conter caracteres especiais");
+            if (!Regex.IsMatch(nome, @"^[a-zA-Z]+$")) throw new Exception("Nome não pode conter caracteres especiais");
+            if (!Regex.IsMatch(cnpj, @"^[a-zA-Z]+$")) throw new Exception("CNPJ não pode conter caracteres especiais");
 
         }
     }

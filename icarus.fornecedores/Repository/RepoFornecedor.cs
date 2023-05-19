@@ -51,12 +51,13 @@ namespace icarus.fornecedores.Repository
             {
                 try
                 {
-                    var fornecedor = new Fornecedor {
-                        Nome = model.Nome,
-                        Cnpj = model.Cnpj,
-                        Endereco = model.Endereco,
-                        Telefone = model.Telefone,
-                    };
+                    // var fornecedor = new Fornecedor {
+                    //     Nome = model.Nome,
+                    //     Cnpj = model.Cnpj,
+                    //     Endereco = model.Endereco,
+                    //     Telefone = model.Telefone,
+                    // };
+                    var fornecedor = new Fornecedor(model.Nome, model.Cnpj, model.Endereco, model.Telefone);
                     await _db.Fornecedores.AddAsync(fornecedor);
                     await _db.SaveChangesAsync();
 
