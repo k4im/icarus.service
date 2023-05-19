@@ -11,11 +11,11 @@ namespace icarus.fornecedores.Models.ValueObjects
     {
 
         [DataType("VARCHAR(2)")]
-        public string CodigoPais { get; set; }
+        public string CodigoPais { get; private set; }
         
         [DataType("VARCHAR(2)")]
-        public string CodigoDeArea { get; set; }
-        public string Numero { get; set; }
+        public string CodigoDeArea { get; private set; }
+        public string Numero { get; private set; }
 
         protected Telefone()
         {}
