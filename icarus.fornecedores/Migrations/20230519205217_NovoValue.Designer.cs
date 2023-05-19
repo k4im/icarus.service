@@ -11,8 +11,8 @@ using icarus.fornecedores.Data;
 namespace icarus.fornecedores.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230519182026_NovosCampos")]
-    partial class NovosCampos
+    [Migration("20230519205217_NovoValue")]
+    partial class NovoValue
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,6 @@ namespace icarus.fornecedores.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("Cnpj")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -48,6 +44,23 @@ namespace icarus.fornecedores.Migrations
 
             modelBuilder.Entity("icarus.fornecedores.Models.Fornecedor", b =>
                 {
+                    b.OwnsOne("icarus.fornecedores.Models.ValueObjects.CadastroNacionalPessoaJurídica", "Cnpj", b1 =>
+                        {
+                            b1.Property<int>("FornecedorId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Cnpj")
+                                .HasColumnType("longtext")
+                                .HasColumnName("CNPJ");
+
+                            b1.HasKey("FornecedorId");
+
+                            b1.ToTable("Fornecedores");
+
+                            b1.WithOwner()
+                                .HasForeignKey("FornecedorId");
+                        });
+
                     b.OwnsOne("icarus.fornecedores.Models.ValueObjects.Endereco", "Endereco", b1 =>
                         {
                             b1.Property<int>("FornecedorId")
@@ -105,6 +118,9 @@ namespace icarus.fornecedores.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("FornecedorId");
                         });
+
+                    b.Navigation("Cnpj")
+                        .IsRequired();
 
                     b.Navigation("Endereco");
 
