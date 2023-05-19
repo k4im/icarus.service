@@ -11,8 +11,8 @@ using icarus.fornecedores.Data;
 namespace icarus.fornecedores.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230517201054_NovaEtapa")]
-    partial class NovaEtapa
+    [Migration("20230519182026_NovosCampos")]
+    partial class NovosCampos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,10 +41,6 @@ namespace icarus.fornecedores.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp(6)");
 
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("Fornecedores");
@@ -58,26 +54,22 @@ namespace icarus.fornecedores.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("Bairro")
-                                .IsRequired()
                                 .HasColumnType("longtext")
                                 .HasColumnName("Bairro");
 
                             b1.Property<string>("Cep")
-                                .IsRequired()
                                 .HasColumnType("longtext")
                                 .HasColumnName("Cep");
 
                             b1.Property<string>("Cidade")
-                                .IsRequired()
                                 .HasColumnType("longtext")
                                 .HasColumnName("Cidade");
 
                             b1.Property<int>("Numero")
                                 .HasColumnType("int")
-                                .HasColumnName("Numero");
+                                .HasColumnName("NumeroEndereco");
 
                             b1.Property<string>("Rua")
-                                .IsRequired()
                                 .HasColumnType("longtext")
                                 .HasColumnName("Rua");
 
@@ -89,7 +81,34 @@ namespace icarus.fornecedores.Migrations
                                 .HasForeignKey("FornecedorId");
                         });
 
-                    b.Navigation("Endereco")
+                    b.OwnsOne("icarus.fornecedores.Models.ValueObjects.Telefone", "Telefone", b1 =>
+                        {
+                            b1.Property<int>("FornecedorId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("CodigoDeArea")
+                                .HasColumnType("longtext")
+                                .HasColumnName("CodigoDeArea");
+
+                            b1.Property<string>("CodigoPais")
+                                .HasColumnType("longtext")
+                                .HasColumnName("CodigoDoPais");
+
+                            b1.Property<string>("Numero")
+                                .HasColumnType("longtext")
+                                .HasColumnName("NumeroTelefone");
+
+                            b1.HasKey("FornecedorId");
+
+                            b1.ToTable("Fornecedores");
+
+                            b1.WithOwner()
+                                .HasForeignKey("FornecedorId");
+                        });
+
+                    b.Navigation("Endereco");
+
+                    b.Navigation("Telefone")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

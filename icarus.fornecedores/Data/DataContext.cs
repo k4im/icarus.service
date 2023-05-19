@@ -45,9 +45,13 @@ namespace icarus.fornecedores.Data
 
                 builder.OwnsOne<Endereco>(fornecedor => fornecedor.Endereco)
                     .Property(endereco => endereco.Numero)
-                    .HasColumnName("Numero")
-                    .IsRequired(false);
+                    .HasColumnName("NumeroEndereco")
+                    .IsRequired(true);
+            
+            });
 
+            modelBuilder.Entity<Fornecedor>(builder =>{
+                
                 builder.OwnsOne<Telefone>(fornecedor => fornecedor.Telefone)
                     .Property(telefone => telefone.CodigoPais)
                     .HasColumnName("CodigoDoPais")
@@ -60,9 +64,8 @@ namespace icarus.fornecedores.Data
                 
                 builder.OwnsOne<Telefone>(fornecedor => fornecedor.Telefone)
                     .Property(telefone => telefone.Numero)
-                    .HasColumnName("Numero")
+                    .HasColumnName("NumeroTelefone")
                     .IsRequired(false);
-            
             });
                 
                

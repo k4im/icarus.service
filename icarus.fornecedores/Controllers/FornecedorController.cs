@@ -13,7 +13,7 @@ namespace icarus.fornecedores.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class FornecedorController : ControllerBase
     {
         readonly IRepoFornecedor _repo;

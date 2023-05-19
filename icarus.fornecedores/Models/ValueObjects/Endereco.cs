@@ -33,38 +33,33 @@ namespace icarus.fornecedores.Models.ValueObjects
             VerificarBairro(bairro);
             VerificarRua(rua);
             VerificarCep(cep);
-            VerificarNumeroDaCasa(numero);
         }
 
         void VerificarCidade(string cidade)
         {
             if(string.IsNullOrEmpty(cidade)) throw new Exception("A cidade não pode estar vazia!");
-            if (!System.Text.RegularExpressions.Regex.IsMatch(cidade, @"^[ A-Za-z0-9]$")) throw new Exception("O campo não pode conter caracteres especiais");
+            if (System.Text.RegularExpressions.Regex.IsMatch(cidade, @"^[ A-Za-z0-9]$")) throw new Exception("A cidade não pode conter caracteres especiais");
 
         }
         
         void VerificarBairro(string bairro)
         {
             if(string.IsNullOrEmpty(bairro)) throw new Exception("O Bairro não pode estar vazio!");
-            if (!System.Text.RegularExpressions.Regex.IsMatch(bairro, @"^[ A-Za-z0-9]$")) throw new Exception("O campo não pode conter caracteres especiais");
+            if (System.Text.RegularExpressions.Regex.IsMatch(bairro, @"^[ A-Za-z0-9]$")) throw new Exception("O bairro não pode conter caracteres especiais");
 
         }
         void VerificarCep(string cep)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(cep, @"^[ A-Za-z0-9]$")) throw new Exception("O campo não pode conter caracteres especiais");
+            if (System.Text.RegularExpressions.Regex.IsMatch(cep, @"^[ A-Za-z0-9]$")) throw new Exception("O cep não pode conter caracteres especiais");
             if(string.IsNullOrEmpty(cep)) throw new Exception("O Cep não pode estar vazio!");
-            if(cep.Length < 8) throw new Exception("O cep precisa conter entre 8 e 9 caracteres");
-            if(cep.Length > 9) throw new Exception("O cep precisa conter entre 8 e 9 caracteres");
+            // if(cep.Length < 8) throw new Exception("O cep precisa conter entre 8 e 9 caracteres");
+            // if(cep.Length > 9) throw new Exception("O cep precisa conter entre 8 e 9 caracteres");
 
         }
         void VerificarRua(string rua)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(rua, @"^[ A-Za-z0-9]$")) throw new Exception("O campo não pode conter caracteres especiais");
+            if (System.Text.RegularExpressions.Regex.IsMatch(rua, @"^[ A-Za-z0-9]$")) throw new Exception("A rua não pode conter caracteres especiais");
             if(string.IsNullOrEmpty(rua)) throw new Exception("A Rua não pode estar vazio!");
-        }
-        void VerificarNumeroDaCasa(int numero)
-        {
-            if(numero <= 0) throw new Exception("O numero da cada não pode estar vazio!");
         }
     }
 
