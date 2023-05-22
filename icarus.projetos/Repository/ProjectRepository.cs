@@ -107,6 +107,11 @@ namespace icarus.projetos.Repository
                     await transaction.RollbackAsync();
                     Console.WriteLine("Não foi possivel atualizar o dado, tente mais tarde!");
                 }
+                catch(Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel realizar a operação: {e.Message}");
+                }
             }
         }
         
