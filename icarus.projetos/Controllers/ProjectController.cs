@@ -18,21 +18,24 @@ namespace icarus.projetos.Controllers
     // [Authorize]
     public class ProjectController : ControllerBase
     {
-        private readonly IProjectRepository _repo;
-        private readonly IMessageBusService _msgBus;
-        private readonly IMapper _mapper;
-
+        readonly IProjectRepository _repo;
+        readonly IMessageBusService _msgBus;
+        readonly IMapper _mapper;
+        readonly ILogger<ProjectController> _logger;
         public ProjectController(IProjectRepository repo, 
-        IMessageBusService msgBus, IMapper mapper)
+        IMessageBusService msgBus, IMapper mapper,
+        ILogger<ProjectController> logger)
         {
             _repo = repo;
             _msgBus = msgBus;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet("projetos/{pagina?}/{resultadoPorPagina?}")]
         public async Task<IActionResult> GetAllProjects(int pagina = 1, float resultadoPorPagina = 5) 
         {
+            _logger.LogInformation($"Realizando operação GET: {DateTime.UtcNow}");
             var projetos = await _repo.BuscarProdutos(pagina, resultadoPorPagina);
             return Ok(projetos);
         }
@@ -60,6 +63,7 @@ namespace icarus.projetos.Controllers
                 }
                 catch(Exception e)
                 {
+                    _logger.LogError($"[{DateTime.UtcNow}] Não foi possivel enviar a mensagem para o bus: {e.Message}");
                     Console.WriteLine($"--> Não foi possivel enviar a mensagem para o bus: {e.Message}");
                 }
             }
