@@ -69,7 +69,7 @@ namespace icarus.fornecedores.Data
             });
 
             modelBuilder.Entity<Fornecedor>(builder => {
-               builder.OwnsOne<CadastroNacionalPessoaJurídica>(fornecedor => fornecedor.Cnpj)
+               builder.OwnsOne<CadastroNacionalPessoaJuridica>(fornecedor => fornecedor.Cnpj)
                 .Property(cnpj => cnpj.Cnpj)
                 .HasColumnName("CNPJ"); 
             }); 

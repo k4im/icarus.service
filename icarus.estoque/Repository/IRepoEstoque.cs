@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using icarus.estoque.Models;
+using icarus.estoque.Models.ValueObjects;
 
 namespace icarus.estoque.Repository
 {
@@ -12,7 +13,7 @@ namespace icarus.estoque.Repository
         Task<Produto> BuscarProdutoId(int? id);
         Task NovoProduto(Produto modelo);
         Task DeletarProduto(int? id);
-        Task AtualizarProduto(int? id, Produto modelo);
+        Task EntradaDeProdutos(int? id, Quantidade modelo);
         Task TratarMessage(ConsumerDTO consumer);
         Task ValidarProdutos();
     }

@@ -43,25 +43,25 @@ namespace icarus.fornecedores.Models.ValueObjects
         void VerificarCidade(string cidade)
         {
             if(string.IsNullOrEmpty(cidade)) throw new Exception("A cidade não pode estar vazia!");
-            if(!Regex.IsMatch(cidade, @"^[a-zA-Z]+$")) throw new Exception("A cidade não pode conter caracteres especiais");
+            if(!Regex.IsMatch(cidade, @"^[a-zA-Z ]+$")) throw new Exception("A cidade não pode conter caracteres especiais");
 
         }
         
         void VerificarBairro(string bairro)
         {
             if(string.IsNullOrEmpty(bairro)) throw new Exception("O Bairro não pode estar vazio!");
-            if(!Regex.IsMatch(bairro, @"^[a-zA-Z]+$")) throw new Exception("O bairro não pode conter caracteres especiais");
+            if(!Regex.IsMatch(bairro, @"^[a-zA-Z ]+$")) throw new Exception("O bairro não pode conter caracteres especiais");
 
         }
         void VerificarCep(string cep)
         {
-            if(!Regex.IsMatch(cep, @"^[a-zA-Z]+$")) throw new Exception("O cep não pode conter caracteres especiais");
+            if(!Regex.IsMatch(cep, @"^[a-zA-Z ]+$")) throw new Exception("O cep não pode conter caracteres especiais");
             if(string.IsNullOrEmpty(cep)) throw new Exception("O Cep não pode estar vazio!");
             
         }
         void VerificarRua(string rua)
         {
-            if (!Regex.IsMatch(rua, @"^[a-zA-Z]+$")) throw new Exception("A rua não pode conter caracteres especiais");
+            if (!Regex.IsMatch(rua, @"^[a-zA-Z ]+$")) throw new Exception("A rua não pode conter caracteres especiais");
             if(string.IsNullOrEmpty(rua)) throw new Exception("A Rua não pode estar vazio!");
         }
     }

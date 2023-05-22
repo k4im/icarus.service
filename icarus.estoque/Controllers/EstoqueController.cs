@@ -1,5 +1,6 @@
 using icarus.estoque.AsyncComm;
 using icarus.estoque.Models;
+using icarus.estoque.Models.ValueObjects;
 using icarus.estoque.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -78,26 +79,29 @@ namespace icarus.estoque.Controllers
             }
             catch(Exception) 
             {
-                return StatusCode(409, "Não foi possivel deletar este dado, pois o mesmo foi deletado por um outro usuario!");
+                return StatusCode(409, 
+                "Não foi possivel deletar este dado, pois o mesmo foi deletado por um outro usuario!");
             }
         }
 
 
-        [HttpPut("produto/atualizar/{id?}")]
-        public async Task<IActionResult> AtualizarProduto(int? id, Produto model) {
+        [HttpPut("produto/entrada_produto/{id?}")]
+        public async Task<IActionResult> EntradaDeProduto(int? id, Quantidade model) {
             if(id == null) return BadRequest();
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                await _repo.AtualizarProduto(id, model);
+                await _repo.EntradaDeProdutos(id, model);
                 return Ok("Produto atualizado com sucesso");
             
             }
             catch(Exception) 
             {
-                return StatusCode(409, "Não foi possivel atualizar este dado, pois o mesmo foi atualizado por um outro usuario!");
+                return StatusCode(409, 
+                "Não foi possivel atualizar este dado, pois o mesmo foi atualizado por um outro usuario!");
             }
             
         }
+
     }
 }

@@ -14,7 +14,7 @@ namespace icarus.fornecedores.Models
 
         protected Fornecedor()
         {}
-        public Fornecedor(string nome, CadastroNacionalPessoaJurídica cnpj, Endereco endereco, Telefone telefone)
+        public Fornecedor(string nome, CadastroNacionalPessoaJuridica cnpj, Endereco endereco, Telefone telefone)
         {
             ValidarNome(nome);
             Nome = nome;
@@ -32,7 +32,7 @@ namespace icarus.fornecedores.Models
         
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(14)")]
-        public CadastroNacionalPessoaJurídica Cnpj { get;  private set; }
+        public CadastroNacionalPessoaJuridica Cnpj { get;  private set; }
 
         [DataType("NVARCHAR(30)")]
         public Endereco Endereco { get;  private set; }
@@ -57,7 +57,7 @@ namespace icarus.fornecedores.Models
 
         void ValidarNome(string nome)
         {
-            if (!Regex.IsMatch(nome, @"^[a-zA-Z]+$")) throw new Exception("Nome não pode conter caracteres especiais");
+            if (!Regex.IsMatch(nome, @"^[a-zA-Z ]+$")) throw new Exception("Nome não pode conter caracteres especiais");
         }
     }
 }

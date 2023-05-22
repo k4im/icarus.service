@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using icarus.estoque.Data;
 
@@ -10,9 +11,11 @@ using icarus.estoque.Data;
 namespace icarus.estoque.Migrations
 {
     [DbContext(typeof(DataContextEstoque))]
-    partial class DataContextEstoqueModelSnapshot : ModelSnapshot
+    [Migration("20230522162946_NovosCampos")]
+    partial class NovosCampos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

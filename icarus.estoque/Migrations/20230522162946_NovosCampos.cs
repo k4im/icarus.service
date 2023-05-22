@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace icarus.estoque.Migrations
 {
     /// <inheritdoc />
-    public partial class Concurrency : Migration
+    public partial class NovosCampos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,10 +23,10 @@ namespace icarus.estoque.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cor = table.Column<string>(type: "longtext", nullable: true)
+                    Coloracao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Quantidade = table.Column<int>(type: "int", nullable: false),
-                    ValorUnitario = table.Column<int>(type: "int", nullable: false),
+                    QuantidadeEmEstoque = table.Column<int>(type: "int", nullable: false),
+                    ValorDoItem = table.Column<double>(type: "double", nullable: false),
                     RowVersion = table.Column<DateTime>(type: "timestamp(6)", rowVersion: true, nullable: true)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
                 },

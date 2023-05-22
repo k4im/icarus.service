@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace icarus.fornecedores.Models.ValueObjects
 {
-    public class CadastroNacionalPessoaJurídica
+    public class CadastroNacionalPessoaJuridica
     {
-        protected CadastroNacionalPessoaJurídica()
+        protected CadastroNacionalPessoaJuridica()
         {}
         
-        public CadastroNacionalPessoaJurídica(string cnpj)
+        public CadastroNacionalPessoaJuridica(string cnpj)
         {
             ValidarCnpj(cnpj);
             Cnpj = cnpj;

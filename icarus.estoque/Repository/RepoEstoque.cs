@@ -1,5 +1,6 @@
 using icarus.estoque.Data;
 using icarus.estoque.Models;
+using icarus.estoque.Models.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace icarus.estoque.Repository
@@ -14,18 +15,27 @@ namespace icarus.estoque.Repository
             _db = db;
         }
 
-        public async Task AtualizarProduto(int? id, Produto modelo)
+        public async Task EntradaDeProdutos(int? id, Quantidade quantidade)
         {
-            var produto = await BuscarProdutoId(id);
-            produto.Quantidade = modelo.Quantidade;
-            try
+            using (var transaction = await _db.Database.BeginTransactionAsync())
             {
-                await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-
-                throw new Exception("Não foi possivel realizar a operação, por favor tente mais tarde!");
+                try
+                {
+                    var produto = await BuscarProdutoId(id);
+                    produto.EntradaDeProduto(quantidade.QuantidadeItem);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine("Não foi possivel atualizar o dado pois alguém já realizou esta operação");
+                }
+                catch(Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel realizar esta operação: {e.Message}");
+                }
             }
         }
 
@@ -54,54 +64,82 @@ namespace icarus.estoque.Repository
 
         public async Task DeletarProduto(int? id)
         {
-            var produto = await BuscarProdutoId(id);
-            try
+            using(var transaction = await _db.Database.BeginTransactionAsync())
             {
-                _db.Remove(produto);
-                await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-
-                throw new Exception("Não foi possivel realizar a operação, por favor tente mais tarde!");
+                try
+                {
+                    var produto = await BuscarProdutoId(id);
+                    _db.Remove(produto);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine("Não foi possivel realizar esta operação pois a mesma já foi realizada por outro usuario!");
+                }
+                catch(Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel realizar a operação: {e.Message}");
+                }
             }
         }
 
         public async Task NovoProduto(Produto modelo)
         {
-            var produto = new Produto
+            using (var transaction = await _db.Database.BeginTransactionAsync())
             {
-                Id = modelo.Id,
-                Nome = modelo.Nome,
-                Cor = modelo.Cor,
-                Quantidade = modelo.Quantidade,
-                ValorUnitario = modelo.ValorUnitario
-            };
-            await _db.Produtos.AddAsync(produto);
-            await _db.SaveChangesAsync();
+                try
+                {
+                    var produto = new Produto(modelo.Nome, modelo.Cor, modelo.QuantidadeProduto, modelo.ValorUnitario);
+                    await _db.AddAsync(produto);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine("Não foi possivel realizar a ação, outro usuario realizou a mesma!");
+                }
+                catch (Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel realizar a ação: {e.Message}");
+                }
+            }
         }
     
     
         public async Task TratarMessage(ConsumerDTO consumer)
         {
-            foreach (var projeto in consumer.Projetos)
+            using(var transaction = await _db.Database.BeginTransactionAsync())
             {
-                var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower() == projeto.Chapa);
-                if(produto == null) Results.NotFound();
-                produto.Quantidade -= projeto.QuantidadeDeChapa;
-                _db.Produtos.Update(produto);
-                await _db.SaveChangesAsync();
+                foreach (var projeto in consumer.Projetos)
+                {
+                        try
+                        {
+                            var produto =  await _db.Produtos.FirstOrDefaultAsync(x => x.Nome.ToLower() == projeto.Chapa);
+                            if(produto == null) Results.NotFound();
+                            produto.SaidaDeProduto(projeto.QuantidadeDeChapa);
+                            await _db.SaveChangesAsync();
+                            await transaction.CommitAsync();
+                        }
+                        catch (Exception e)
+                        {
+                            await transaction.RollbackAsync();
+                            Console.WriteLine($"Não foi possivel realizar a operação de tratativa de mensagem: {e.Message}");
+                        }
+                }
             }
         }
 
-    
-    
         public async Task ValidarProdutos()
         {
             var produtos = await _db.Produtos.ToListAsync();
             foreach (var produto in produtos)
             {
-                if(produto.Quantidade <= 0) await DeletarProduto(produto.Id);
+                if(produto.QuantidadeProduto.QuantidadeItem <= 0) await DeletarProduto(produto.Id);
             }
         }
 
