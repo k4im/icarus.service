@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using icarus.projetos.models;
+using icarus.projetos.models.ValueObject;
 
 namespace icarus.projetos.Repository
 {
@@ -14,7 +15,7 @@ namespace icarus.projetos.Repository
         
         Task CriarProjeto(Project model);
         
-        Task AtualizarProjeto(ProjectUpdate model, int? id);
+        Task AtualizarStatus(StatusProjeto model, int? id);
         
         Task DeletarProjeto(int? id);
         Task<Project> BuscarPorId(int? id);

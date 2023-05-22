@@ -1,6 +1,7 @@
 using AutoMapper;
 using icarus.projetos.data;
 using icarus.projetos.models;
+using icarus.projetos.models.ValueObject;
 using Microsoft.EntityFrameworkCore;
 
 namespace icarus.projetos.Repository
@@ -39,78 +40,73 @@ namespace icarus.projetos.Repository
         {
             var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
             if(item == null) return null;
-            var response = new Project {
-                Id = item.Id,
-                Nome = item.Nome,
-                Status = item.Status,
-                DataInicio = item.DataInicio,
-                DataEntrega = item.DataEntrega,
-                Descricao = item.Descricao,
-                Valor = item.Valor
-            };
-            return response;
+            return item;
         }
         
         public async Task CriarProjeto(Project model)
         {
-            if (model != null) 
+            using (var transaction = await _db.Database.BeginTransactionAsync())
             {
-                var project = new Project 
-                {
-                    Id = model.Id,
-                    Nome = model.Nome,
-                    Status = model.Status,
-                    Descricao = model.Descricao,
-                    Chapa = model.Chapa,
-                    DataInicio = model.DataInicio,
-                    DataEntrega = model.DataEntrega,
-                    QuantidadeDeChapa = model.QuantidadeDeChapa,
-                    Valor = model.Valor
-                };
                 try
                 {
-
-                    _db.Projetos.Add(project);
-                   await _db.SaveChangesAsync();
-                   
+                    var projeto = new Project(model.Nome, model.Status, model.DataInicio, model.DataEntrega, model.Chapa, 
+                    model.Descricao, model.QuantidadeDeChapa, model.Valor);
+                    await _db.AddAsync(projeto);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel realizar a operação: {e.Message}");
                 }
-            }  
+            }
         }
 
         public async Task DeletarProjeto(int? id)
         {
-            var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-            if(item == null) Results.NotFound();
-            try 
+            using (var transaction = await _db.Database.BeginTransactionAsync())
             {
-                _db.Projetos.Remove(item);
-                await _db.SaveChangesAsync();
+                try 
+                {
+                    var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
+                    if(item == null) Results.NotFound();
+                    _db.Projetos.Remove(item);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine("Não foi possivel deletar o dado, tente mais tarde!");
+                }
+                catch(Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine($"Não foi possivel estar realizar a operação: {e.Message}");
+                }
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                throw new Exception("Não foi possivel deletar o dado, tente mais tarde!");
-            }
+            
             
         }
 
-        public async Task AtualizarProjeto(ProjectUpdate model, int? id)
+        public async Task AtualizarStatus(StatusProjeto model, int? id)
         {
-            var item = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
-            if(item == null) Results.NotFound();
-            item.Status = model.Status;
-            try
+            using (var transaction = await _db.Database.BeginTransactionAsync())
             {
-                _db.Projetos.Update(item);
-                await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
-                throw new Exception("Não foi possivel atualizar o dado, tente mais tarde!");
+                try
+                {
+                    var projeto = await _db.Projetos.FirstOrDefaultAsync(x => x.Id == id);
+                    projeto.atualizarStatus(model);
+                    await _db.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    await transaction.RollbackAsync();
+                    Console.WriteLine("Não foi possivel atualizar o dado, tente mais tarde!");
+                }
             }
         }
         

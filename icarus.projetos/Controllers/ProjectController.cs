@@ -6,6 +6,7 @@ using AutoMapper;
 using icarus.projetos.AsyncComm;
 using icarus.projetos.models;
 using icarus.projetos.models.ModelsShared;
+using icarus.projetos.models.ValueObject;
 using icarus.projetos.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -67,13 +68,13 @@ namespace icarus.projetos.Controllers
 
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateProject([FromBody]ProjectUpdate model, [FromRoute]int? id)
+        public async Task<IActionResult> UpdateProject( StatusProjeto model, int? id)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState); 
             if(id == null) return NotFound();
             try 
             {
-                await _repo.AtualizarProjeto(model, id);
+                await _repo.AtualizarStatus(model, id);
                 return Ok();
             }
             catch(Exception)
