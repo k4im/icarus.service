@@ -8,7 +8,7 @@ namespace icarus.estoque.Models
     {
 
         [Key]
-        public int Id { get; set;}
+        public int Id { get; private set;}
 
         [Required(ErrorMessage ="Campo obrigatório")]
         [DataType("NVARCHAR(85)")]

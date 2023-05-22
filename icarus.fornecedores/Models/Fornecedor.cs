@@ -24,7 +24,7 @@ namespace icarus.fornecedores.Models
         }
 
         [Key]
-        public int Id { get;  set; }
+        public int Id { get; private set; }
         
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [DataType("NVARCHAR(45)")]

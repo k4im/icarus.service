@@ -13,7 +13,7 @@ namespace icarus.projetos.models
 
 
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [DataType("NVARCHAR(25)")]
@@ -45,7 +45,7 @@ namespace icarus.projetos.models
         public ValorProjeto Valor { get; private set; }
     
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public byte[] RowVersion { get; private set; }
       
         protected Project()
         {}
