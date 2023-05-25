@@ -6,9 +6,9 @@ using icarus.jwtManager.Models.ValueObjects.Base;
 
 namespace icarus.jwtManager.Models.ValueObjects
 {
-    public class RefreshToken : BaseToken
+    public class TokenAccess : BaseToken
     {
-        public RefreshToken(string token) : base(token)
-        { }
+        public TokenAccess(string token) : base(token)
+        {}
     }
 }

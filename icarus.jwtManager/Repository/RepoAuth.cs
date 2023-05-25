@@ -76,12 +76,14 @@ namespace icarus.jwtManager.Repository
         */
         public async Task<RegistroDTO> Registrar(UsuarioDTO request)
         {
+            var chaveDeAcesso = await GerarChaveDeAcesso();
             var NovoUsuario = new AppUser
             {
-                UserName = await GerarChaveDeAcesso(),
-                Email = request.Email,
+                UserName = chaveDeAcesso,
+                Email = chaveDeAcesso,
                 EmailConfirmed = true,
-                Role = request.Role.ToUpper()
+                Role = request.Role.Perfil
+                
             };
 
             var usuarioNovo = await CriarUsuario(NovoUsuario, request);
@@ -232,7 +234,7 @@ namespace icarus.jwtManager.Repository
             {
                 await CriarRoles();
                 await _userManager.SetLockoutEnabledAsync(NovoUsuario, false);
-                await _userManager.AddToRoleAsync(NovoUsuario, request.Role);     
+                await _userManager.AddToRoleAsync(NovoUsuario, request.Role.Perfil);     
             }
             if(!result.Succeeded && result.Errors.Count() > 0) Console.WriteLine("Erro");
             

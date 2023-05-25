@@ -15,7 +15,7 @@ namespace icarus.projetos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
+    [Authorize]
     public class ProjectController : ControllerBase
     {
         readonly IProjectRepository _repo;
@@ -32,7 +32,7 @@ namespace icarus.projetos.Controllers
             _logger = logger;
         }
 
-        [HttpGet("projetos/{pagina?}/{resultadoPorPagina?}")]
+        [HttpGet("projetos/{pagina?}/{resultadoPorPagina?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> GetAllProjects(int pagina = 1, float resultadoPorPagina = 5) 
         {
             _logger.LogInformation($"Realizando operação GET: {DateTime.UtcNow}");
@@ -40,7 +40,7 @@ namespace icarus.projetos.Controllers
             return Ok(projetos);
         }
         
-        [HttpGet("projeto/{id?}")]
+        [HttpGet("projeto/{id?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> GetById(int? id) 
         {
             var item = await _repo.BuscarPorId(id);
@@ -48,7 +48,7 @@ namespace icarus.projetos.Controllers
             return Ok(item);
         }
 
-        [HttpPost("Create")]
+        [HttpPost("Create"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> CreateProject(Project model)
         {
             
@@ -71,7 +71,7 @@ namespace icarus.projetos.Controllers
         }
 
 
-        [HttpPut("update/{id}")]
+        [HttpPut("update/{id}"),  ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> UpdateProject( StatusProjeto model, int? id)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState); 
@@ -87,7 +87,7 @@ namespace icarus.projetos.Controllers
             }
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("delete/{id}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> DeleteProject(int? id)
         {
             if(id == null) return NotFound();

@@ -20,8 +20,8 @@ namespace icarus.jwtManager.Controllers
         {
             try
             {
-                var checarRole = (request.Role != "Admin" && request.Role != "Supervisor") ?  true : false;
-                if(checarRole) return BadRequest("O role precisa ser (Admin) ou (Supervisor)");
+                var checarRole = (request.Role.Perfil.ToLower() != "admin" && request.Role.Perfil.ToLower() != "supervisor") ?  true : false;
+                if(checarRole) return BadRequest("O role precisa ser (admin) ou (supervisor)");
                 var usuarioCriado = await _repo.Registrar(request);
                 return Ok(usuarioCriado);
             }

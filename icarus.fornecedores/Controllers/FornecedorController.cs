@@ -13,7 +13,7 @@ namespace icarus.fornecedores.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
+    [Authorize]
     public class FornecedorController : ControllerBase
     {
         readonly IRepoFornecedor _repo;
@@ -23,7 +23,7 @@ namespace icarus.fornecedores.Controllers
             _repo = repo;
         }
 
-        [HttpGet("fornecedores/{pagina?}/{resultadoPorPagina?}")]
+        [HttpGet("fornecedores/{pagina?}/{resultadoPorPagina?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> BuscarFornecedores(int pagina = 1, float resultadoPorPagina = 5)
         {
             try
@@ -39,7 +39,7 @@ namespace icarus.fornecedores.Controllers
             return StatusCode(500);
         }
     
-        [HttpGet("fornecedor/{id}")]
+        [HttpGet("fornecedor/{id}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> BuscarPorId(int id)
         {
             try
@@ -55,7 +55,7 @@ namespace icarus.fornecedores.Controllers
             return StatusCode(500);
         }
     
-        [HttpPost("fornecedores/novo")]
+        [HttpPost("fornecedores/novo"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> NovoFornecedor(Fornecedor model)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -72,7 +72,7 @@ namespace icarus.fornecedores.Controllers
             return StatusCode(500);
         }
 
-        [HttpPut("fornecedores/atualizarTelefone/{id}")]
+        [HttpPut("fornecedores/atualizarTelefone/{id}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> AtualizarTelefone(int id, Telefone model)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -88,7 +88,7 @@ namespace icarus.fornecedores.Controllers
             
         }
 
-        [HttpPut("fornecedores/atualizarEndereco/{id}")]
+        [HttpPut("fornecedores/atualizarEndereco/{id}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> AtualizarEndereco(int id, Endereco model)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
@@ -104,7 +104,7 @@ namespace icarus.fornecedores.Controllers
             
         }
 
-        [HttpDelete("fornecedores/delete/{id}")]
+        [HttpDelete("fornecedores/delete/{id}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN")]
         public async Task<IActionResult> DeletarFornecedor(int id)
         {
             try

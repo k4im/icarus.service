@@ -9,7 +9,7 @@ namespace icarus.estoque.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
+    [Authorize]
     public class EstoqueController : ControllerBase
     {
         private readonly IRepoEstoque _repo;
@@ -21,7 +21,7 @@ namespace icarus.estoque.Controllers
             _msgCosumer = msgCosumer;
         }
 
-        [HttpGet("produtos/{pagina?}/{resultadoPorPagina?}")]
+        [HttpGet("produtos/{pagina?}/{resultadoPorPagina?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> Produtos(int pagina = 1, float resultadoPorPagina = 5) {
             try
             {
@@ -42,7 +42,7 @@ namespace icarus.estoque.Controllers
         }
 
             
-        [HttpGet("{id?}")]
+        [HttpGet("{id?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> Produto(int? id) {
             if(id == null) return BadRequest();
             var produtos = await _repo.BuscarProdutoId(id);
@@ -51,7 +51,7 @@ namespace icarus.estoque.Controllers
         }
 
 
-        [HttpPost("produto/novo")]
+        [HttpPost("produto/novo"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> NovoProduto(Produto model) {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
@@ -68,7 +68,7 @@ namespace icarus.estoque.Controllers
         }
 
 
-        [HttpDelete("produto/delete/{id?}")]
+        [HttpDelete("produto/delete/{id?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> DeletarProduto(int? id) {
             if(id == null) return BadRequest();
             try
@@ -85,7 +85,7 @@ namespace icarus.estoque.Controllers
         }
 
 
-        [HttpPut("produto/entrada_produto/{id?}")]
+        [HttpPut("produto/entrada_produto/{id?}"), ValidateAntiForgeryToken, Authorize(Roles ="ADMIN, ATENDENTE")]
         public async Task<IActionResult> EntradaDeProduto(int? id, Quantidade model) {
             if(id == null) return BadRequest();
             if(!ModelState.IsValid) return BadRequest(ModelState);
